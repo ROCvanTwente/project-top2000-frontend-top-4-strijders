@@ -46,19 +46,19 @@ function Navbar() {
 
                             {/* DJ Dropdown */}
                             <li className="nav-item dropdown">
-                                <Link className="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     DJ's
-                                </Link>
+                                </a>
                                 <ul className="dropdown-menu">
-                                    <Link to="/djs/jeroen-van-inkel" className="dropdown-item">Jeroen van Inkel</Link>
-                                    <Link to="/djs/astrid-joosten" className="dropdown-item">Astrid Joosten</Link>
-                                    <Link to="/djs/wouter-van-der-goes" className="dropdown-item">Wouter van der Goes</Link>
-                                    <Link to="/djs/marlous-pieters" className="dropdown-item">Marlous Pieters</Link>
-                                    <Link to="/djs/leo-blokhuis" className="dropdown-item">Leo Blokhuis</Link>
-                                    <Link to="/djs/jan-willem-roodbeen" className="dropdown-item">Jan-Willem Roodbeen</Link>
-                                    <Link to="/djs/rob-stenders" className="dropdown-item">Rob Stenders</Link>
-                                    <Link to="/djs/sander-de-heer" className="dropdown-item">Sander de Heer</Link>
-                                    <Link to="/djs/emmely-reeuwijk" className="dropdown-item">Emmely Reeuwijk</Link>
+                                    <a href="https://nl.wikipedia.org/wiki/Jeroen_van_Inkel" className="dropdown-item" target="_blank" rel="noopener noreferrer">Jeroen van Inkel</a>
+                                    <a href="https://nl.wikipedia.org/wiki/Astrid_Joosten" className="dropdown-item" target="_blank" rel="noopener noreferrer">Astrid Joosten</a>
+                                    <a href="https://nl.wikipedia.org/wiki/Wouter_van_der_Goes" className="dropdown-item" target="_blank" rel="noopener noreferrer">Wouter van der Goes</a>
+                                    <a href="https://nl.wikipedia.org/wiki/Marlous_Pieters" className="dropdown-item" target="_blank" rel="noopener noreferrer">Marlous Pieters</a>
+                                    <a href="https://nl.wikipedia.org/wiki/Leo_Blokhuis" className="dropdown-item" target="_blank" rel="noopener noreferrer">Leo Blokhuis</a>
+                                    <a href="https://nl.wikipedia.org/wiki/Jan-Willem_Roodbeen" className="dropdown-item" target="_blank" rel="noopener noreferrer">Jan-Willem Roodbeen</a>
+                                    <a href="https://nl.wikipedia.org/wiki/Rob_Stenders" className="dropdown-item" target="_blank" rel="noopener noreferrer">Rob Stenders</a>
+                                    <a href="https://nl.wikipedia.org/wiki/Sander_de_Heer" className="dropdown-item" target="_blank" rel="noopener noreferrer">Sander de Heer</a>
+                                    <a href="https://nl.wikipedia.org/wiki/Emmely_Reeuwijk" className="dropdown-item" target="_blank" rel="noopener noreferrer">Emmely Reeuwijk</a>
                                 </ul>
                             </li>
 
@@ -98,7 +98,7 @@ function Navbar() {
                             </li>
                         </ul>
                     </div>
-                    
+
                     {!loggedIn ? (
                         <div className="d-none d-lg-block ms-auto">
                             <Link to="/register" className="nav-link text-white">Inloggen</Link>
