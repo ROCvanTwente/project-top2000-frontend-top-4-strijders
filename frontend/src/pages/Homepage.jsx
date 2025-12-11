@@ -190,6 +190,41 @@ function Homepage() {
                         </div>
                     </div>
 
+                    {/*Countdown*/}
+                    <div className="row g-4">
+                        {/* X-Mas*/}
+                        <div className="col-12 col-sm-6">
+                            <Link to="/artiesten" className="text-decoration-none">
+                                <div className="card shadow border-0 p-2">
+                                    <div className="card-header border-0 bg-white figma-red-text">
+                                        <h5>Kerst</h5>
+                                    </div>
+                                    <div className="card-body py-2">
+                                        <p className="card-text pe-2">
+                                            Ontdek alle artiesten die ooit in de TOP 2000 hebben gestaan
+                                        </p>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+
+                        {/*New Year*/}
+                        <div className="col-12 col-sm-6">
+                            <Link to="/nummers" className="text-decoration-none">
+                                <div className="card shadow border-0 p-2">
+                                    <div className="card-header border-0 bg-white figma-red-text">
+                                        <h5>Oud & nieuw</h5>
+                                    </div>
+                                    <div className="card-body py-2">
+                                        <p className="card-text pe-2">
+                                            Bekijk alle nummers met hun volledige geschiedenis
+                                        </p>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
+
                     {/*footer spacer */}
                 </div>
             </div>
