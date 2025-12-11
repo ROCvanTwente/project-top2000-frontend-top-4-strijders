@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import Studio from '../assets/Studio.jpg';
 import Party from '../assets/Party.jpg';
 import CD from '../assets/CD.jpg';
@@ -101,9 +102,12 @@ function Homepage() {
 
                     {/*welkom card*/}
                     <div className="col-12">
-                        <div className="card shadow border-0">
-                            <div className="card-header">
-                                Welkom bij de TOP 2000
+                        <div className="card shadow border-0 p-2">
+                            <div className="card-header border-0 bg-white figma-red-text">
+                                <span>
+                                    <i class="bi icons-standard bi-music-note-beamed"></i>
+                                    Welkom bij de TOP 2000
+                                </span>
                             </div>
                             <div className="card-body">
                                 <p className="card-text">
@@ -139,42 +143,52 @@ function Homepage() {
                     <div className="row g-4">
                         {/* Card 1 */}
                         <div className="col-12 col-sm-4">
-                            <div className="card rounded-4 p-4 shadow border-0">
-                                <div className="body-header figma-red-text">
-                                    <h2>info card 1</h2>
+                            <Link to="/artiesten" className="text-decoration-none">
+                                <div className="card shadow border-0 p-2">
+                                    <div className="card-header border-0 bg-white figma-red-text">
+                                        <h5>Artiesten</h5>
+                                    </div>
+                                    <div className="card-body py-1">
+                                        <p className="card-text">
+                                            Ontdek alle artiesten die ooit in de TOP 2000 hebben gestaan
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="card-body">
-                                    Ontdek alle artiesten die ooit in de TOP 2000 hebben gestaan
-                                </div>
-                            </div>
+                            </Link>
                         </div>
 
                         {/* Card 2 */}
                         <div className="col-12 col-sm-4">
-                            <div className="card rounded-4 p-4 shadow border-0">
-                                <div className="body-header figma-red-text">
-                                    <h2>info card 2</h2>
+                            <Link to="/nummers" className="text-decoration-none">
+                                <div className="card shadow border-0 p-2">
+                                    <div className="card-header border-0 bg-white figma-red-text">
+                                        <h5>Nummers</h5>
+                                    </div>
+                                    <div className="card-body py-1">
+                                        <p className="card-text pe-2">
+                                            Bekijk alle nummers met hun volledige geschiedenis
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="card-body">
-                                    Ontdek alle artiesten die ooit in de TOP 2000 hebben gestaan
-                                </div>
-                            </div>
+                            </Link>
                         </div>
 
                         {/* Card 3 */}
                         <div className="col-12 col-sm-4">
-                            <div className="card rounded-4 p-4 shadow border-0">
-                                <div className="body-header figma-red-text">
-                                    <h2>info card 3</h2>
+                            <Link to="/geschiedenis" className="text-decoration-none">
+                                    <div className="card shadow border-0 p-2">
+                                    <div className="card-header border-0 bg-white figma-red-text">
+                                        <h5>Geschiedenis</h5>
+                                    </div>
+                                    <div className="card-body py-1">
+                                        <p className="card-text pe-5">
+                                            Lees alles over de geschiedenis van de TOP 2000
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="card-body">
-                                    Ontdek alle artiesten die ooit in de TOP 2000 hebben gestaan
-                                </div>
-                            </div>
+                            </Link>
                         </div>
                     </div>
-
-
 
                     {/*footer spacer */}
                 </div>

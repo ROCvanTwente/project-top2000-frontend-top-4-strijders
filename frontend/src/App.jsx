@@ -16,8 +16,8 @@ function App() {
       </main>
 
         <div className={"fixed-bottom mt-3"}>
-            <Footer/>
-            
+            {/* <Footer/> */}
+
         </div>
     </div>
   )
