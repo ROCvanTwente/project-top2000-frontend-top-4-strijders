@@ -1,3 +1,51 @@
+.red-gradient {
+    background: linear-gradient(to right, #dc2626, #b91c1c);
+}
+
+.icon-navbar {
+    font-size: 24px;
+}
+
+.navbar-collapse.show .nav-item:hover,
+.navbar-collapse.show .dropdown-item:hover {
+    background-color: #991b1b;
+    color: white !important;
+    border-radius: 4px;
+    transition: 0.4s ease-in-out;
+}
+
+/* MOBILE */
+@media (max-width: 991px) {
+    .navbar {
+        padding: 0;
+    }
+    .navbar-collapse.show {
+        background-color: #b91c1c !important;
+        padding: 1rem;
+    }
+    .navbar-collapse.show .dropdown-menu {
+        background-color: #b91c1c !important;
+        border: none;
+    }
+    .navbar-collapse.show .nav-link,
+    .navbar-collapse.show .dropdown-item {
+        color: white !important;
+    }
+
+}
+
+/* DESKTOP */
+@media (min-width: 992px) {
+    .navbar {
+        padding: 0 150px;
+    }
+}
+
+@media (min-width: 992px ) and (max-width: 1199px) {
+    .navbar {
+        padding: 0 50px;
+    }
+}
 
 .bg-footer {
     background-color: #1E2939;
