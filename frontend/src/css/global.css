@@ -31,11 +31,18 @@
     .navbar-collapse.show .dropdown-item {
         color: white !important;
     }
+
 }
 
 /* DESKTOP */
 @media (min-width: 992px) {
     .navbar {
         padding: 0 150px;
+    }
+}
+
+@media (min-width: 992px ) and (max-width: 1199px) {
+    .navbar {
+        padding: 0 50px;
     }
 }
