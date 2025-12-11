@@ -148,8 +148,8 @@ function Homepage() {
                                     <div className="card-header border-0 bg-white figma-red-text">
                                         <h5>Artiesten</h5>
                                     </div>
-                                    <div className="card-body py-1">
-                                        <p className="card-text">
+                                    <div className="card-body py-2">
+                                        <p className="card-text pe-2">
                                             Ontdek alle artiesten die ooit in de TOP 2000 hebben gestaan
                                         </p>
                                     </div>
@@ -164,7 +164,7 @@ function Homepage() {
                                     <div className="card-header border-0 bg-white figma-red-text">
                                         <h5>Nummers</h5>
                                     </div>
-                                    <div className="card-body py-1">
+                                    <div className="card-body py-2">
                                         <p className="card-text pe-2">
                                             Bekijk alle nummers met hun volledige geschiedenis
                                         </p>
@@ -180,9 +180,9 @@ function Homepage() {
                                     <div className="card-header border-0 bg-white figma-red-text">
                                         <h5>Geschiedenis</h5>
                                     </div>
-                                    <div className="card-body py-1">
-                                        <p className="card-text pe-5">
-                                            Lees alles over de geschiedenis van de TOP 2000
+                                    <div className="card-body py-2">
+                                        <p className="card-text pe-2">
+                                            Lees alles over de geschiedenis van de TOP 2000 en hoe de lijst ontstond.
                                         </p>
                                     </div>
                                 </div>
