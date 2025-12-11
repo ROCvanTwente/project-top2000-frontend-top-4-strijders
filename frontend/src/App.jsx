@@ -6,17 +6,19 @@ import Footer from "./layout/Footer"
 
 function App() {
   return (
-    <>
+    <div className={" d-flex flex-column min-vh-100"}>
       <Navbar />
 
-      <main>
+      <main className={"flex-fill"}>
         <Routes>
           <Route path="/" element={<Homepage />} />
         </Routes>
       </main>
 
-      <Footer />
-    </>
+        <div className={"fixed-bottom mt-3"}>
+            <Footer/>
+        </div>
+    </div>
   )
 }
 

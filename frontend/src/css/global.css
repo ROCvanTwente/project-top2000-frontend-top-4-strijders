@@ -46,3 +46,23 @@
         padding: 0 50px;
     }
 }
+
+.bg-footer {
+    background-color: #1E2939;
+    height: 120px;
+}
+
+.icons-standard {
+    color: #DC000A;
+    margin: 10px;
+    display: inline-block; /* REQUIRED for SVG scaling */
+    transform: scale(150%); /* 150% bigger */
+}
+
+.figma-red {
+    background-color: #DC000A !important;
+}
+
+.figma-red-text {
+    color: #DC000A !important;
+}
