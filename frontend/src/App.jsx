@@ -17,6 +17,7 @@ function App() {
 
         <div className={"fixed-bottom mt-3"}>
             <Footer/>
+            
         </div>
     </div>
   )

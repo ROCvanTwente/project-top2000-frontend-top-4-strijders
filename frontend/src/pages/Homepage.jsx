@@ -1,4 +1,8 @@
 import React from 'react'
+import Studio from '../assets/Studio.jpg';
+import Party from '../assets/Party.jpg';
+import CD from '../assets/CD.jpg';
+
 
 function Homepage() {
 
@@ -9,13 +13,89 @@ function Homepage() {
                 <div className="row justify-content-center g-5">
                     {/*carousel*/}
                     <div className="col-12">
-                        <div className="card shadow border-0">
-                            <div className="card-header border-0">
-                                Carousel placeholder
+                        <div id="carouselExampleControls" className="carousel slide shadow" data-bs-ride="carousel">
+                            {/* Indicators */}
+                            <div className="carousel-indicators">
+                                <button
+                                    type="button"
+                                    data-bs-target="#carouselExampleControls"
+                                    data-bs-slide-to="0"
+                                    className="active"
+                                    aria-current="true"
+                                    aria-label="Slide 1"
+                                ></button>
+                                <button
+                                    type="button"
+                                    data-bs-target="#carouselExampleControls"
+                                    data-bs-slide-to="1"
+                                    aria-label="Slide 2"
+                                ></button>
+                                <button
+                                    type="button"
+                                    data-bs-target="#carouselExampleControls"
+                                    data-bs-slide-to="2"
+                                    aria-label="Slide 3"
+                                ></button>
                             </div>
-                            <div className="card-body">
-                                test
+
+                            <div className="carousel-inner">
+                                <div className="carousel-item active">
+                                    <img
+                                        className="d-block w-100"
+                                        src={CD}
+                                        alt="First slide"
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                    <div className="carousel-caption d-none d-md-block">
+                                        <h5>Klassiekers uit de Jaren '60-'90</h5>
+                                        <p>Ontdek tijdloze muziek</p>
+                                    </div>
+                                </div>
+                                <div className="carousel-item">
+                                    <img
+                                        className="d-block w-100"
+                                        src={Party}
+                                        alt="Second slide"
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                    <div className="carousel-caption d-none d-md-block">
+                                        <h5>TOP 2000 - De Grootste Hits Aller Tijden</h5>
+                                        <p>Stem nu op jouw favoriete nummers</p>
+                                    </div>
+                                </div>
+                                <div className="carousel-item">
+                                    <img
+                                        className="d-block w-100"
+                                        src={Studio}
+                                        alt="Third slide"
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                    <div className="carousel-caption d-none d-md-block">
+                                        <h5>Live vanaf Hilversum</h5>
+                                        <p>Luister naar je favoriete DJ's</p>
+                                    </div>
+                                </div>
                             </div>
+
+                            {/* Controls */}
+                            <button
+                                className="carousel-control-prev"
+                                type="button"
+                                data-bs-target="#carouselExampleControls"
+                                data-bs-slide="prev"
+                            >
+                                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span className="visually-hidden">Previous</span>
+                            </button>
+                            <button
+                                className="carousel-control-next"
+                                type="button"
+                                data-bs-target="#carouselExampleControls"
+                                data-bs-slide="next"
+                            >
+                                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span className="visually-hidden">Next</span>
+                            </button>
                         </div>
                     </div>
 
@@ -42,8 +122,8 @@ function Homepage() {
                         <div className="card shadow border-0">
                             <div className="card-header">
                                 <span>
-                                <i className="bi icons-standard bi-graph-up-arrow"></i>
-                                Top 5 van 2024
+                                    <i className="bi icons-standard bi-graph-up-arrow"></i>
+                                    Top 5 van 2024
                                 </span>
                             </div>
                             <div className="card-body">
