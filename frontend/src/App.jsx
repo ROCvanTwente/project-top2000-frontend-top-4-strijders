@@ -15,9 +15,8 @@ function App() {
         </Routes>
       </main>
 
-        <div className={"fixed-bottom mt-3"}>
-            {/* <Footer/> */}
-
+        <div className={"mt-5 w-100"}>
+            <Footer/>
         </div>
     </div>
   )
