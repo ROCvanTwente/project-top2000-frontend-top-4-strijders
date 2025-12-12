@@ -5,6 +5,10 @@ import Navbar from "./layout/Navbar"
 import Footer from "./layout/Footer"
 
 function App() {
+    fetch('https://localhost:7003/api/GetTopFive')
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.error(err));
   return (
     <div className={" d-flex flex-column min-vh-100"}>
       <Navbar />
