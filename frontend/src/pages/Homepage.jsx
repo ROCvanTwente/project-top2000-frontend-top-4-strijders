@@ -1,4 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+import Studio from '../assets/Studio.jpg';
+import Party from '../assets/Party.jpg';
+import CD from '../assets/CD.jpg';
+
+import DaysUntil from '../components/Daysuntil.jsx';
+
 
 const items = [
     {
@@ -37,23 +44,101 @@ export default function Homepage() {
 
                 <div className="row px-1 d-flex justify-content-center g-5">
                     {/*carousel*/}
-                    <div className="col-12 ">
-                        <div className="card shadow border-0">
-                            <div className="card-header bg-white d-inline-flex figma-red-text border-0">
-                                <p>Carousel placeholder</p>
+                    <div className="col-12">
+                        <div id="carouselExampleControls" className="carousel slide shadow" data-bs-ride="carousel">
+                            {/* Indicators */}
+                            <div className="carousel-indicators">
+                                <button
+                                    type="button"
+                                    data-bs-target="#carouselExampleControls"
+                                    data-bs-slide-to="0"
+                                    className="active"
+                                    aria-current="true"
+                                    aria-label="Slide 1"
+                                ></button>
+                                <button
+                                    type="button"
+                                    data-bs-target="#carouselExampleControls"
+                                    data-bs-slide-to="1"
+                                    aria-label="Slide 2"
+                                ></button>
+                                <button
+                                    type="button"
+                                    data-bs-target="#carouselExampleControls"
+                                    data-bs-slide-to="2"
+                                    aria-label="Slide 3"
+                                ></button>
                             </div>
-                            <div className="card-body">
-                                test
+
+                            <div className="carousel-inner">
+                                <div className="carousel-item active">
+                                    <img
+                                        className="d-block w-100"
+                                        src={CD}
+                                        alt="First slide"
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                    <div className="carousel-caption d-none d-md-block">
+                                        <h5>Klassiekers uit de Jaren '60-'90</h5>
+                                        <p>Ontdek tijdloze muziek</p>
+                                    </div>
+                                </div>
+                                <div className="carousel-item">
+                                    <img
+                                        className="d-block w-100"
+                                        src={Party}
+                                        alt="Second slide"
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                    <div className="carousel-caption d-none d-md-block">
+                                        <h5>TOP 2000 - De Grootste Hits Aller Tijden</h5>
+                                        <p>Stem nu op jouw favoriete nummers</p>
+                                    </div>
+                                </div>
+                                <div className="carousel-item">
+                                    <img
+                                        className="d-block w-100"
+                                        src={Studio}
+                                        alt="Third slide"
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                    <div className="carousel-caption d-none d-md-block">
+                                        <h5>Live vanaf Hilversum</h5>
+                                        <p>Luister naar je favoriete DJ's</p>
+                                    </div>
+                                </div>
                             </div>
+
+                            {/* Controls */}
+                            <button
+                                className="carousel-control-prev"
+                                type="button"
+                                data-bs-target="#carouselExampleControls"
+                                data-bs-slide="prev"
+                            >
+                                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span className="visually-hidden">Previous</span>
+                            </button>
+                            <button
+                                className="carousel-control-next"
+                                type="button"
+                                data-bs-target="#carouselExampleControls"
+                                data-bs-slide="next"
+                            >
+                                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span className="visually-hidden">Next</span>
+                            </button>
                         </div>
                     </div>
 
                     {/*welkom card*/}
                     <div className="col-12">
-                        <div className="card shadow border-0">
-                            <div className="card-header bg-white d-inline-flex figma-red-text border-0">
-                                <i className="bi icons-standard p-1 bi-music-note-beamed"></i>
-                                <p className="m-0 align-items-center fs-4 d-flex">Welkom bij de TOP 2000</p>
+                        <div className="card shadow border-0 p-2">
+                            <div className="card-header border-0 bg-white figma-red-text">
+                                <span>
+                                    <i class="bi icons-standard bi-music-note-beamed"></i>
+                                    Welkom bij de TOP 2000
+                                </span>
                             </div>
                             <div className="card-body">
                                 <p className="card-text">
@@ -114,41 +199,83 @@ export default function Homepage() {
                     <div className="row g-4">
                         {/* Card 1 */}
                         <div className="col-12 col-sm-4">
-                            <div className="card rounded-4 p-4 shadow border-0">
-                                <div className="body-header figma-red-text">
-                                    <h2>info card 1</h2>
+                            <Link to="/artiesten" className="text-decoration-none">
+                                <div className="card shadow border-0 p-2">
+                                    <div className="card-header border-0 bg-white figma-red-text">
+                                        <h5>Artiesten</h5>
+                                    </div>
+                                    <div className="card-body py-2">
+                                        <p className="card-text pe-2">
+                                            Ontdek alle artiesten die ooit in de TOP 2000 hebben gestaan
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="card-body">
-                                    Ontdek alle artiesten die ooit in de TOP 2000 hebben gestaan
-                                </div>
-                            </div>
+                            </Link>
                         </div>
 
                         {/* Card 2 */}
                         <div className="col-12 col-sm-4">
-                            <div className="card rounded-4 p-4 shadow border-0">
-                                <div className="body-header figma-red-text">
-                                    <h2>info card 2</h2>
+                            <Link to="/nummers" className="text-decoration-none">
+                                <div className="card shadow border-0 p-2">
+                                    <div className="card-header border-0 bg-white figma-red-text">
+                                        <h5>Nummers</h5>
+                                    </div>
+                                    <div className="card-body py-2">
+                                        <p className="card-text pe-2">
+                                            Bekijk alle nummers met hun volledige geschiedenis
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="card-body">
-                                    Ontdek alle artiesten die ooit in de TOP 2000 hebben gestaan
-                                </div>
-                            </div>
+                            </Link>
                         </div>
 
                         {/* Card 3 */}
                         <div className="col-12 col-sm-4">
-                            <div className="card rounded-4 p-4 shadow border-0">
-                                <div className="body-header figma-red-text">
-                                    <h2>info card 3</h2>
+                            <Link to="/geschiedenis" className="text-decoration-none">
+                                <div className="card shadow border-0 p-2">
+                                    <div className="card-header border-0 bg-white figma-red-text">
+                                        <h5>Geschiedenis</h5>
+                                    </div>
+                                    <div className="card-body py-2">
+                                        <p className="card-text pe-2">
+                                            Lees alles over de geschiedenis van de TOP 2000 en hoe de lijst ontstond.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="card-body">
-                                    Ontdek alle artiesten die ooit in de TOP 2000 hebben gestaan
-                                </div>
-                            </div>
+                            </Link>
                         </div>
                     </div>
 
+                    {/*Countdown*/}
+                    <div className="row g-4">
+                        {/* X-Mas*/}
+                        <div className="col-12 col-sm-6">
+                            <Link to="/artiesten" className="text-decoration-none">
+                                <div className="card shadow border-0 p-2">
+                                    <div className="card-header border-0 bg-white figma-red-text">
+                                        <h5>Dagen tot Kerst</h5>
+                                    </div>
+                                    <div className="card-body py-2">
+                                        <DaysUntil targetDate="2025-12-25" />
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+
+                        {/*New Year*/}
+                        <div className="col-12 col-sm-6">
+                            <Link to="/nummers" className="text-decoration-none">
+                                <div className="card shadow border-0 p-2">
+                                    <div className="card-header border-0 bg-white figma-red-text">
+                                        <h5>Dagen tot Oud & nieuw</h5>
+                                    </div>
+                                    <div className="card-body py-2">
+                                        <DaysUntil targetDate="2025-12-31" />
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
 
                     {/*footer spacer */}
                 </div>
