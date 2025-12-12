@@ -4,6 +4,8 @@ import Studio from '../assets/Studio.jpg';
 import Party from '../assets/Party.jpg';
 import CD from '../assets/CD.jpg';
 
+import DaysUntil from '../components/Daysuntil.jsx';
+
 
 function Homepage() {
 
@@ -176,7 +178,7 @@ function Homepage() {
                         {/* Card 3 */}
                         <div className="col-12 col-sm-4">
                             <Link to="/geschiedenis" className="text-decoration-none">
-                                    <div className="card shadow border-0 p-2">
+                                <div className="card shadow border-0 p-2">
                                     <div className="card-header border-0 bg-white figma-red-text">
                                         <h5>Geschiedenis</h5>
                                     </div>
@@ -197,12 +199,10 @@ function Homepage() {
                             <Link to="/artiesten" className="text-decoration-none">
                                 <div className="card shadow border-0 p-2">
                                     <div className="card-header border-0 bg-white figma-red-text">
-                                        <h5>Kerst</h5>
+                                        <h5>Dagen tot Kerst</h5>
                                     </div>
                                     <div className="card-body py-2">
-                                        <p className="card-text pe-2">
-                                            Ontdek alle artiesten die ooit in de TOP 2000 hebben gestaan
-                                        </p>
+                                        <DaysUntil targetDate="2025-12-25" />
                                     </div>
                                 </div>
                             </Link>
@@ -213,12 +213,10 @@ function Homepage() {
                             <Link to="/nummers" className="text-decoration-none">
                                 <div className="card shadow border-0 p-2">
                                     <div className="card-header border-0 bg-white figma-red-text">
-                                        <h5>Oud & nieuw</h5>
+                                        <h5>Dagen tot Oud & nieuw</h5>
                                     </div>
                                     <div className="card-body py-2">
-                                        <p className="card-text pe-2">
-                                            Bekijk alle nummers met hun volledige geschiedenis
-                                        </p>
+                                        <DaysUntil targetDate="2025-12-31" />
                                     </div>
                                 </div>
                             </Link>
