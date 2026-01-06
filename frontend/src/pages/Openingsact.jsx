@@ -10,16 +10,17 @@ export default function Openingsact() {
             <div className="container-lg pt-4">
                 <div className="card shadow rounded border-0 mb-4">
                     <div className="card-body">
-                        <div className="row">
-                            <div className="col-4">
+                        <div className="row align-items-stretch">
+                            <div className="col-12 col-md-4 mb-3 mb-md-0">
                                 <img
                                     src={OpeningsactImage}
                                     alt="showImg"
-                                    className="img-fluid w-100 rounded"
+                                    className="img-fluid w-100 h-100 object-fit-cover rounded act-img"
                                 />
+
                             </div >
 
-                            <div className="col-8">
+                            <div className="col-12 col-md-8">
                                 <h5 className="fw-semibold mb-1 figma-red-text"><span>
                                     <i class="bi icons-standard bi-music-note"></i>
                                     Openingsshow Top 2000
@@ -103,7 +104,7 @@ export default function Openingsact() {
                 </div>
 
                 <div className='row'>
-                    <div className="col-6 mb-4">
+                    <div className="col-12 col-lg-6 mb-4">
                         <div className="card shadow border-0 p-2">
                             <div className="card-header border-0 bg-white figma-red-text">
                                 <span>
@@ -123,7 +124,7 @@ export default function Openingsact() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-6 mb-4">
+                    <div className="col-12 col-lg-6 mb-4">
                         <div className="card shadow border-0 p-2">
                             <div className="card-header border-0 bg-white figma-red-text">
                                 <span>Planning Openingsact 2024</span>
