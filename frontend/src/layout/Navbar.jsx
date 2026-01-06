@@ -32,7 +32,7 @@ function Navbar() {
                     <div className={`collapse navbar-collapse flex-grow-1 ${isOpen ? "show" : ""}`}>
                         <ul className="navbar-nav d-flex align-items-center justify-content-center w-100">
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/">TOP2000</Link>
+                                <Link className="nav-link text-white" to="/Overview">TOP2000</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link text-white" to="/about">Artiesten</Link>

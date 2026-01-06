@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 
 import Homepage from "./pages/Homepage"
+import Overview from "./pages/Top2000Overview"
 import Navbar from "./layout/Navbar"
 import Footer from "./layout/Footer"
 
@@ -16,6 +17,7 @@ function App() {
       <main className={"flex-fill"}>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/Overview" element={<Overview />} />
         </Routes>
       </main>
 
