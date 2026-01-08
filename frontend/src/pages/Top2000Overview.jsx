@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import Studio from '../assets/Studio.jpg';
 import Party from '../assets/Party.jpg';
@@ -37,7 +37,16 @@ const items = [
 
 
 export default function Homepage() {
+    const [top2000Entries, setTop2000Entries] = useState([]);
 
+    useEffect(() => {
+        fetch('https://localhost:7003/api/GetTop2000Entries?year=2024')
+            .then(res => res.json())
+            .then(data => setTop2000Entries(data))
+            .catch(err => console.error(err));
+    }, []);
+
+    console.log(top2000Entries);
     return (
         <>
             <div className="container-lg  pt-4 ">
