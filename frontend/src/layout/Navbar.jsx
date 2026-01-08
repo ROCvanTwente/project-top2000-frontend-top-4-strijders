@@ -66,7 +66,7 @@ function Navbar() {
                                 <Link className="nav-link text-white" to="/contact">Geschiedenis</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/contact">Afspeellijsten</Link>
+                                <Link className="nav-link text-white" to="/playlists">Afspeellijsten</Link>
                             </li>
 
                             {/* Statistieken Dropdown */}

@@ -1,43 +1,25 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import Studio from '../assets/Studio.jpg';
 import Party from '../assets/Party.jpg';
 import CD from '../assets/CD.jpg';
 
 import DaysUntil from '../components/Daysuntil.jsx';
-
-
-const items = [
-    {
-        title: 'Item 1',
-        description: 'Description for Item 1',
-        year: 2024,
-    },
-    {
-        title: 'Item 2',
-        description: 'Description for Item 2',
-        year: 2021,
-    },
-    {
-        title: 'Item 3',
-        description: 'Description for Item 3',
-        year: 2026,
-    },
-    {
-        title: 'Item 4',
-        description: 'Description for Item 4',
-        year: 2028,
-    },
-    {
-        title: 'Item 5',
-        description: 'Description for Item 5',
-        year: 2022,
-    },
-];
-
-
 export default function Homepage() {
 
+    const [items, setItems] = React.useState([]);
+
+    useEffect(() => {
+        fetch('https://localhost:7003/api/GetTopFive')
+            .then(res => res.json())
+            .then(data => {
+                const sorted = data.sort((a, b) => a.position - b.position);
+                setItems(sorted);
+            })
+            .catch(err => console.error(err));
+    }, []);
+
+    console.log(items);
     return (
         <>
             <div className="container-lg  pt-4 ">
@@ -162,19 +144,20 @@ export default function Homepage() {
                             <div className="card-body">
 
                                 {items.map((item, index) => {
+                                    console.log(item);
                                     return (
                                         <div className="card border-0 top-5-background mb-3">
                                             <div className="row">
                                                 <div className="col-1 d-flex justify-content-center align-items-center">
                                                     <div className="col-md-4">
                                                         <div className="red-circle">
-                                                            <p className="text-light fs-5 p-0 m-0">{index + 1}</p>
+                                                            <p className="text-light fs-5 p-0 m-0">{item.position}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="col-10">
                                                     <div className="card-body">
-                                                        <h5 className="card-title">{item.title}</h5>
+                                                        <h5 className="card-title">{songs.title}</h5>
                                                         <p className="card-text">{item.description}</p>
 
                                                     </div>
@@ -189,7 +172,7 @@ export default function Homepage() {
                                     )
                                 })}
 
-                                <a href="#" className="btn figma-red text-light">Go somewhere</a>
+                                <a href="#" className="btn figma-red text-light">Bekijk de volledige TOP 2000</a>
                             </div>
                         </div>
 
@@ -256,7 +239,7 @@ export default function Homepage() {
                                         <h5>Dagen tot Kerst</h5>
                                     </div>
                                     <div className="card-body py-2">
-                                        <DaysUntil targetDate="2025-12-25" />
+                                        <DaysUntil targetDate="2026-12-25" />
                                     </div>
                                 </div>
                             </Link>
@@ -270,7 +253,7 @@ export default function Homepage() {
                                         <h5>Dagen tot Oud & nieuw</h5>
                                     </div>
                                     <div className="card-body py-2">
-                                        <DaysUntil targetDate="2025-12-31" />
+                                        <DaysUntil targetDate="2026-12-31" />
                                     </div>
                                 </div>
                             </Link>
