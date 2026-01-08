@@ -66,7 +66,7 @@ function Navbar() {
                                 <Link className="nav-link text-white" to="/contact">Geschiedenis</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/contact">Afspeellijsten</Link>
+                                <Link className="nav-link text-white" to="/playlists">Afspeellijsten</Link>
                             </li>
 
                             {/* Statistieken Dropdown */}
@@ -106,7 +106,7 @@ function Navbar() {
                     ) : (
                         <div className="d-none d-lg-block ms-auto">
                             {/* Desktop Inloggen */}
-                            <Link to="/" className="nav-link text-white"><i class="bi icon-navbar bi-person-circle me-1"></i></Link>
+                            <Link to="/" className="nav-link text-white"><i className="bi icon-navbar bi-person-circle me-1"></i></Link>
                         </div>
                     )}
 
