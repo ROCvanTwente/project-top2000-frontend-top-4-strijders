@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom"
 import Homepage from "./pages/Homepage"
 import Navbar from "./layout/Navbar"
 import Footer from "./layout/Footer"
+import Openingsact from "./pages/Openingsact"
 
 function App() {
     fetch('https://localhost:7003/api/GetTopFive')
@@ -16,6 +17,7 @@ function App() {
       <main className={"flex-fill"}>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/openingsact" element={< Openingsact/>} />
         </Routes>
       </main>
 

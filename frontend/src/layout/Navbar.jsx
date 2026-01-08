@@ -41,7 +41,7 @@ function Navbar() {
                                 <Link className="nav-link text-white" to="/services">Nummers</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/contact">Openingsact</Link>
+                                <Link className="nav-link text-white" to="/openingsact">Openingsact</Link>
                             </li>
 
                             {/* DJ Dropdown */}
