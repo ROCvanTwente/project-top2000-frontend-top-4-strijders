@@ -1,0 +1,124 @@
+.red-gradient {
+    background: linear-gradient(to right, #dc2626, #b91c1c);
+}
+
+.icon-navbar {
+    font-size: 24px;
+}
+
+.navbar-collapse.show .nav-item:hover,
+.navbar-collapse.show .dropdown-item:hover {
+    background-color: #991b1b;
+    color: white !important;
+    border-radius: 4px;
+    transition: 0.4s ease-in-out;
+}
+
+/* MOBILE */
+@media (max-width: 991px) {
+    .navbar {
+        padding: 0;
+    }
+
+    .navbar-collapse.show {
+        background-color: #b91c1c !important;
+        padding: 1rem;
+    }
+
+    .navbar-collapse.show .dropdown-menu {
+        background-color: #b91c1c !important;
+        border: none;
+    }
+
+    .navbar-collapse.show .nav-link,
+    .navbar-collapse.show .dropdown-item {
+        color: white !important;
+    }
+
+}
+
+/* DESKTOP */
+@media (min-width: 992px) {
+    .navbar {
+        padding: 0 100px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .navbar {
+        padding: 0 50px;
+    }
+}
+
+.bg-footer {
+    background-color: #1E2939;
+    height: 120px;
+}
+
+.icons-standard {
+    color: #DC000A;
+    margin: 10px;
+    display: inline-block;
+    /* REQUIRED for SVG scaling */
+    transform: scale(150%);
+    /* 150% bigger */
+}
+
+.figma-red {
+    background-color: #DC000A !important;
+}
+
+.figma-red-text {
+    color: #DC000A !important;
+}
+
+
+/* Carousel */
+
+.carousel,
+.carousel-inner {
+    /* height: 350px; */
+    border-radius: 25px;
+}
+
+.carousel-item img {
+    height: 350px;
+    border-radius: 25px;
+}
+
+
+
+
+.red-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #DC000A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-5-background {
+    background-color: #f7f9fa !important;
+    border-radius: 25px !important;
+}
+
+
+
+/* openigsact image responsive styles */
+
+@media (max-width: 767.98px) {
+    .act-img {
+        max-height: 300px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .act-img {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+}
