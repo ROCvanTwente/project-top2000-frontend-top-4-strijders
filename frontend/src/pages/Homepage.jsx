@@ -157,7 +157,7 @@ export default function Homepage() {
                                                 </div>
                                                 <div className="col-10">
                                                     <div className="card-body">
-                                                        <h5 className="card-title">{songs.title}</h5>
+                                                        <h5 className="card-title">{item.songs.titel}</h5>
                                                         <p className="card-text">{item.description}</p>
 
                                                     </div>

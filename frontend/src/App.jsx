@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom"
 import Homepage from "./pages/Homepage"
 import Navbar from "./layout/Navbar"
 import Footer from "./layout/Footer"
+import Openingsact from "./pages/Openingsact"
 import Playlists from "./pages/Playlists.jsx";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <main className={"flex-fill"}>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/openingsact" element={< Openingsact/>} />
             <Route path="/playlists" element={<Playlists />} />
         </Routes>
       </main>
