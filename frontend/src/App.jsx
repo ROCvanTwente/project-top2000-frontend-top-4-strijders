@@ -6,6 +6,7 @@ import Footer from "./layout/Footer"
 import Openingsact from "./pages/Openingsact"
 import Playlists from "./pages/Playlists.jsx";
 import Login from "./pages/Login.jsx"
+import Register from "./pages/Register.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/openingsact" element={< Openingsact/>} />
           <Route path="/playlists" element={<Playlists />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </main>
 

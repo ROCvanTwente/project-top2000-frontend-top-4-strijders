@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Login() {
+
+export default function Register() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [passwordRepeat, setPasswordRepeat] = useState('')
 
     return (
         <div className="container-lg pt-5">
@@ -11,8 +13,8 @@ export default function Login() {
                 <div className="col-10 col-md-6 col-sm-6 col-lg-4 shadow rounded p-4 bg-white">
 
                     <h5 className="text-center text-danger mb-4"><span>
-                        <i class="bi icons-standard bi-box-arrow-in-right me-3"></i>
-                        Inloggen
+                        <i class="bi icons-standard bi-person-plus me-3"></i>
+                        Registeren
                     </span></h5>
 
                     {/* Username */}
@@ -36,6 +38,16 @@ export default function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
+                    <div className="mb-4">
+                        <label className="form-label">Herhaal wachtwoord</label>
+                        <input
+                            type="password"
+                            className="form-control login-input rounded-pill"
+                            value={passwordRepeat}
+                            onChange={(e) => setPasswordRepeat(e.target.value)}
+
+                        />
+                    </div>
 
                     {/* Button */}
                     <button className="btn btn-danger w-100 rounded-pill py-2">
@@ -43,9 +55,9 @@ export default function Login() {
                     </button>
 
                     <p className='text-center pt-3'>
-                        Nog geen account?{" "}
-                        <Link to="/register" className="register-link">
-                            Registreer hier
+                        Al een account?{" "}
+                        <Link to="/login" className="login-link">
+                            Inloggen
                         </Link>
                     </p>
 
