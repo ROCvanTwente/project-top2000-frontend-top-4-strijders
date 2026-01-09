@@ -14,7 +14,7 @@ export default function Register() {
 
                     <h5 className="text-center text-danger mb-4"><span>
                         <i class="bi icons-standard bi-person-plus me-3"></i>
-                        Registeren
+                        Registreren
                     </span></h5>
 
                     {/* Username */}
@@ -51,7 +51,7 @@ export default function Register() {
 
                     {/* Button */}
                     <button className="btn figma-red text-white w-100 rounded-pill py-2">
-                        Inloggen
+                        Registreren
                     </button>
 
                     <p className='text-center pt-3'>
