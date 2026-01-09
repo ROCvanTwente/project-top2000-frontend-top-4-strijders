@@ -5,7 +5,7 @@ import '../css/global.css';
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
 
     return (
         <header>
@@ -91,7 +91,7 @@ function Navbar() {
                             {/* Mobile Inloggen */}
                             <li className="nav-item d-lg-none mt-2">
                                 {!loggedIn ? (
-                                    <Link to="/register" className="nav-link text-white">Inloggen</Link>
+                                    <Link to="/login" className="nav-link text-white">Inloggen</Link>
                                 ) : (
                                     <Link to="/" className="nav-link text-white">Profielbeheer</Link>
                                 )}
@@ -101,7 +101,7 @@ function Navbar() {
 
                     {!loggedIn ? (
                         <div className="d-none d-lg-block ms-auto">
-                            <Link to="/register" className="nav-link text-white">Inloggen</Link>
+                            <Link to="/login" className="nav-link text-white">Inloggen</Link>
                         </div>
                     ) : (
                         <div className="d-none d-lg-block ms-auto">
