@@ -38,7 +38,7 @@ export default function Login() {
                     </div>
 
                     {/* Button */}
-                    <button className="btn btn-danger w-100 rounded-pill py-2">
+                    <button className="btn figma-red text-white w-100 rounded-pill py-2">
                         Inloggen
                     </button>
 
