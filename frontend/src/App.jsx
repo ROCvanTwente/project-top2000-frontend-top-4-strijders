@@ -5,6 +5,8 @@ import Navbar from "./layout/Navbar"
 import Footer from "./layout/Footer"
 import Openingsact from "./pages/Openingsact"
 import Playlists from "./pages/Playlists.jsx";
+import AdminPage from "./admin/AdminPage.jsx";
+import ArtistAdmin from "./admin/AritstAdmin.jsx"
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/openingsact" element={< Openingsact/>} />
             <Route path="/playlists" element={<Playlists />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/beheer-artiesten" element={<ArtistAdmin />} />
         </Routes>
       </main>
 

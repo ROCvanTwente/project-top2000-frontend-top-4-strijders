@@ -6,6 +6,7 @@ import '../css/global.css';
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [loggedIn, setLoggedIn] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(true);
 
     return (
         <header>
@@ -87,6 +88,14 @@ function Navbar() {
                                     <Link to="/statistieken/grootste-dalers" className="dropdown-item">Grootste dalers TOP2000</Link>
                                 </ul>
                             </li>
+
+                            {isAdmin && (
+                                <li className="nav-item">
+                                    <Link className="nav-link text-white" to="/admin">
+                                        Admin
+                                    </Link>
+                                </li>
+                            )}
 
                             {/* Mobile Inloggen */}
                             <li className="nav-item d-lg-none mt-2">
