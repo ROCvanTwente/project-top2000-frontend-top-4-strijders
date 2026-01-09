@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Artists = [
     {
+        id: 1,
         name: 'Item 1',
         wiki: 'Description for Item 1',
         biography: 'Description for Item 1',
