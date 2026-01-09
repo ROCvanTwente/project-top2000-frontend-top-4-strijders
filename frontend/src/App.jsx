@@ -5,6 +5,7 @@ import Navbar from "./layout/Navbar"
 import Footer from "./layout/Footer"
 import Openingsact from "./pages/Openingsact"
 import Playlists from "./pages/Playlists.jsx";
+import Login from "./pages/Login.jsx"
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/openingsact" element={< Openingsact/>} />
-            <Route path="/playlists" element={<Playlists />} />
+          <Route path="/playlists" element={<Playlists />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
 
