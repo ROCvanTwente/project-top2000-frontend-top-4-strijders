@@ -1,4 +1,6 @@
-import { Calendar, Radio } from "lucide-react";
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
+
 
 export default function History() {
     return (
@@ -7,9 +9,13 @@ export default function History() {
             <div className="card shadow mb-4">
                 <div className="card-body p-4 p-md-5">
                     <div className="d-flex align-items-center mb-4">
-                        <Calendar className="me-3 text-danger" size={32} />
+                        {/* <Calendar className="me-3 text-danger" size={32} /> */}
                         <h1 className="text-danger mb-0">
-                            Geschiedenis van de TOP 2000
+                            <span>
+                                <i class="bi icons-standard bi-calendar-heart me-4"></i>
+                                Geschiedenis van de TOP 2000
+                            </span>
+
                         </h1>
                     </div>
 
@@ -52,15 +58,16 @@ export default function History() {
 
             {/* Luister live card */}
             <div
-                className="card shadow text-white"
-                style={{
-                    background: "figma-red",
-                }}
+                className="card figma-red shadow text-white"
+
             >
                 <div className="card-body p-4 p-md-5">
                     <div className="d-flex align-items-center mb-3">
-                        <Radio className="me-3" size={32} />
-                        <h2 className="mb-0">Luister Live</h2>
+                        <span className="d-flex align-items-center gap-2">
+                            <i className="bi bi-broadcast"></i>
+                            <h2 className="mb-0">Luister Live</h2>
+                        </span>
+
                     </div>
                     <p className="lh-lg mb-0">
                         Stem elk jaar mee en luister tussen Kerstmis en Oud & Nieuw naar de TOP 2000 op NPO Radio 2,

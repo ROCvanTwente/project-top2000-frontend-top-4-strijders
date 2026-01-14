@@ -6,6 +6,8 @@ import Navbar from "./layout/Navbar"
 import Footer from "./layout/Footer"
 import Openingsact from "./pages/Openingsact"
 import Playlists from "./pages/Playlists.jsx";
+import Contact from "./pages/Contact.jsx";
+import FAQ from "./pages/faq.jsx";
 
 function App() {
   return (
@@ -14,18 +16,19 @@ function App() {
 
       <main className={"flex-fill"}>
         <Routes>
-                  <Route path="/" element={<Homepage />} />
-          <Route path="/openingsact" element={< Openingsact/>} />
-            <Route path="/playlists" element={<Playlists />} />
-                  <Route path="/" element={<History />} />
-                  <Route path="/" element={<Artists />} />
-                  <Route path="/" element={<OpeningAct />} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="/openingsact" element={< Openingsact />} />
+          <Route path="/playlists" element={<Playlists />} />
+          <Route path="/geschiedenis" element={<History />} />
+          <Route path="/faq" element={<FAQ />} />
+          {/* <Route path="/" element={<Artists />} /> */}
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
 
-        <div className={"mt-5 w-100"}>
-            <Footer/>
-        </div>
+      <div className={"mt-5 w-100"}>
+        <Footer />
+      </div>
     </div>
   )
 }

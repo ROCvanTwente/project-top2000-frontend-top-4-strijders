@@ -1,4 +1,6 @@
-import { HelpCircle } from "lucide-react";
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
+import { HelpCircle } from 'lucide-react';
 
 export default function FAQ() {
     return (
@@ -8,7 +10,7 @@ export default function FAQ() {
             <div className="card shadow mb-4">
                 <div className="card-body p-4 p-md-5">
                     <div className="d-flex align-items-center mb-3">
-                        <HelpCircle className="text-danger me-3" size={32} />
+                        <i class="bi text-danger fs-2 me-2 bi-info-circle"></i>
                         <h1 className="text-danger mb-0">Veelgestelde vragen (FAQ)</h1>
                     </div>
 
