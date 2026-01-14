@@ -19,14 +19,17 @@
     .navbar {
         padding: 0;
     }
+
     .navbar-collapse.show {
         background-color: #b91c1c !important;
         padding: 1rem;
     }
+
     .navbar-collapse.show .dropdown-menu {
         background-color: #b91c1c !important;
         border: none;
     }
+
     .navbar-collapse.show .nav-link,
     .navbar-collapse.show .dropdown-item {
         color: white !important;
@@ -41,7 +44,7 @@
     }
 }
 
-@media (min-width: 992px ) and (max-width: 1199px) {
+@media (min-width: 992px) and (max-width: 1199px) {
     .navbar {
         padding: 0 50px;
     }
@@ -55,8 +58,10 @@
 .icons-standard {
     color: #DC000A;
     margin: 10px;
-    display: inline-block; /* REQUIRED for SVG scaling */
-    transform: scale(150%); /* 150% bigger */
+    display: inline-block;
+    /* REQUIRED for SVG scaling */
+    transform: scale(150%);
+    /* 150% bigger */
 }
 
 .figma-red {
@@ -70,7 +75,8 @@
 
 /* Carousel */
 
-.carousel, .carousel-inner {
+.carousel,
+.carousel-inner {
     /* height: 350px; */
     border-radius: 25px;
 }
@@ -79,6 +85,10 @@
     height: 350px;
     border-radius: 25px;
 }
+
+
+
+
 .red-circle {
     width: 50px;
     height: 50px;
@@ -99,4 +109,21 @@
 .table-top2000 tbody tr td {
     padding-top: 1.0rem !important;
     padding-bottom: 1.0rem !important;
+}
+
+/* openigsact image responsive styles */
+
+@media (max-width: 767.98px) {
+    .act-img {
+        max-height: 300px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .act-img {
+        flex: 1 1 auto;
+        width: 100%;
+    }
 }
