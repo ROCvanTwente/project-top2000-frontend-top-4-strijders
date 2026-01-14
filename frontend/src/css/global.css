@@ -105,6 +105,11 @@
 }
 
 
+/* TOP2000 Overview  */
+.table-top2000 tbody tr td {
+    padding-top: 1.0rem !important;
+    padding-bottom: 1.0rem !important;
+}
 
 /* openigsact image responsive styles */
 
