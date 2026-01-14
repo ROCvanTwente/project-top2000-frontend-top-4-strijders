@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom';
 import Studio from '../assets/Studio.jpg';
 import Party from '../assets/Party.jpg';
@@ -6,47 +6,42 @@ import CD from '../assets/CD.jpg';
 
 import DaysUntil from '../components/Daysuntil.jsx';
 
-
-const items = [
-    {
-        title: 'Item 1',
-        description: 'Description for Item 1',
-        year: 2024,
-    },
-    {
-        title: 'Item 2',
-        description: 'Description for Item 2',
-        year: 2021,
-    },
-    {
-        title: 'Item 3',
-        description: 'Description for Item 3',
-        year: 2026,
-    },
-    {
-        title: 'Item 4',
-        description: 'Description for Item 4',
-        year: 2028,
-    },
-    {
-        title: 'Item 5',
-        description: 'Description for Item 5',
-        year: 2022,
-    },
-];
-
-
 export default function Homepage() {
     const [top2000Entries, setTop2000Entries] = useState([]);
+    const [sortBy, setSortBy] = useState("positie");
+    const [year, setYear] = useState(2024);
 
     useEffect(() => {
-        fetch('https://localhost:7003/api/GetTop2000Entries?year=2024')
+        fetch(`https://localhost:7003/api/GetTop2000Entries?year=${year}`)
             .then(res => res.json())
             .then(data => setTop2000Entries(data))
             .catch(err => console.error(err));
-    }, []);
+    }, [year]);
 
-    console.log(top2000Entries);
+    const sortedEntries = useMemo(() => {
+        const entries = [...top2000Entries];
+
+        switch (sortBy) {
+            case "titel":
+                entries.sort((a, b) =>
+                    a.songs.titel.localeCompare(b.songs.titel)
+                );
+                break;
+
+            case "artiest":
+                entries.sort((a, b) =>
+                    a.songs.artist.name.localeCompare(b.songs.artist.name)
+                );
+                break;
+
+            case "positie":
+            default:
+                break;
+        }
+
+        return entries;
+    }, [top2000Entries, sortBy]);
+
     return (
         <>
             <div className="container-lg  pt-4 ">
@@ -63,11 +58,10 @@ export default function Homepage() {
                                     <div className="col-12 col-lg-4 mb-3 mb-lg-0">
                                         <div className=" p-3">
                                             <p className="mb-2 ms-1">Jaar</p>
-                                            <select className="form-select">
-                                                <option value="2025">2025</option>
-                                                <option value="2024">2024</option>
-                                                <option value="2023">2023</option>
-                                                <option value="2022">2022</option>
+                                            <select className="form-select" value={year} onChange={(e) => setYear(e.target.value)}>
+                                                {Array.from({ length: 26 }, (_, i) => 2024 - i).map(y => (
+                                                    <option key={y} value={y}>{y}</option>
+                                                ))}
                                             </select>
                                         </div>
                                     </div>
@@ -87,10 +81,10 @@ export default function Homepage() {
                                     <div className="col-12 col-lg-4">
                                         <div className=" p-3">
                                             <p className="mb-2 ms-1">Sorteer op</p>
-                                            <select className="form-select">
-                                                <option value="Positie">Positie</option>
-                                                <option value="Titel">Artiest</option>
-                                                <option value="Titel">Titel</option>
+                                            <select className="form-select" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                                                <option value="positie">Positie</option>
+                                                <option value="titel">Titel</option>
+                                                <option value="artiest">Artiest</option>
                                             </select>
                                         </div>
                                     </div>
@@ -100,8 +94,7 @@ export default function Homepage() {
                     </div>
 
 
-
-                    {/*top 5 card*/}
+                    {/*top2000 table*/}
                     <div className="col-12">
                         <div className="card shadow border-0">
                             <div className="card-body p-0">
@@ -115,16 +108,16 @@ export default function Homepage() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {items.map((item, index) => (
+                                        {sortedEntries.map((item, index) => (
                                             <tr key={index}>
                                                 <td>
-                                                    <span className="d-inline-flex justify-content-center align-items-center bg-danger text-white rounded-circle" style={{ width: '2rem', height: '2rem' }}>
-                                                        {index + 1}
+                                                    <span className="d-inline-flex justify-content-center align-items-center figma-red text-white rounded-circle" style={{ width: '2.2rem', height: '2.2rem' }}>
+                                                        {item.position}
                                                     </span>
 
                                                 </td>
-                                                <td>{item.title}</td>
-                                                <td>{item.artist}</td>
+                                                <td>{item.songs.titel}</td>
+                                                <td>{item.songs.artist.name}</td>
                                                 <td>{item.year}</td>
                                             </tr>
                                         ))}
