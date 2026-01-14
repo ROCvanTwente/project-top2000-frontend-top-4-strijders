@@ -63,7 +63,7 @@ function Navbar() {
                             </li>
 
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/contact">Geschiedenis</Link>
+                                <Link className="nav-link text-white" to="/geschiedenis">Geschiedenis</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link text-white" to="/playlists">Afspeellijsten</Link>
@@ -86,6 +86,9 @@ function Navbar() {
                                     <Link to="/statistieken/grootste-stijgers" className="dropdown-item">Grootste stijgers TOP2000</Link>
                                     <Link to="/statistieken/grootste-dalers" className="dropdown-item">Grootste dalers TOP2000</Link>
                                 </ul>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link text-white" to="/contact">Contact</Link>
                             </li>
 
                             {/* Mobile Inloggen */}
