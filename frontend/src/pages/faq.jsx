@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { HelpCircle } from 'lucide-react';
 
 export default function FAQ() {
     return (
