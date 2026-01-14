@@ -5,11 +5,15 @@ import Party from '../assets/Party.jpg';
 import CD from '../assets/CD.jpg';
 
 import DaysUntil from '../components/Daysuntil.jsx';
+import useSearch from '../components/Searchfunction.jsx';
 
 export default function Homepage() {
     const [top2000Entries, setTop2000Entries] = useState([]);
     const [sortBy, setSortBy] = useState("positie");
     const [year, setYear] = useState(2024);
+    const [searchArtist, setSearchArtist] = useState("");
+
+
 
     useEffect(() => {
         fetch(`https://localhost:7003/api/GetTop2000Entries?year=${year}`)
@@ -42,6 +46,12 @@ export default function Homepage() {
         return entries;
     }, [top2000Entries, sortBy]);
 
+    const searchedEntries = useSearch(
+        sortedEntries,
+        searchArtist,
+        item => item.songs.artist.name
+    );
+
     return (
         <>
             <div className="container-lg  pt-4 ">
@@ -73,6 +83,8 @@ export default function Homepage() {
                                                 type="text"
                                                 className="form-control"
                                                 placeholder="Zoek een artiest..."
+                                                value={searchArtist}
+                                                onChange={(e) => setSearchArtist(e.target.value)}
                                             />
                                         </div>
                                     </div>
@@ -108,7 +120,7 @@ export default function Homepage() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {sortedEntries.map((item, index) => (
+                                        {searchedEntries.map((item, index) => (
                                             <tr key={index}>
                                                 <td>
                                                     <span className="d-inline-flex justify-content-center align-items-center figma-red text-white rounded-circle" style={{ width: '2.2rem', height: '2.2rem' }}>
