@@ -1,3 +1,26 @@
+.background-icon {
+  position: relative;
+  overflow: hidden;
+}
+
+.background-icon .icon-background {
+  position: absolute;
+  top: 90%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  font-size: 1500px;
+  color: #1E2939;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.background-icon > *:not(.icon-background) {
+  position: relative;
+  z-index: 1;
+}
+
+
+
 .red-gradient {
     background: linear-gradient(to right, #dc2626, #b91c1c);
 }

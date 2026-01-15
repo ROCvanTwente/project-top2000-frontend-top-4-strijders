@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 
+import background from "./assets/background.svg"
 import Homepage from "./pages/Homepage"
 import Overview from "./pages/Top2000Overview"
 import History from "./pages/History"
@@ -13,6 +14,8 @@ import FAQ from "./pages/faq.jsx";
 function App() {
   return (
     <div className={" d-flex flex-column min-vh-100"}>
+      <div className={"background-icon"}>
+        <i class="bi icon-background bi-record-circle"></i>
       <Navbar />
 
       <main className={"flex-fill"}>
@@ -31,6 +34,7 @@ function App() {
       <div className={"mt-5 w-100"}>
         <Footer />
       </div>
+</div>
     </div>
   )
 }
