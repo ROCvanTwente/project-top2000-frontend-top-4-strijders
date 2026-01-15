@@ -8,6 +8,7 @@ import Openingsact from "./pages/Openingsact"
 import Playlists from "./pages/Playlists.jsx";
 import Contact from "./pages/Contact.jsx";
 import FAQ from "./pages/faq.jsx";
+import Songoverview from "./pages/Songoverview.jsx"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           {/* <Route path="/" element={<Artists />} /> */}
           <Route path="/contact" element={<Contact />} />
+          <Route path="/songoverview" element={<Songoverview />} />
         </Routes>
       </main>
 
