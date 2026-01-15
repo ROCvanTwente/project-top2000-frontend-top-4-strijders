@@ -9,7 +9,7 @@ export default function FAQ() {
             <div className="card shadow mb-4">
                 <div className="card-body p-4 p-md-5">
                     <div className="d-flex align-items-center mb-3">
-                        <i class="bi text-danger fs-2 me-2 bi-info-circle"></i>
+                        <i className="bi text-danger fs-2 me-2 bi-info-circle"></i>
                         <h1 className="text-danger mb-0">Veelgestelde vragen (FAQ)</h1>
                     </div>
 
