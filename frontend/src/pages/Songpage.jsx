@@ -54,7 +54,6 @@ export default function Songpage() {
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
     };
-
     if (!songData) return null;
     if (loading) return <div className="container mt-5">
         <div className="text-center">Loading...</div>
@@ -177,7 +176,9 @@ export default function Songpage() {
                             <h5 className="mb-0" style={{color: '#dc3545'}}>Positie door de jaren heen</h5>
                         </div>
                         <div className="card-body " style={{padding: '20px'}}>
-                            <Chart body={posistions}/>
+
+                            <Chart body={posistions} />
+
                         </div>
                     </div>
                 </div>

@@ -16,13 +16,17 @@ function App() {
   return (
     <div className={" d-flex flex-column min-vh-100"}>
       <div className={"background-icon"}>
-        <i class="bi icon-background bi-record-circle"></i>
+        <i className="bi icon-background bi-record-circle"></i>
       <Navbar />
 
       <main className={"flex-fill"}>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/Overview" element={<Overview />} />
+            <Route path="/songpage" element={<Songpage/>} />
+            <Route path="/history" element={<History />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
           <Route path="/openingsact" element={< Openingsact/>} />
             <Route path="/playlists" element={<Playlists />} />
         </Routes>

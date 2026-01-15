@@ -15,6 +15,7 @@ const Chart = ({ body }) => {
                   dataKey="position"
                   stroke="#dc3545"
               />
+
           </LineChart>
       </ResponsiveContainer>
   );
