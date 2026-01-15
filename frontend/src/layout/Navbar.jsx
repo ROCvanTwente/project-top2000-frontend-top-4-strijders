@@ -32,7 +32,7 @@ function Navbar() {
                     <div className={`collapse navbar-collapse flex-grow-1 ${isOpen ? "show" : ""}`}>
                         <ul className="navbar-nav d-flex align-items-center justify-content-center w-100">
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/">TOP2000</Link>
+                                <Link className="nav-link text-white" to="/Overview">TOP2000</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link text-white" to="/about">Artiesten</Link>
@@ -63,7 +63,7 @@ function Navbar() {
                             </li>
 
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/contact">Geschiedenis</Link>
+                                <Link className="nav-link text-white" to="/geschiedenis">Geschiedenis</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link text-white" to="/playlists">Afspeellijsten</Link>
@@ -86,6 +86,9 @@ function Navbar() {
                                     <Link to="/statistieken/grootste-stijgers" className="dropdown-item">Grootste stijgers TOP2000</Link>
                                     <Link to="/statistieken/grootste-dalers" className="dropdown-item">Grootste dalers TOP2000</Link>
                                 </ul>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link text-white" to="/contact">Contact</Link>
                             </li>
 
                             {/* Mobile Inloggen */}
