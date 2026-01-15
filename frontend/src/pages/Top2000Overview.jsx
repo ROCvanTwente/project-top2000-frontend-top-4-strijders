@@ -138,6 +138,7 @@ export default function Homepage() {
                                     </thead>
                                     <tbody>
                                         {paginatedEntries.map((item, index) => (
+                                            
                                             <tr key={index}>
                                                 <td>
                                                     <span className="d-inline-flex justify-content-center align-items-center figma-red text-white rounded-circle" style={{ width: '2.2rem', height: '2.2rem' }}>
@@ -145,24 +146,24 @@ export default function Homepage() {
                                                     </span>
 
                                                 </td>
-                                                {/* <td>
+                                                <td>
                                                     <Link
                                                         className="text-decoration-none overview-hover"
                                                         to="/songpage"
-                                                        state={{ paginatedEntries: item }}
+                                                        state={{ item }}
                                                     >
                                                         {item.songs.titel}
                                                     </Link>
-                                                </td> */}
-                                                {/* <td>
+                                                </td>
+                                                <td>
                                                     <Link
                                                         className="text-decoration-none overview-hover"
                                                         to="/overview"
-                                                        state={{ paginatedEntries: item }}
+                                                        // state={{ paginatedEntries: item }}
                                                     >
                                                         {item.songs.artist.name}
                                                     </Link>
-                                                </td> */}
+                                                </td>
                                                 <td>{item.year}</td>
                                             </tr>
                                         ))}
