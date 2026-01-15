@@ -11,6 +11,7 @@ import Playlists from "./pages/Playlists.jsx";
 import Contact from "./pages/Contact.jsx";
 import FAQ from "./pages/faq.jsx";
 import Songpage from "./pages/Songpage.jsx";
+import ArtistsOverview from "./pages/ArtistsOverview.jsx"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/Overview" element={<Overview />} />
+          <Route path="/artiesten" element={<ArtistsOverview />} />
             <Route path="/songpage" element={<Songpage/>} />
             <Route path="/history" element={<History />} />
             <Route path="/contact" element={<Contact />} />
