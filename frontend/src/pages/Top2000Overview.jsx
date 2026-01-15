@@ -145,8 +145,24 @@ export default function Homepage() {
                                                     </span>
 
                                                 </td>
-                                                <td>{item.songs.titel}</td>
-                                                <td>{item.songs.artist.name}</td>
+                                                <td>
+                                                    <Link
+                                                        className="text-decoration-none overview-hover"
+                                                        to="/"
+                                                        state={{ paginatedEntries: item }}
+                                                    >
+                                                        {item.songs.titel}
+                                                    </Link>
+                                                </td>
+                                                <td>
+                                                    <Link
+                                                        className="text-decoration-none overview-hover"
+                                                        to="/"
+                                                        state={{ paginatedEntries: item }}
+                                                    >
+                                                        {item.songs.artist.name}
+                                                    </Link>
+                                                </td>
                                                 <td>{item.year}</td>
                                             </tr>
                                         ))}
