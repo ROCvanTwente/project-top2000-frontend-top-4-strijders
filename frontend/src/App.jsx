@@ -7,26 +7,32 @@ import Openingsact from "./pages/Openingsact"
 import Playlists from "./pages/Playlists.jsx";
 import Login from "./pages/Login.jsx"
 import Register from "./pages/Register.jsx";
+//
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from "./routes/ProtectedRoute.jsx"
+//
 
 function App() {
   return (
-    <div className={" d-flex flex-column min-vh-100"}>
-      <Navbar />
+    <AuthProvider>
+      <div className={" d-flex flex-column min-vh-100"}>
+        <Navbar />
 
-      <main className={"flex-fill"}>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/openingsact" element={< Openingsact/>} />
-          <Route path="/playlists" element={<Playlists />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </main>
+        <main className={"flex-fill"}>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/openingsact" element={< Openingsact />} />
+            <Route path="/playlists" element={<Playlists />} />
+            <Route path="/login" element={<ProtectedRoute><Login /></ProtectedRoute>} />
+            <Route path="/register" element={<ProtectedRoute><Register /></ProtectedRoute>} />
+          </Routes>
+        </main>
 
         <div className={"mt-5 w-100"}>
-            <Footer/>
+          <Footer />
         </div>
-    </div>
+      </div>
+    </AuthProvider>
   )
 }
 
