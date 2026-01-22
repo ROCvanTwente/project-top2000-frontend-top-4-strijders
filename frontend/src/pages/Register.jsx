@@ -31,9 +31,7 @@ export default function Register() {
                         {errorMessage[0] == null ? (
                             <p></p>
                         ) : (
-                            errorMessage[0].map((oneErrorMessage) => {
-                                return <p className='m-0 text-danger'>{oneErrorMessage}</p>
-                            })
+                                <p className='m-0 text-danger'>{errorMessage[0][0]}</p>
                         )}
                     </div>
 
@@ -49,9 +47,7 @@ export default function Register() {
                         {errorMessage[1] == null ? (
                             <p></p>
                         ) : (
-                            errorMessage[1].map((oneErrorMessage) => {
-                                return <p className='m-0 text-danger'>{oneErrorMessage}</p>
-                            })
+                                <p className='m-0 text-danger'>{errorMessage[1][0]}</p>
                         )}
                     </div>
                     <div className="mb-4">
@@ -65,9 +61,7 @@ export default function Register() {
                         {errorMessage[2] == null ? (
                             <p></p>
                         ) : (
-                            errorMessage[2].map((oneErrorMessage) => {
-                                return <p className='m-0 text-danger'>{oneErrorMessage}</p>
-                            })
+                                <p className='m-0 text-danger'>{errorMessage[2][0]}</p>
                         )}
                     </div>
 

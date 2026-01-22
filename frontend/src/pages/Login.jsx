@@ -26,12 +26,11 @@ export default function Login() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
+                        {console.log(errorMessage)}
                         {errorMessage[0] == null ? (
                             <p></p>
                         ) : (
-                            errorMessage[0].map((oneErrorMessage) => {
-                                return <p className='m-0 text-danger'>{oneErrorMessage}</p>
-                            })
+                                <p className='m-0 text-danger'>{errorMessage[0][0]}</p>
                         )}
                     </div>
 

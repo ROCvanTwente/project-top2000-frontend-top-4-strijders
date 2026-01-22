@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
             localStorage.setItem('accessToken', data.token);
             localStorage.setItem('refreshToken', data.refreshToken);
             parseJwt(data.token);
-            navigate("/")
+            navigate("/");
         } else {
             console.log("Inloggen Mislukt");
             console.log("Van AuthContext:");
@@ -94,6 +94,9 @@ export function AuthProvider({ children }) {
             } else {
                 if (data["DuplicateEmail"]) return [data["DuplicateEmail"], [], []];
                 if (data["PasswordRequiresUpper"]) return [[], data["PasswordRequiresUpper"], []];
+                if (data["PasswordRequiresDigit"]) return [[], data["PasswordRequiresDigit"], []];
+                if (data["PasswordRequiresLower"]) return [[], data["PasswordRequiresLower"], []];
+                if (data["InvalidUserName"]) return [data["InvalidUserName"], [], []];
             }
         }
     }
