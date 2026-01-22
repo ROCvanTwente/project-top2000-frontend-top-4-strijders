@@ -10,11 +10,11 @@ export default function Homepage() {
 
     const [items, setItems] = React.useState([]);
 
-    
+
 
 
     useEffect(() => {
-        fetch('https://localhost:7003/api/GetTopFive?year=2024')
+        fetch('https://localhost:7003/api/GetTopFive')
             .then(res => res.json())
             .then(data => {
                 const sorted = data.sort((a, b) => a.position - b.position);
@@ -147,7 +147,6 @@ export default function Homepage() {
                             <div className="card-body">
 
                                 {items.map((item) => {
-                                    console.log(item);
                                     return (
                                         <Link to="/songpage" state={{ item }} className="nav-link text-white">
                                         <div className="card top-5-card border-0 top-5-background mb-3">
