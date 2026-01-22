@@ -1,3 +1,4 @@
+// frontend/src/App.jsx
 import { Routes, Route } from "react-router-dom"
 
 import background from "./assets/background.svg"
@@ -11,31 +12,34 @@ import Playlists from "./pages/Playlists.jsx";
 import Contact from "./pages/Contact.jsx";
 import FAQ from "./pages/faq.jsx";
 import Songpage from "./pages/Songpage.jsx";
+import PlayListConfirm from "./confirmations/PlayListConfirm.jsx";
 
 function App() {
   return (
-    <div className={" d-flex flex-column min-vh-100"}>
-      <div className={"background-icon"}>
+    <div className="d-flex flex-column min-vh-100">
+      <div className="background-icon">
         <i className="bi icon-background bi-record-circle"></i>
+      </div>
+
       <Navbar />
 
-      <main className={"flex-fill"}>
+      <main className="flex-fill">
         <Routes>
+            <Route path="/playlistconfirmation" element={<PlayListConfirm />} />
           <Route path="/" element={<Homepage />} />
           <Route path="/Overview" element={<Overview />} />
-            <Route path="/songpage" element={<Songpage/>} />
-            <Route path="/history" element={<History />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/faq" element={<FAQ />} />
-          <Route path="/openingsact" element={< Openingsact/>} />
-            <Route path="/playlists" element={<Playlists />} />
+          <Route path="/songpage" element={<Songpage/>} />
+          <Route path="/history" element={<History />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/openingsact" element={<Openingsact/>} />
+          <Route path="/playlists" element={<Playlists />} />
         </Routes>
       </main>
 
-      <div className={"mt-5 w-100"}>
+      <footer className="mt-auto w-100">
         <Footer />
-      </div>
-</div>
+      </footer>
     </div>
   )
 }

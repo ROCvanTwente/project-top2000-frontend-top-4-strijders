@@ -144,7 +144,6 @@ export default function Homepage() {
                             <div className="card-body">
 
                                 {items.map((item, index) => {
-                                    console.log(item)
                                     return (
                                         <Link to="/songpage" state={{ item }} className="nav-link text-white">
                                         <div className="card top-5-card border-0 top-5-background mb-3">
