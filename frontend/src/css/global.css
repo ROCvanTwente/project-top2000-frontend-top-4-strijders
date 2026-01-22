@@ -1,3 +1,26 @@
+.background-icon {
+  position: relative;
+  overflow: hidden;
+}
+
+.background-icon .icon-background {
+  position: absolute;
+  top: 90%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  font-size: 1500px;
+  color: #1E2939;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.background-icon > *:not(.icon-background) {
+  position: relative;
+  z-index: 1;
+}
+
+
+
 .red-gradient {
     background: linear-gradient(to right, #dc2626, #b91c1c);
 }
@@ -72,9 +95,15 @@
     color: #DC000A !important;
 }
 
+/* Hover voor de top 5 */
+.top-5-card:hover {
+    transform: scale(1.01);
+    transition: 0.4s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 
 /* Carousel */
-
 .carousel,
 .carousel-inner {
     /* height: 350px; */
@@ -105,6 +134,11 @@
 }
 
 
+/* TOP2000 Overview  */
+.table-top2000 tbody tr td {
+    padding-top: 1.0rem !important;
+    padding-bottom: 1.0rem !important;
+}
 
 /* openigsact image responsive styles */
 

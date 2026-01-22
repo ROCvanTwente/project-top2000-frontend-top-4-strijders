@@ -1,6 +1,9 @@
 import { Routes, Route } from "react-router-dom"
 
+import background from "./assets/background.svg"
 import Homepage from "./pages/Homepage"
+import Overview from "./pages/Top2000Overview"
+import History from "./pages/History"
 import Navbar from "./layout/Navbar"
 import Footer from "./layout/Footer"
 import Openingsact from "./pages/Openingsact"
