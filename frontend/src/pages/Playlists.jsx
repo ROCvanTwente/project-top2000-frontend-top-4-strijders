@@ -23,7 +23,7 @@ export default function Playlists() {
         <div className="col-4">
             <iframe
                 width="100%"
-                height="315"
+                height="100%"
                 src={src}
                 allow="autoplay"
                 title="YouTube player"
