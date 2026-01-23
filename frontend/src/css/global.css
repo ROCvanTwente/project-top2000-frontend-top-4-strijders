@@ -168,3 +168,17 @@
 }
 
 
+/* Login / Register pages */
+
+.login-input:focus {
+  border-color: #DC000A; 
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.register-link, .login-link {
+  color: #DC000A;
+  text-decoration: underline;
+  text-decoration-color: #DC000A;
+  cursor: pointer;
+}
+

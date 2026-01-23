@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/Logo.svg';
 import '../css/global.css';
 
+import { useAuth } from '../context/AuthContext';
+
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(true);
+    const { logout, isLoggedIn, user } = useAuth();
 
     return (
         <header>
@@ -87,32 +89,31 @@ function Navbar() {
                                     <Link to="/statistieken/grootste-dalers" className="dropdown-item">Grootste dalers TOP2000</Link>
                                 </ul>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link text-white" to="/contact">Contact</Link>
-                            </li>
-
+                            <hr className='w-100 text-white d-lg-none'></hr>
                             {/* Mobile Inloggen */}
-                            <li className="nav-item d-lg-none mt-2">
-                                {!loggedIn ? (
-                                    <Link to="/register" className="nav-link text-white">Inloggen</Link>
+                            <li className="nav-item d-lg-none mt-2 w-100">
+                                {!isLoggedIn() ? (
+                                    <Link to="/login" className="nav-link text-white text-center">Inloggen</Link>
                                 ) : (
-                                    <Link to="/" className="nav-link text-white">Profielbeheer</Link>
+                                        <div className="d-flex flex-column align-items-center">
+                                            <p className='nav-link text-white m-0'><i class="bi bi-person me-2"></i>{JSON.parse(user)["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"].split("@")[0]}</p>
+                                            <button onClick={() => logout()} className='nav-link text-white'><i class="bi bi-box-arrow-in-right"></i>Uitloggen</button>
+                                        </div>
                                 )}
                             </li>
                         </ul>
                     </div>
-
-                    {!loggedIn ? (
+                    {/* Desktop Inloggen */}
+                    {!isLoggedIn() ? (
                         <div className="d-none d-lg-block ms-auto">
-                            <Link to="/register" className="nav-link text-white">Inloggen</Link>
+                            <Link to="/login" className="nav-link text-white">Inloggen</Link>
                         </div>
                     ) : (
-                        <div className="d-none d-lg-block ms-auto">
-                            {/* Desktop Inloggen */}
-                            <Link to="/" className="nav-link text-white"><i className="bi icon-navbar bi-person-circle me-1"></i></Link>
+                            <div className="d-none d-lg-flex flex-row ms-auto">
+                                <p className='nav-link text-white m-0 me-2 me-xl-4 text-center'><i class="bi bi-person me-2"></i>{JSON.parse(user)["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"].split("@")[0]}</p>
+                                <button onClick={() => logout()} className='nav-link text-white'><i class="bi bi-box-arrow-in-right me-2"></i>Uitloggen</button>
                         </div>
                     )}
-
                 </div>
             </nav>
         </header>
