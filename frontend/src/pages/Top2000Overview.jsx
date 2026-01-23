@@ -69,6 +69,14 @@ export default function Homepage() {
     const totalPages = Math.ceil(searchedEntries.length / itemsPerPage);
 
 
+    if (!top2000Entries) {
+        return (
+            <div className="container-lg mt-4">
+                <p>Loading...</p>
+            </div>
+        );
+    }
+
     return (
         <>
             <div className="container-lg  pt-4 ">
@@ -159,7 +167,6 @@ export default function Homepage() {
                                                     <Link
                                                         className="text-decoration-none overview-hover"
                                                         to="/overview"
-                                                        // state={{ paginatedEntries: item }}
                                                     >
                                                         {item.songs.artist.name}
                                                     </Link>

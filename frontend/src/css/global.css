@@ -140,6 +140,16 @@
     padding-bottom: 1.0rem !important;
 }
 
+.overview-hover {
+    color: black;
+}
+
+.overview-hover:hover {
+    color: #DC000A;
+    transition: color 0.3s ease-in-out;
+    cursor: pointer;
+}
+
 /* openigsact image responsive styles */
 
 @media (max-width: 767.98px) {
@@ -158,12 +168,4 @@
 }
 
 
-.overview-hover {
-    color: black;
-}
 
-.overview-hover:hover {
-    color: #DC000A;
-    transition: color 0.3s ease-in-out;
-    cursor: pointer;
-}
