@@ -104,13 +104,13 @@ export default function ArtistDetail() {
                                 {/* Left */}
                                 <div>
                                     <div className="fw-semibold">
-                                        <Link
+                                        {/* <Link
                                             className="text-decoration-none overview-hover"
                                             to="/songpage"
                                             state={{ item }}
-                                        >
+                                        > */}
                                             {item.titel}
-                                        </Link>
+                                        {/* </Link> */}
                                     </div>
                                     <div className="text-muted small">
                                         Uitgave: {item.releaseYear}
