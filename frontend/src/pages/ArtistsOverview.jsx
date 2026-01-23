@@ -7,6 +7,7 @@ import useSearch from '../components/Searchfunction.jsx';
 export default function ArtistsOverview() {
   const [artists, setArtists] = useState([]);
   const [searchArtist, setSearchArtist] = useState("");
+  const [entriesCount, setEntriesCount] = useState({});
 
   useEffect(() => {
     fetch(`https://localhost:7003/api/getartists`)
@@ -14,6 +15,9 @@ export default function ArtistsOverview() {
       .then(data => setArtists(data))
       .catch(err => console.error(err));
   }, []);
+
+
+
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,6 +40,35 @@ export default function ArtistsOverview() {
   useEffect(() => {
     setCurrentPage(1);
   }, [searchArtist]);
+
+
+  // fetch entries count for artists
+  useEffect(() => {
+    if (searchedEntries.length === 0) return;
+
+    searchedEntries.forEach(artist => {
+      // avoid refetching 
+      if (entriesCount[artist.artistId] !== undefined) return;
+
+      fetch(`https://localhost:7003/api/GetSongs/artist/${artist.artistId}/entriescount`)
+        .then(res => {
+          if (!res.ok) throw new Error("Songs not found");
+          return res.json();
+        })
+        .then(songs => {
+          const totalTimes = songs.reduce(
+            (sum, song) => sum + song.timesInTop2000,
+            0
+          );
+
+          setEntriesCount(prev => ({
+            ...prev,
+            [artist.artistId]: totalTimes
+          }));
+        })
+        .catch(err => console.error(err));
+    });
+  }, [searchedEntries, entriesCount]);
 
 
   return (
@@ -76,7 +109,12 @@ export default function ArtistsOverview() {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{artist.name}</h5>
-                  <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                  <h6 className="card-subtitle mb-2 figma-red-text">
+                    {entriesCount[artist.artistId] !== undefined
+                      ? `${entriesCount[artist.artistId]} noteringen in de Top 2000`
+                      : "Top 2000 data laden..."}
+                  </h6>
+
                   {artist.biography ? (
                     <p className="card-text">Biografie: {artist.biography}</p>
                   ) : (
