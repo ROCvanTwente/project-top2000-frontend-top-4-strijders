@@ -12,6 +12,7 @@ import Contact from "./pages/Contact.jsx";
 import FAQ from "./pages/faq.jsx";
 import Songpage from "./pages/Songpage.jsx";
 import ArtistsOverview from "./pages/ArtistsOverview.jsx"
+import ArtistDetail from "./pages/ArtistDetail.jsx"
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/faq" element={<FAQ />} />
           <Route path="/openingsact" element={< Openingsact/>} />
             <Route path="/playlists" element={<Playlists />} />
+          <Route path="/artiest/:id" element={<ArtistDetail />} />
         </Routes>
       </main>
 

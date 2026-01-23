@@ -1,18 +1,12 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import useSearch from '../components/Searchfunction.jsx';
+
+
 export default function ArtistsOverview() {
   const [artists, setArtists] = useState([]);
   const [searchArtist, setSearchArtist] = useState("");
-
-  // Dummy songs-array
-  const songs = Array.from({ length: 120 }, (_, i) => ({
-    id: i + 1,
-    title: `Song Titel ${i + 1}`,
-    artist: `Artiest ${i + 1}`,
-    year: 2000 + (i % 20),
-    yearsInRanking: (i % 5) + 1
-  }));
 
   useEffect(() => {
     fetch(`https://localhost:7003/api/getartists`)
@@ -21,11 +15,9 @@ export default function ArtistsOverview() {
       .catch(err => console.error(err));
   }, []);
 
-  console.log(artists);
-
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const itemsPerPage = 15;
   const totalPages = Math.ceil(artists.length / itemsPerPage);
 
   const paginatedArtists = useMemo(() => {
@@ -33,6 +25,18 @@ export default function ArtistsOverview() {
     const end = start + itemsPerPage;
     return artists.slice(start, end);
   }, [currentPage, artists]);
+
+  const searchedEntries = useSearch(
+    paginatedArtists,
+    searchArtist,
+    item => item.name
+  );
+
+  // Reset to first page on new search 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchArtist]);
+
 
   return (
     <div className="container-lg mt-4">
@@ -53,32 +57,63 @@ export default function ArtistsOverview() {
             onChange={(e) => setSearchArtist(e.target.value)}
           />
         </div>
-        <p className="text-muted mb-0 ms-3">{artists.length} artiesten gevonden</p>
+        <p className="text-muted mb-0 ms-3">{searchedEntries.length === 0 ? 'Geen' : searchedEntries.length} artiesten gevonden</p>
       </div>
 
       <div className="row g-4">
-        {paginatedArtists.map((artist) => (
-          <div key={artist.id} className="col-12 col-md-6 col-lg-4">
-            <div className="card shadow rounded">
-              <img
-                className="card-img-top"
-                src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
-                alt="Card image cap"
-                style={{ height: "200px", objectFit: "cover" }}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{artist.name}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                {artist.biography ? (
-                  <p className="card-text">Biografie: {artist.biography}</p>
-                ) : (
-                  <p className="card-text">Deze artiest heeft geen biografie</p>
-                )}
+        {searchedEntries.map((artist) => (
+          <div key={artist.artistId} className="col-12 col-md-6 col-lg-4">
+            <Link
+              to={`/artiest/${artist.artistId}`}
+              className="text-decoration-none text-dark"
+            >
+              <div className="card shadow rounded">
+                <img
+                  className="card-img-top"
+                  src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+                  alt="Card image cap"
+                  style={{ height: "200px", objectFit: "cover" }}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{artist.name}</h5>
+                  <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                  {artist.biography ? (
+                    <p className="card-text">Biografie: {artist.biography}</p>
+                  ) : (
+                    <p className="card-text">Deze artiest heeft geen biografie</p>
+                  )}
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>
+      <div className="row justify-content-center my-3">
+        <div className="col-12 col-md-6 col-lg-4">
+          <div className="card shadow d-flex flex-row justify-content-center py-2">
+            <button
+              className="btn figma-red text-white me-2"
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              Vorige
+            </button>
+
+            <span className="align-self-center">
+              Pagina {currentPage} van {totalPages}
+            </span>
+
+            <button
+              className="btn figma-red text-white ms-2"
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+            >
+              Volgende
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
