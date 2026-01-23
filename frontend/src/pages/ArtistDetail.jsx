@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 
 export default function ArtistDetail() {
@@ -26,6 +26,18 @@ export default function ArtistDetail() {
             .catch(err => console.error(err));
     }, [id]);
 
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 15;
+    const totalPages = Math.ceil(songs.length / itemsPerPage);
+
+    const paginatedSongs = useMemo(() => {
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        return songs.slice(start, end);
+    }, [currentPage, songs]);
+
+
     if (!artist) {
         return (
             <div className="container-lg mt-4">
@@ -51,7 +63,7 @@ export default function ArtistDetail() {
                         />
                     </div>
 
-                    <div className="col-12 col-md-8">
+                    <div className="col-12 col-md-8 p-4">
                         <p className="mb-1 fw-bold">{artist.name}</p>
                         {artist.biography ? (
                             <p className="card-text">{artist.biography}</p>
@@ -84,7 +96,7 @@ export default function ArtistDetail() {
                         </div>
 
                         {/* Songs */}
-                        {songs.map((item, index) => (
+                        {paginatedSongs.map((item, index) => (
                             <div
                                 key={index}
                                 className="d-flex justify-content-between align-items-center bg-light rounded p-3 mb-3"
@@ -120,7 +132,33 @@ export default function ArtistDetail() {
                     </div>
                 </div>
             </div>
+            {totalPages > 1 && (
+            <div className="row justify-content-center my-3">
+                <div className="col-12 col-md-6 col-lg-4">
+                    <div className="card shadow d-flex flex-row justify-content-center py-2">
+                        <button
+                            className="btn figma-red text-white me-2"
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                        >
+                            Vorige
+                        </button>
 
+                        <span className="align-self-center">
+                            Pagina {currentPage} van {totalPages}
+                        </span>
+
+                        <button
+                            className="btn figma-red text-white ms-2"
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                        >
+                            Volgende
+                        </button>
+                    </div>
+                </div>
+            </div>
+            )}
         </div>
     );
 }
