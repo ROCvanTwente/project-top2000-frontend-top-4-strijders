@@ -37,7 +37,7 @@ function Navbar() {
                                 <Link className="nav-link text-white" to="/Overview">TOP2000</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/about">Artiesten</Link>
+                                <Link className="nav-link text-white" to="/artiesten">Artiesten</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link text-white" to="/services">Nummers</Link>
