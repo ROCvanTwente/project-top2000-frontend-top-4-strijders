@@ -9,6 +9,9 @@ function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const { logout, isLoggedIn, user } = useAuth();
 
+    const closeMenu = () => setIsOpen(false);
+
+
     return (
         <header>
             <nav className="navbar navbar-expand-lg m-0 red-gradient justify-content-center">
@@ -34,16 +37,16 @@ function Navbar() {
                     <div className={`collapse navbar-collapse flex-grow-1 ${isOpen ? "show" : ""}`}>
                         <ul className="navbar-nav d-flex align-items-center justify-content-center w-100">
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/Overview">TOP2000</Link>
+                                <Link className="nav-link text-white" to="/Overview" onClick={closeMenu}>TOP2000</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/artiesten">Artiesten</Link>
+                                <Link className="nav-link text-white" to="/artiesten" onClick={closeMenu}>Artiesten</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/services">Nummers</Link>
+                                <Link className="nav-link text-white" to="/services" onClick={closeMenu}>Nummers</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/openingsact">Openingsact</Link>
+                                <Link className="nav-link text-white" to="/openingsact" onClick={closeMenu}>Openingsact</Link>
                             </li>
 
                             {/* DJ Dropdown */}
@@ -65,10 +68,10 @@ function Navbar() {
                             </li>
 
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/geschiedenis">Geschiedenis</Link>
+                                <Link className="nav-link text-white" to="/geschiedenis" onClick={closeMenu}>Geschiedenis</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/playlists">Afspeellijsten</Link>
+                                <Link className="nav-link text-white" to="/playlists" onClick={closeMenu}>Afspeellijsten</Link>
                             </li>
 
                             {/* Statistieken Dropdown */}
@@ -93,7 +96,7 @@ function Navbar() {
                             {/* Mobile Inloggen */}
                             <li className="nav-item d-lg-none mt-2 w-100">
                                 {!isLoggedIn() ? (
-                                    <Link to="/login" className="nav-link text-white text-center">Inloggen</Link>
+                                    <Link to="/login" className="nav-link text-white text-center" onClick={closeMenu}>Inloggen</Link>
                                 ) : (
                                         <div className="d-flex flex-column align-items-center">
                                             <p className='nav-link text-white m-0'><i class="bi bi-person me-2"></i>{JSON.parse(user)["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"].split("@")[0]}</p>
@@ -106,7 +109,7 @@ function Navbar() {
                     {/* Desktop Inloggen */}
                     {!isLoggedIn() ? (
                         <div className="d-none d-lg-block ms-auto">
-                            <Link to="/login" className="nav-link text-white">Inloggen</Link>
+                            <Link to="/login" className="nav-link text-white" onClick={closeMenu}>Inloggen</Link>
                         </div>
                     ) : (
                             <div className="d-none d-lg-flex flex-row ms-auto">
