@@ -103,9 +103,16 @@ export default function ArtistsOverview() {
               <div className="card shadow rounded">
                 <img
                   className="card-img-top"
-                  src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+                  src={
+                    artist.photo ||
+                    "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+                  }
                   alt="Card image cap"
-                  style={{ height: "200px", objectFit: "cover" }}
+                  style={{
+                    height: "250px",
+                    objectFit: "cover",
+                    objectPosition: "50% 10%"
+                  }}
                 />
                 <div className="card-body">
                   <h5 className="card-title">{artist.name}</h5>
@@ -116,7 +123,10 @@ export default function ArtistsOverview() {
                   </h6>
 
                   {artist.biography ? (
-                    <p className="card-text">Biografie: {artist.biography}</p>
+                    <p className="card-text">
+                      Biografie: {artist.biography.slice(0, 60)}{artist.biography.length > 50 ? "..." : ""}
+                    </p>
+
                   ) : (
                     <p className="card-text">Deze artiest heeft geen biografie</p>
                   )}
