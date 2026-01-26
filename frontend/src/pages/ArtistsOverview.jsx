@@ -17,21 +17,22 @@ export default function ArtistsOverview() {
   }, []);
 
 
-
-
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15;
-  const totalPages = Math.ceil(artists.length / itemsPerPage);
+  const filteredArtists = useSearch(artists, searchArtist, item => item.name);
+
+  const totalPages = Math.ceil(filteredArtists.length / itemsPerPage);
 
   const paginatedArtists = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    return artists.slice(start, end);
-  }, [currentPage, artists]);
+    return filteredArtists.slice(start, end);
+  }, [currentPage, filteredArtists]);
+
 
   const searchedEntries = useSearch(
-    paginatedArtists,
+    artists,
     searchArtist,
     item => item.name
   );
@@ -44,10 +45,7 @@ export default function ArtistsOverview() {
 
   // fetch entries count for artists
   useEffect(() => {
-    if (searchedEntries.length === 0) return;
-
     searchedEntries.forEach(artist => {
-      // avoid refetching 
       if (entriesCount[artist.artistId] !== undefined) return;
 
       fetch(`https://localhost:7003/api/GetSongs/artist/${artist.artistId}/entriescount`)
@@ -68,7 +66,8 @@ export default function ArtistsOverview() {
         })
         .catch(err => console.error(err));
     });
-  }, [searchedEntries, entriesCount]);
+  }, [searchedEntries]);
+
 
 
   return (
@@ -94,7 +93,7 @@ export default function ArtistsOverview() {
       </div>
 
       <div className="row g-4">
-        {searchedEntries.map((artist) => (
+        {paginatedArtists.map((artist) => (
           <div key={artist.artistId} className="col-12 col-md-6 col-lg-4">
             <Link
               to={`/artiest/${artist.artistId}`}
