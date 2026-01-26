@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const { logout, isLoggedIn, user } = useAuth();
+    const { logout, isLoggedIn, user, IsAdmin } = useAuth();
 
     return (
         <header>
@@ -37,10 +37,10 @@ function Navbar() {
                                 <Link className="nav-link text-white" to="/Overview">TOP2000</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/about">Artiesten</Link>
+                                <Link className="nav-link text-white" to="/">Artiesten</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/services">Nummers</Link>
+                                <Link className="nav-link text-white" to="/">Nummers</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link text-white" to="/openingsact">Openingsact</Link>
@@ -89,6 +89,11 @@ function Navbar() {
                                     <Link to="/statistieken/grootste-dalers" className="dropdown-item">Grootste dalers TOP2000</Link>
                                 </ul>
                             </li>
+                            {IsAdmin() && (
+                                <li className='nav-item'>
+                                    <Link className='nav-link text-white' to="/adminpage">Admin</Link>
+                                </li>
+                            )}
                             <hr className='w-100 text-white d-lg-none'></hr>
                             {/* Mobile Inloggen */}
                             <li className="nav-item d-lg-none mt-2 w-100">

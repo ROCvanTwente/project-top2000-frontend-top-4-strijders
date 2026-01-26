@@ -212,3 +212,23 @@
     border-color: #DC000A;
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
+
+/* --------------------- */
+.autocomplete {
+  border: 1px solid #ccc;
+  width: 100%;
+  position: relative;
+  z-index: 99;
+}
+
+.item {
+  background: #eee;
+  padding: 6px;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.item:hover {
+  background: #eee;
+  z-index: 99;
+}

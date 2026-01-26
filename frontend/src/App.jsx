@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom"
 
-import background from "./assets/background.svg"
 import Homepage from "./pages/Homepage"
 import Overview from "./pages/Top2000Overview"
 import History from "./pages/History"
@@ -35,16 +34,18 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/openingsact" element={< Openingsact />} />
-            <Route path="/playlists" element={<Playlists />} />
-            <Route path="/login" element={<ProtectedRoute><Login /></ProtectedRoute>} />
-            <Route path="/register" element={<ProtectedRoute><Register /></ProtectedRoute>} />
-            <Route path="/playlistconfirmation" element={<PlayListConfirm />} />
+            <Route path="/playlists" element={<ProtectedRoute role="user"><Playlists /></ProtectedRoute>} />
+            <Route path="/login" element={<ProtectedRoute role="notuser"><Login /></ProtectedRoute>} />
+            <Route path="/register" element={<ProtectedRoute role="notuser"><Register /></ProtectedRoute>} />
+            <Route path="/playlistconfirmation" element={<ProtectedRoute role="user"><PlayListConfirm /></ProtectedRoute>} />
             <Route path="/Overview" element={<Overview />} />
             <Route path="/songpage" element={<Songpage/>} />
             <Route path="/history" element={<History />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
-            <Route path="/playlists" element={<Playlists />} />
+            <Route path="/adminpage" element={<ProtectedRoute role="admin"><AdminPage /></ProtectedRoute>} />
+            <Route path="/adminsongs" element={<ProtectedRoute role="admin"><SongsAdmin /></ProtectedRoute>} />
+            <Route path="/adminartists" element={<ProtectedRoute role="admin"><ArtistAdmin /></ProtectedRoute>} />
         </Routes>
       </main>
 

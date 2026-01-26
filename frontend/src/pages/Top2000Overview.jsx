@@ -13,13 +13,15 @@ export default function Homepage() {
     const [year, setYear] = useState(2024);
     const [searchArtist, setSearchArtist] = useState("");
 
+    const [fetchErrorMessage, setFetchErrorMessage] = useState('');
+
 
 
     useEffect(() => {
         fetch(`https://localhost:7003/api/GetTop2000Entries?year=${year}`)
             .then(res => res.json())
             .then(data => setTop2000Entries(data))
-            .catch(err => console.error(err));
+            .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));
     }, [year]);
 
     const sortedEntries = useMemo(() => {
@@ -135,6 +137,11 @@ export default function Homepage() {
                                         ))}
                                     </tbody>
                                 </table>
+                                {fetchErrorMessage && (
+                                    <div className=" mt-3 alert alert-danger alert-dismissible fade show" role="alert">
+                                        {fetchErrorMessage}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

@@ -29,7 +29,7 @@ export default function AdminPage() {
                     <div className="row g-4">
                         {/* Artiesten */}
                         <div className="col-12 col-sm-6">
-                            <Link to="/beheer-artiesten" className="text-decoration-none">
+                            <Link to="/adminartists" className="text-decoration-none">
                                 <div className="card shadow admin-shadow-hover border-0 p-2">
                                     <div className="card-header admin-header border-0 bg-white figma-red-text">
                                         <div className="icon-circle">
@@ -48,7 +48,7 @@ export default function AdminPage() {
 
                         {/* Nummers */}
                         <div className="col-12 col-sm-6">
-                            <Link to="/beheer-nummers" className="text-decoration-none">
+                            <Link to="/adminsongs" className="text-decoration-none">
                                 <div className="card shadow admin-shadow-hover border-0 p-2">
                                     <div className="card-header admin-header border-0 bg-white figma-red-text">
                                         <div className="icon-circle">
