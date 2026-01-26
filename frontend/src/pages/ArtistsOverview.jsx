@@ -43,31 +43,20 @@ export default function ArtistsOverview() {
   }, [searchArtist]);
 
 
-  // fetch entries count for artists
+  // Fetch entriesCount only for active page
   useEffect(() => {
-    searchedEntries.forEach(artist => {
+    paginatedArtists.forEach(artist => {
       if (entriesCount[artist.artistId] !== undefined) return;
 
       fetch(`https://localhost:7003/api/GetSongs/artist/${artist.artistId}/entriescount`)
-        .then(res => {
-          if (!res.ok) throw new Error("Songs not found");
-          return res.json();
-        })
-        .then(songs => {
-          const totalTimes = songs.reduce(
-            (sum, song) => sum + song.timesInTop2000,
-            0
-          );
-
-          setEntriesCount(prev => ({
-            ...prev,
-            [artist.artistId]: totalTimes
-          }));
-        })
+      .then(res => res.json())
+      .then(songs => {
+        const totalTimes = songs.reduce((sum, song) => sum + song.timesInTop2000, 0);
+        setEntriesCount(prev => ({ ...prev, [artist.artistId]: totalTimes }));
+      })
         .catch(err => console.error(err));
     });
-  }, [searchedEntries]);
-
+  }, [paginatedArtists]);
 
 
   return (
@@ -107,6 +96,7 @@ export default function ArtistsOverview() {
                     "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
                   }
                   alt="Card image cap"
+                  onError={(e) => e.currentTarget.src = "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"}
                   style={{
                     height: "250px",
                     objectFit: "cover",
