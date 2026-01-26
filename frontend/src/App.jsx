@@ -8,40 +8,51 @@ import Navbar from "./layout/Navbar"
 import Footer from "./layout/Footer"
 import Openingsact from "./pages/Openingsact"
 import Playlists from "./pages/Playlists.jsx";
+import Login from "./pages/Login.jsx"
+import Register from "./pages/Register.jsx";
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from "./routes/ProtectedRoute.jsx"
 import Contact from "./pages/Contact.jsx";
 import FAQ from "./pages/faq.jsx";
 import Songpage from "./pages/Songpage.jsx";
+import PlayListConfirm from "./confirmations/PlayListConfirm.jsx";
+import ArtistsOverview from "./pages/ArtistsOverview.jsx"
+import ArtistDetail from "./pages/ArtistDetail.jsx"
 
 function App() {
   return (
-    <div className={" d-flex flex-column min-vh-100"}>
-      <div className={"background-icon"}>
+    <AuthProvider>
+      <div className=" d-flex flex-column min-vh-100">
+      <div className="background-icon">
         <i className="bi icon-background bi-record-circle"></i>
+      </div>
+
       <Navbar />
 
-      <main className={"flex-fill"}>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
+        <main className={"flex-fill"}>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/openingsact" element={< Openingsact />} />
+            <Route path="/playlists" element={<Playlists />} />
+            <Route path="/login" element={<ProtectedRoute><Login /></ProtectedRoute>} />
+            <Route path="/register" element={<ProtectedRoute><Register /></ProtectedRoute>} />
+            <Route path="/playlistconfirmation" element={<PlayListConfirm />} />
           <Route path="/Overview" element={<Overview />} />
-            <Route path="/songpage" element={<Songpage/>} />
-            <Route path="/history" element={<History />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/faq" element={<FAQ />} />
-          <Route path="/openingsact" element={< Openingsact/>} />
-          <Route path="/playlists" element={<Playlists />} />
-          <Route path="/geschiedenis" element={<History />} />
-          <Route path="/faq" element={<FAQ />} />
-          {/* <Route path="/" element={<Artists />} /> */}
+          <Route path="/artiesten" element={<ArtistsOverview />} />
+          <Route path="/songpage" element={<Songpage/>} />
+          <Route path="/history" element={<History />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/songpage" element={<Songpage />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/playlists" element={<Playlists />} />
+          <Route path="/artiest/:id" element={<ArtistDetail />} />
         </Routes>
       </main>
 
-      <div className={"mt-5 w-100"}>
-        <Footer />
-      </div>
-</div>
+      <footer className="mt-auto w-100">
+          <Footer />
+      </footer>
     </div>
+    </AuthProvider>
   )
 }
 

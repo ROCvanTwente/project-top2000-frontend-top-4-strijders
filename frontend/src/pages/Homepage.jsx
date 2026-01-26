@@ -10,6 +10,9 @@ export default function Homepage() {
 
     const [items, setItems] = React.useState([]);
 
+
+
+
     useEffect(() => {
         fetch('https://localhost:7003/api/GetTopFive')
             .then(res => res.json())
@@ -143,8 +146,7 @@ export default function Homepage() {
                             </div>
                             <div className="card-body">
 
-                                {items.map((item, index) => {
-                                    console.log(item)
+                                {items.map((item) => {
                                     return (
                                         <Link to="/songpage" state={{ item }} className="nav-link text-white">
                                         <div className="card top-5-card border-0 top-5-background mb-3">
