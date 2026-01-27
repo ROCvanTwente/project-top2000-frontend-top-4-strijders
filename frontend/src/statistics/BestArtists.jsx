@@ -22,7 +22,6 @@ export default function BestArtists() {
             .catch(err => console.error('Data ophalen mislukt. Probeer het opnieuw'));
     }, [year, amount]);
 
-    console.log(artists);
     // Reset to first page when year or search changes
     useEffect(() => {
         setCurrentPage(1);
@@ -81,7 +80,7 @@ export default function BestArtists() {
                 <div className="col-12">
                     <div className="card shadow border-0 p-2">
                         <div className="card-header border-0 bg-white figma-red-text">
-                            Liedjes die in {year} op dezelfde positie zijn gebleven
+                            Top artiesten van {year}
                         </div>
                         <div className="card-body">
                             <div className="row">

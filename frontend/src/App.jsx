@@ -25,6 +25,7 @@ import ArtistDetail from "./pages/ArtistDetail.jsx"
 // Statistics
 import SamePosition from "./statistics/SamePosition.jsx";
 import BestArtists from "./statistics/BestArtists.jsx";
+import Top2000AllEntries from "./statistics/Top2000AllEntries.jsx";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
             {/* Statistics */}
             <Route path="/statistieken/zelfde-positie" element={<SamePosition />} />
             <Route path="/statistieken/top-artiesten" element={<BestArtists />} />
+            <Route path="/statistieken/alle-liedjes" element={<Top2000AllEntries />} />
         </Routes>
       </main>
 
