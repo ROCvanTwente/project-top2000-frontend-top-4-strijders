@@ -24,6 +24,7 @@ import ArtistDetail from "./pages/ArtistDetail.jsx"
 
 // Statistics
 import SamePosition from "./statistics/SamePosition.jsx";
+import BestArtists from "./statistics/BestArtists.jsx";
 
 function App() {
   return (
@@ -53,7 +54,10 @@ function App() {
             <Route path="/adminpage" element={<ProtectedRoute role="admin"><AdminPage /></ProtectedRoute>} />
             <Route path="/adminsongs" element={<ProtectedRoute role="admin"><SongsAdmin /></ProtectedRoute>} />
             <Route path="/adminartists" element={<ProtectedRoute role="admin"><ArtistAdmin /></ProtectedRoute>} />
+
+            {/* Statistics */}
             <Route path="/statistieken/zelfde-positie" element={<SamePosition />} />
+            <Route path="/statistieken/top-artiesten" element={<BestArtists />} />
         </Routes>
       </main>
 

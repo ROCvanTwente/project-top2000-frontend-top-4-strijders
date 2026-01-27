@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom';
 
-export default function SamePosition() {
-    const [songs, setSongs] = useState([]);
+export default function BestArtists() {
+    const [artists, setArtist] = useState([]);
     const [sortBy, setSortBy] = useState("positie");
     const [year, setYear] = useState(2024);
+    const [amount, setAmount] = useState("3");
 
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
@@ -13,55 +14,62 @@ export default function SamePosition() {
 
     // Fetch filtered by year
     useEffect(() => {
-        fetch(`https://localhost:7003/api/Statistieken/GetSongsInTheSamePosition?year=${year}`)
+        if (!amount) return; // no fetch is amount is empty
+
+        fetch(`https://localhost:7003/api/Statistieken/GetArtistWithMostSongsOnYear?year=${year}&amount=${amount}`)
             .then(res => res.json())
-            .then(data => setSongs(data))
+            .then(data => setArtist(data))
             .catch(err => console.error('Data ophalen mislukt. Probeer het opnieuw'));
-    }, [year]);
+    }, [year, amount]);
 
-
+    console.log(artists);
     // Reset to first page when year or search changes
     useEffect(() => {
         setCurrentPage(1);
     }, [year, sortBy]);
 
 
-    const sortedSongs = useMemo(() => {
-        const entries = [...songs];
+    const sortedArtists = useMemo(() => {
+        const entries = [...artists];
 
         switch (sortBy) {
-            case "titel":
-                entries.sort((a, b) =>
-                    a.title.localeCompare(b.title)
-                );
-                break;
-
             case "artiest":
                 entries.sort((a, b) =>
                     a.artistName.localeCompare(b.artistName)
                 );
                 break;
 
-            case "positie":
+            case "hoogste":
+                entries.sort((a, b) => a.highest - b.highest);
+                break;
+
+            case "gemiddelde":
+                entries.sort((a, b) => a.average - b.average);
+                break;
+
+            case "aantal":
+                entries.sort((a, b) => b.totalSongs - a.totalSongs);
+                break;
+
             default:
-                entries.sort((a, b) => a.position - b.position);
                 break;
         }
 
         return entries;
-    }, [songs, sortBy]);
+    }, [artists, sortBy]);
+
 
 
     // Pagination logic
-    const paginatedSongs = useMemo(() => {
+    const paginatedArtists = useMemo(() => {
         const startIndex = (currentPage - 1) * itemsPerPage;
-        return sortedSongs.slice(startIndex, startIndex + itemsPerPage);
-    }, [sortedSongs, currentPage]);
+        return sortedArtists.slice(startIndex, startIndex + itemsPerPage);
+    }, [sortedArtists, currentPage]);
 
-    const totalPages = Math.ceil(sortedSongs.length / itemsPerPage);
+    const totalPages = Math.ceil(sortedArtists.length / itemsPerPage);
 
     // Loading until fetched
-    if (songs.length === 0) {
+    if (artists.length === 0) {
         return <p>Loading...</p>;
     }
 
@@ -88,13 +96,37 @@ export default function SamePosition() {
                                     </div>
                                 </div>
 
+                                <div className="col-12 col-lg-4 mb-3 mb-lg-0">
+                                    <div className="p-3">
+                                        <p className="mb-2 ms-1">Aantal artiesten</p>
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            value={amount}
+                                            onChange={(e) => {
+                                                const val = e.target.value;
+                                                if (val === "") return setAmount("");
+                                                const range = Math.min(Math.max(Number(val), 1), 300);
+                                                setAmount(range.toString());
+                                            }}
+                                            min={1}
+                                            max={300}
+                                        />
+                                    </div>
+                                </div>
+
                                 <div className="col-12 col-lg-4">
                                     <div className=" p-3">
                                         <p className="mb-2 ms-1">Sorteer op</p>
-                                        <select className="form-select" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                                            <option value="positie">Positie</option>
-                                            <option value="titel">Titel</option>
+                                        <select
+                                            className="form-select"
+                                            value={sortBy}
+                                            onChange={(e) => setSortBy(e.target.value)}
+                                        >
                                             <option value="artiest">Artiest</option>
+                                            <option value="hoogste">Hoogste positie</option>
+                                            <option value="gemiddelde">Gemiddelde positie</option>
+                                            <option value="aantal">Aantal liedjes</option>
                                         </select>
                                     </div>
                                 </div>
@@ -110,32 +142,32 @@ export default function SamePosition() {
                             <table className="table table-hover table-top2000 mb-0">
                                 <thead className="table-light">
                                     <tr>
-                                        <th scope="col">Positie</th>
-                                        <th scope="col">Titel</th>
-                                        <th scope="col">Artiest</th>
-                                        <th scope="col">Jaar</th>
+                                        <th scope="col" className='ps-3'>Artiest</th>
+                                        <th scope="col">Hoogste positie</th>
+                                        <th scope="col">Gemiddelde positie</th>
+                                        <th scope="col">Aantal liedjes</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {paginatedSongs.map((item, index) => (
+                                    {paginatedArtists.map(item => (
+                                        <tr key={item.artistId} className="align-middle">
+                                            <td className='ps-3'>{item.artistName}</td>
 
-                                        <tr key={index}>
                                             <td>
-                                                <span className="d-inline-flex justify-content-center align-items-center figma-red text-white rounded-circle" style={{ width: '2.2rem', height: '2.2rem' }}>
-                                                    {item.position}
+                                                <span
+                                                    className="d-inline-flex justify-content-center align-items-center figma-red text-white rounded-circle"
+                                                    style={{ width: '2.2rem', height: '2.2rem' }}
+                                                >
+                                                    {item.highest}
                                                 </span>
+                                            </td>
 
-                                            </td>
-                                            <td>
-                                                {item.artistName}
-                                            </td>
-                                            <td>
-                                                {item.title}
-                                            </td>
-                                            <td>{item.releaseYear}</td>
+                                            <td>{item.average}</td>
+                                            <td>{item.totalSongs}</td>
                                         </tr>
                                     ))}
                                 </tbody>
+
                             </table>
                             <div className="d-flex justify-content-center my-3">
                                 <button
