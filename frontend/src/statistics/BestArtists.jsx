@@ -11,6 +11,8 @@ export default function BestArtists() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 20;
 
+    const [fetchErrorMessage, setFetchErrorMessage] = useState('');
+
 
     // Fetch filtered by year
     useEffect(() => {
@@ -19,7 +21,7 @@ export default function BestArtists() {
         fetch(`https://localhost:7003/api/Statistieken/GetArtistWithMostSongsOnYear?year=${year}&amount=${amount}`)
             .then(res => res.json())
             .then(data => setArtist(data))
-            .catch(err => console.error('Data ophalen mislukt. Probeer het opnieuw'));
+            .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));
     }, [year, amount]);
 
     // Reset to first page when year or search changes
@@ -67,6 +69,12 @@ export default function BestArtists() {
 
     const totalPages = Math.ceil(sortedArtists.length / itemsPerPage);
 
+    if (fetchErrorMessage) {
+        return <div className=" mt-5 alert alert-danger alert-dismissible fade show" role="alert">
+            {fetchErrorMessage}
+        </div>
+    }
+
     // Loading until fetched
     if (artists.length === 0) {
         return <p>Loading...</p>;
@@ -75,7 +83,6 @@ export default function BestArtists() {
     return (
         <>
             <div className="container-lg  pt-4 ">
-
                 {/*Filters*/}
                 <div className="col-12">
                     <div className="card shadow border-0 p-2">

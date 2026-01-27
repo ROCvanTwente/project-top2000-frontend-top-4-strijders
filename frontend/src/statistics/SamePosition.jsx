@@ -10,13 +10,15 @@ export default function SamePosition() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 20;
 
+    const [fetchErrorMessage, setFetchErrorMessage] = useState('');
+
 
     // Fetch filtered by year
     useEffect(() => {
         fetch(`https://localhost:7003/api/Statistieken/GetSongsInTheSamePosition?year=${year}`)
             .then(res => res.json())
             .then(data => setSongs(data))
-            .catch(err => console.error('Data ophalen mislukt. Probeer het opnieuw'));
+            .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));
     }, [year]);
 
 
@@ -59,6 +61,12 @@ export default function SamePosition() {
     }, [sortedSongs, currentPage]);
 
     const totalPages = Math.ceil(sortedSongs.length / itemsPerPage);
+
+    if (fetchErrorMessage) {
+        return <div className=" mt-5 alert alert-danger alert-dismissible fade show" role="alert">
+            {fetchErrorMessage}
+        </div>
+    }
 
     // Loading until fetched
     if (songs.length === 0) {

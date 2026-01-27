@@ -9,11 +9,13 @@ export default function ArtistsOverview() {
   const [searchArtist, setSearchArtist] = useState("");
   const [entriesCount, setEntriesCount] = useState({});
 
+  const [fetchErrorMessage, setFetchErrorMessage] = useState('');
+
   useEffect(() => {
     fetch(`https://localhost:7003/api/getartists`)
       .then(res => res.json())
       .then(data => setArtists(data))
-      .catch(err => console.error(err));
+      .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));
   }, []);
 
 
@@ -49,11 +51,11 @@ export default function ArtistsOverview() {
       if (entriesCount[artist.artistId] !== undefined) return;
 
       fetch(`https://localhost:7003/api/GetSongs/artist/${artist.artistId}/entriescount`)
-      .then(res => res.json())
-      .then(songs => {
-        const totalTimes = songs.reduce((sum, song) => sum + song.timesInTop2000, 0);
-        setEntriesCount(prev => ({ ...prev, [artist.artistId]: totalTimes }));
-      })
+        .then(res => res.json())
+        .then(songs => {
+          const totalTimes = songs.reduce((sum, song) => sum + song.timesInTop2000, 0);
+          setEntriesCount(prev => ({ ...prev, [artist.artistId]: totalTimes }));
+        })
         .catch(err => console.error(err));
     });
   }, [paginatedArtists]);
@@ -78,6 +80,11 @@ export default function ArtistsOverview() {
             onChange={(e) => setSearchArtist(e.target.value)}
           />
         </div>
+        {fetchErrorMessage && (
+          <div className="alert alert-danger alert-dismissible fade show" role="alert">
+            {fetchErrorMessage}
+          </div>
+        )}
         <p className="text-muted mb-0 ms-3">{searchedEntries.length === 0 ? 'Geen' : searchedEntries.length} artiesten gevonden</p>
       </div>
 
