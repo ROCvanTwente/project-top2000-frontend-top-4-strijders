@@ -7,25 +7,29 @@ export default function ArtistDetail() {
     const { id } = useParams();
 
     useEffect(() => {
-        fetch(`https://localhost:7003/api/GetArtists/${id}`)
-            .then(res => {
-                if (!res.ok) throw new Error("Artist not found");
-                return res.json();
-            })
-            .then(data => setArtist(data))
-            .catch(err => console.error(err));
-    }, [id]);
+        async function FetchArtistAndSongs() {
+            let resArtist = await fetch(`https://localhost:7003/api/GetArtists/${id}`)
+            let artist;
+            if (resArtist.ok) {
+                artist = await resArtist.json();
+                setArtist(artist)
+            } else throw new Error("Artist not found");
 
-
-    useEffect(() => {
-        fetch(`https://localhost:7003/api/GetSongs/artist/${id}/entriescount`)
-            .then(res => {
-                if (!res.ok) throw new Error("Songs not found");
-                return res.json();
-            })
-            .then(data => setSongs(data))
-            .catch(err => console.error(err));
-
+            let resSongs = await fetch(`https://localhost:7003/api/GetSongs/artist/${id}/entriescount`);
+            let songs;
+            if (resSongs) {
+                songs = await resSongs.json();
+                let songsWithArtistData = songs.map(song => {
+                        return {
+                            ...song,
+                            artist: artist
+                        }
+                    })
+                    console.log(songsWithArtistData);//
+                    setSongs(songsWithArtistData)
+            } else throw new Error("Songs not found");
+        }
+        FetchArtistAndSongs();
     }, [id]);
 
     // Pagination
@@ -106,13 +110,13 @@ export default function ArtistDetail() {
                                 {/* Left */}
                                 <div>
                                     <div className="fw-semibold">
-                                        {/* <Link
+                                        <Link
                                             className="text-decoration-none overview-hover"
                                             to="/songpage"
                                             state={{ item }}
-                                        > */}
-                                        {item.title}
-                                        {/* </Link> */}
+                                        >
+                                            {item.titel}
+                                        </Link>
                                     </div>
                                     <div className="text-muted small">
                                         Uitgave: {item.releaseYear}

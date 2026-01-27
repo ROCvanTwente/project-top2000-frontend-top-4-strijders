@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-import OpeningsactImage from '../assets/openingsact.jpg';
+import OpeningsactImage from '../assets/Openingsact.jpg';
 
 export default function Openingsact() {
 
