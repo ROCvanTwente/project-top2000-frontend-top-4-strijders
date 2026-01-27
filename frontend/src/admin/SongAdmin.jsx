@@ -90,8 +90,8 @@ export default function SongsAdmin() {
             if (!isValid) allErrorMessages.youtube = "Youtube Link is niet juist. Probeer het opnieuw";
         }
         if (lyrics) {
-            let isValid = /^[A-Za-z0-9\.\,\?\!\r?\n ]+$/.test(lyrics)
-            if (!isValid) allErrorMessages.lyrics = "Gebruik geen speciale tekens. Toegestaan:  , . ? !";
+            let isValid = /^[A-Za-z0-9\.\,\?\!\'\"\r?\n ]+$/.test(lyrics)
+            if (!isValid) allErrorMessages.lyrics = "Gebruik geen speciale tekens. Toegestaan:  , . ? ! ' \"";
         }
 
         if (Object.values(allErrorMessages).some(errorMessage => errorMessage != "")) {

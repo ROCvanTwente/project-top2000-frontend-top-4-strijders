@@ -45,6 +45,7 @@ function App() {
             <Route path="/history" element={<History />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/artiesten" element={<ArtistsOverview />} />
             <Route path="/artiest/:id" element={<ArtistDetail />} />
             <Route path="/adminpage" element={<ProtectedRoute role="admin"><AdminPage /></ProtectedRoute>} />
             <Route path="/adminsongs" element={<ProtectedRoute role="admin"><SongsAdmin /></ProtectedRoute>} />

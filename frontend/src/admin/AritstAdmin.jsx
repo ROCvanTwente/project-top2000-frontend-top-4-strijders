@@ -70,8 +70,8 @@ export default function ArtistAdmin() {
             if (!isValid) allErrorMessages.wiki = "wikipedia Url is niet juist. Probeer het opnieuw";
         }
         if (biography) {
-            let isValid = /^[A-Za-z0-9\.\,\?\!\r?\n ]+$/.test(biography)
-            if (!isValid) allErrorMessages.biography = "Gebruik geen speciale tekens. Toegestaan:  , . ? !";
+            let isValid = /^[A-Za-z0-9\.\,\?\!\'\"\r?\n ]+$/.test(biography)
+            if (!isValid) allErrorMessages.biography = "Gebruik geen speciale tekens. Toegestaan:  , . ? ! ' \"";
         }
         if (photo) {
             let isValid = /^(https?:\/\/.*\.(png|jpg|jpeg|gif|webp|svg))$/i.test(photo);
@@ -134,7 +134,7 @@ export default function ArtistAdmin() {
                                 <div className="card-body py-2">
                                     <div className="p-3">
                                         <p className="mb-2 ms-1">Zoek een artiest</p>
-                                        <input className="form-control" placeholder="Zoek een nummer..." id="input" type="text" onChange={handleChange} />
+                                        <input className="form-control" placeholder="Zoek een artiest..." id="input" type="text" onChange={handleChange} />
                                         {filtered.length > 0 && (
                                             <div className="autocomplete">
                                                 {filtered.map((artist, index) => (
