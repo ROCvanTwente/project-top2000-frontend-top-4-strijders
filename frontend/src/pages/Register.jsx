@@ -11,6 +11,8 @@ export default function Register() {
     const [errorMessage, setErrorMessage] = useState([]);
     const { register } = useAuth();
 
+    const [fetchErrorMessage, setFetchErrorMessage] = useState('');
+
     return (
         <div className="container-lg pt-5">
             <div className="row d-flex justify-content-center flex-direction-center">
@@ -19,6 +21,11 @@ export default function Register() {
                         <i class="bi icons-standard bi-person-plus me-3"></i>
                         Registreren
                     </span></h5>
+                    {fetchErrorMessage && (
+                        <div className=" mt-3 alert alert-danger alert-dismissible fade show" role="alert">
+                            {fetchErrorMessage}
+                        </div>
+                    )}
                     {/* Username */}
                     <div className="mb-3">
                         <label className="form-label">Gebruikersnaam</label>
@@ -68,7 +75,13 @@ export default function Register() {
                     {/* Button */}
                     <button onClick={async () => {
                         const resErrorMessage = await register(email, password, passwordRepeat);
-                        if (resErrorMessage) setErrorMessage(resErrorMessage);
+                        if (typeof resErrorMessage != 'string') {
+                            setErrorMessage(resErrorMessage);
+                            setFetchErrorMessage('')
+                        } else {
+                            setFetchErrorMessage(resErrorMessage);
+                            setErrorMessage('');
+                        }
                     }} className="btn figma-red text-white w-100 rounded-pill py-2">
                         Registreren
                     </button>

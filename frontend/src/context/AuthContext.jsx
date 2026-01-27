@@ -34,8 +34,10 @@ export function AuthProvider({ children }) {
                 email: email,
                 password: password
             })
-        });
-
+        }).catch(err => {return 'Inloggen mislukt'});
+        if (typeof response == 'string') {
+            return response;
+        }
         const data = await response.json();
         if (response.status == 200) {
             localStorage.setItem('accessToken', data.token);
@@ -78,8 +80,10 @@ export function AuthProvider({ children }) {
                 ConfirmPassword: confirmPassword
 
             })
-        });
-
+        }).catch(err => {return 'Registreren mislukt'});
+        if (typeof response == 'string') {
+            return response;
+        }
         const data = await response.json();
         if (response.status == 200) {
             localStorage.setItem('accessToken', data.token);
@@ -111,7 +115,7 @@ export function AuthProvider({ children }) {
 
         if (response.status === 401) {
             // Access token verlopen - refresh
-            const refreshResponse = await fetch('https://localhost:7xxx/api/auth/refresh-token', {
+            const refreshResponse = await fetch('https://localhost:7003/api/auth/refresh-token', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -149,7 +153,7 @@ export function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, register, isLoggedIn, IsAdmin }}>
+        <AuthContext.Provider value={{ user, login, logout, register, isLoggedIn, IsAdmin, apiRequest }}>
             {children}
         </AuthContext.Provider>
     );

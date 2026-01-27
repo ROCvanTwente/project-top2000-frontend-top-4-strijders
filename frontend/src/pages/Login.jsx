@@ -9,6 +9,8 @@ export default function Login() {
     const [errorMessage, setErrorMessage] = useState([]);
     const { login } = useAuth();
 
+    const [fetchErrorMessage, setFetchErrorMessage] = useState('');
+
     return (
         <div className="container-lg pt-5">
             <div className="row d-flex justify-content-center flex-direction-center">
@@ -17,6 +19,11 @@ export default function Login() {
                         <i class="bi icons-standard bi-box-arrow-in-right me-3"></i>
                         Inloggen
                     </span></h5>
+                    {fetchErrorMessage && (
+                        <div className=" mt-3 alert alert-danger alert-dismissible fade show" role="alert">
+                            {fetchErrorMessage}
+                        </div>
+                    )}
                     {/* Username */}
                     <div className="mb-3">
                         <label className="form-label">Email:</label>
@@ -30,7 +37,7 @@ export default function Login() {
                         {errorMessage[0] == null ? (
                             <p></p>
                         ) : (
-                                <p className='m-0 text-danger'>{errorMessage[0][0]}</p>
+                            <p className='m-0 text-danger'>{errorMessage[0][0]}</p>
                         )}
                     </div>
 
@@ -53,7 +60,13 @@ export default function Login() {
                     {/* Button */}
                     <button onClick={async () => {
                         const resErrorMessage = await login(email, password);
-                        if (resErrorMessage) setErrorMessage(resErrorMessage);
+                        if (typeof resErrorMessage != 'string') {
+                            setErrorMessage(resErrorMessage);
+                            setFetchErrorMessage('')
+                        } else {
+                            setFetchErrorMessage(resErrorMessage);
+                            setErrorMessage('');
+                        }
                     }} className="btn figma-red text-white w-100 rounded-pill py-2">
                         Inloggen
                     </button>

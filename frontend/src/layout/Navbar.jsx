@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const { logout, isLoggedIn, user } = useAuth();
+    const { logout, isLoggedIn, user, IsAdmin } = useAuth();
 
     const closeMenu = () => setIsOpen(false);
 
@@ -43,7 +43,7 @@ function Navbar() {
                                 <Link className="nav-link text-white" to="/artiesten" onClick={closeMenu}>Artiesten</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/services" onClick={closeMenu}>Nummers</Link>
+                                <Link className="nav-link text-white" to="/" onClick={closeMenu}>Nummers</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link text-white" to="/openingsact" onClick={closeMenu}>Openingsact</Link>
@@ -92,16 +92,21 @@ function Navbar() {
                                     <Link to="/statistieken/grootste-dalers" className="dropdown-item">Grootste dalers TOP2000</Link>
                                 </ul>
                             </li>
+                            {IsAdmin() && (
+                                <li className='nav-item'>
+                                    <Link className='nav-link text-white' to="/adminpage">Admin</Link>
+                                </li>
+                            )}
                             <hr className='w-100 text-white d-lg-none'></hr>
                             {/* Mobile Inloggen */}
                             <li className="nav-item d-lg-none mt-2 w-100">
                                 {!isLoggedIn() ? (
                                     <Link to="/login" className="nav-link text-white text-center" onClick={closeMenu}>Inloggen</Link>
                                 ) : (
-                                        <div className="d-flex flex-column align-items-center">
-                                            <p className='nav-link text-white m-0'><i class="bi bi-person me-2"></i>{JSON.parse(user)["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"].split("@")[0]}</p>
-                                            <button onClick={() => logout()} className='nav-link text-white'><i class="bi bi-box-arrow-in-right"></i>Uitloggen</button>
-                                        </div>
+                                    <div className="d-flex flex-column align-items-center">
+                                        <p className='nav-link text-white m-0'><i class="bi bi-person me-2"></i>{JSON.parse(user)["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"].split("@")[0]}</p>
+                                        <button onClick={() => logout()} className='nav-link text-white'><i class="bi bi-box-arrow-in-right"></i>Uitloggen</button>
+                                    </div>
                                 )}
                             </li>
                         </ul>
@@ -112,9 +117,9 @@ function Navbar() {
                             <Link to="/login" className="nav-link text-white" onClick={closeMenu}>Inloggen</Link>
                         </div>
                     ) : (
-                            <div className="d-none d-lg-flex flex-row ms-auto">
-                                <p className='nav-link text-white m-0 me-2 me-xl-4 text-center'><i class="bi bi-person me-2"></i>{JSON.parse(user)["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"].split("@")[0]}</p>
-                                <button onClick={() => logout()} className='nav-link text-white'><i class="bi bi-box-arrow-in-right me-2"></i>Uitloggen</button>
+                        <div className="d-none d-lg-flex flex-row ms-auto">
+                            <p className='nav-link text-white m-0 me-2 me-xl-4 text-center'><i class="bi bi-person me-2"></i>{JSON.parse(user)["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"].split("@")[0]}</p>
+                            <button onClick={() => logout()} className='nav-link text-white'><i class="bi bi-box-arrow-in-right me-2"></i>Uitloggen</button>
                         </div>
                     )}
                 </div>

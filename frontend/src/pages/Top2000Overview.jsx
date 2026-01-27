@@ -16,12 +16,16 @@ export default function Homepage() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 50;
 
+    const [fetchErrorMessage, setFetchErrorMessage] = useState('');
+
+
+
     // Fetch top2000 filtered by year
     useEffect(() => {
         fetch(`https://localhost:7003/api/GetTop2000Entries?year=${year}`)
             .then(res => res.json())
             .then(data => setTop2000Entries(data))
-            .catch(err => console.error(err));
+            .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));
     }, [year]);
 
     // Reset to first page when year or search changes
@@ -176,6 +180,11 @@ export default function Homepage() {
                                         ))}
                                     </tbody>
                                 </table>
+                                {fetchErrorMessage && (
+                                    <div className=" mt-3 alert alert-danger alert-dismissible fade show" role="alert">
+                                        {fetchErrorMessage}
+                                    </div>
+                                )}
                                 <div className="d-flex justify-content-center my-3">
                                     <button
                                         className="btn figma-red text-white me-2"
@@ -197,7 +206,6 @@ export default function Homepage() {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </>
