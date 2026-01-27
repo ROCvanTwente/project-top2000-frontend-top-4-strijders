@@ -19,6 +19,8 @@ import Contact from "./pages/Contact.jsx";
 import FAQ from "./pages/faq.jsx";
 import Songpage from "./pages/Songpage.jsx";
 import PlayListConfirm from "./confirmations/PlayListConfirm.jsx";
+import ArtistsOverview from "./pages/ArtistsOverview.jsx"
+import ArtistDetail from "./pages/ArtistDetail.jsx"
 
 function App() {
   return (
@@ -43,6 +45,7 @@ function App() {
             <Route path="/history" element={<History />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/artiest/:id" element={<ArtistDetail />} />
             <Route path="/adminpage" element={<ProtectedRoute role="admin"><AdminPage /></ProtectedRoute>} />
             <Route path="/adminsongs" element={<ProtectedRoute role="admin"><SongsAdmin /></ProtectedRoute>} />
             <Route path="/adminartists" element={<ProtectedRoute role="admin"><ArtistAdmin /></ProtectedRoute>} />
