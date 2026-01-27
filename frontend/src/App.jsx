@@ -22,6 +22,9 @@ import PlayListConfirm from "./confirmations/PlayListConfirm.jsx";
 import ArtistsOverview from "./pages/ArtistsOverview.jsx"
 import ArtistDetail from "./pages/ArtistDetail.jsx"
 
+// Statistics
+import SamePosition from "./statistics/SamePosition.jsx";
+
 function App() {
   return (
     <AuthProvider>
@@ -50,6 +53,7 @@ function App() {
             <Route path="/adminpage" element={<ProtectedRoute role="admin"><AdminPage /></ProtectedRoute>} />
             <Route path="/adminsongs" element={<ProtectedRoute role="admin"><SongsAdmin /></ProtectedRoute>} />
             <Route path="/adminartists" element={<ProtectedRoute role="admin"><ArtistAdmin /></ProtectedRoute>} />
+            <Route path="/statistieken/zelfde-positie" element={<SamePosition />} />
         </Routes>
       </main>
 
