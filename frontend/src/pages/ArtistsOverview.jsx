@@ -7,6 +7,7 @@ import useSearch from '../components/Searchfunction.jsx';
 export default function ArtistsOverview() {
   const [artists, setArtists] = useState([]);
   const [searchArtist, setSearchArtist] = useState("");
+  const [entriesCount, setEntriesCount] = useState({});
 
   useEffect(() => {
     fetch(`https://localhost:7003/api/getartists`)
@@ -15,19 +16,23 @@ export default function ArtistsOverview() {
       .catch(err => console.error(err));
   }, []);
 
+
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15;
-  const totalPages = Math.ceil(artists.length / itemsPerPage);
+  const filteredArtists = useSearch(artists, searchArtist, item => item.name);
+
+  const totalPages = Math.ceil(filteredArtists.length / itemsPerPage);
 
   const paginatedArtists = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    return artists.slice(start, end);
-  }, [currentPage, artists]);
+    return filteredArtists.slice(start, end);
+  }, [currentPage, filteredArtists]);
+
 
   const searchedEntries = useSearch(
-    paginatedArtists,
+    artists,
     searchArtist,
     item => item.name
   );
@@ -36,6 +41,22 @@ export default function ArtistsOverview() {
   useEffect(() => {
     setCurrentPage(1);
   }, [searchArtist]);
+
+
+  // Fetch entriesCount only for active page
+  useEffect(() => {
+    paginatedArtists.forEach(artist => {
+      if (entriesCount[artist.artistId] !== undefined) return;
+
+      fetch(`https://localhost:7003/api/GetSongs/artist/${artist.artistId}/entriescount`)
+      .then(res => res.json())
+      .then(songs => {
+        const totalTimes = songs.reduce((sum, song) => sum + song.timesInTop2000, 0);
+        setEntriesCount(prev => ({ ...prev, [artist.artistId]: totalTimes }));
+      })
+        .catch(err => console.error(err));
+    });
+  }, [paginatedArtists]);
 
 
   return (
@@ -61,7 +82,7 @@ export default function ArtistsOverview() {
       </div>
 
       <div className="row g-4">
-        {searchedEntries.map((artist) => (
+        {paginatedArtists.map((artist) => (
           <div key={artist.artistId} className="col-12 col-md-6 col-lg-4">
             <Link
               to={`/artiest/${artist.artistId}`}
@@ -70,15 +91,31 @@ export default function ArtistsOverview() {
               <div className="card shadow rounded">
                 <img
                   className="card-img-top"
-                  src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+                  src={
+                    artist.photo ||
+                    "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+                  }
                   alt="Card image cap"
-                  style={{ height: "200px", objectFit: "cover" }}
+                  onError={(e) => e.currentTarget.src = "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"}
+                  style={{
+                    height: "250px",
+                    objectFit: "cover",
+                    objectPosition: "50% 10%"
+                  }}
                 />
                 <div className="card-body">
                   <h5 className="card-title">{artist.name}</h5>
-                  <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                  <h6 className="card-subtitle mb-2 figma-red-text">
+                    {entriesCount[artist.artistId] !== undefined
+                      ? `${entriesCount[artist.artistId]} noteringen in de Top 2000`
+                      : "Top 2000 data laden..."}
+                  </h6>
+
                   {artist.biography ? (
-                    <p className="card-text">Biografie: {artist.biography}</p>
+                    <p className="card-text">
+                      Biografie: {artist.biography.slice(0, 60)}{artist.biography.length > 50 ? "..." : ""}
+                    </p>
+
                   ) : (
                     <p className="card-text">Deze artiest heeft geen biografie</p>
                   )}

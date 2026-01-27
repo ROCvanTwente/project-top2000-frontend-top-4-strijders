@@ -12,15 +12,23 @@ export default function Homepage() {
     const [sortBy, setSortBy] = useState("positie");
     const [year, setYear] = useState(2024);
     const [searchArtist, setSearchArtist] = useState("");
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 50;
 
-
-
+    // Fetch top2000 filtered by year
     useEffect(() => {
         fetch(`https://localhost:7003/api/GetTop2000Entries?year=${year}`)
             .then(res => res.json())
             .then(data => setTop2000Entries(data))
             .catch(err => console.error(err));
     }, [year]);
+
+    // Reset to first page when year or search changes
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [year, searchArtist]);
+
 
     const sortedEntries = useMemo(() => {
         const entries = [...top2000Entries];
@@ -51,6 +59,23 @@ export default function Homepage() {
         searchArtist,
         item => item.songs.artist.name
     );
+
+    // Pagination logic
+    const paginatedEntries = useMemo(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return searchedEntries.slice(startIndex, endIndex);
+    }, [searchedEntries, currentPage]);
+    const totalPages = Math.ceil(searchedEntries.length / itemsPerPage);
+
+
+    if (!top2000Entries) {
+        return (
+            <div className="container-lg mt-4">
+                <p>Loading...</p>
+            </div>
+        );
+    }
 
     return (
         <>
@@ -120,7 +145,8 @@ export default function Homepage() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {searchedEntries.map((item, index) => (
+                                        {paginatedEntries.map((item, index) => (
+                                            
                                             <tr key={index}>
                                                 <td>
                                                     <span className="d-inline-flex justify-content-center align-items-center figma-red text-white rounded-circle" style={{ width: '2.2rem', height: '2.2rem' }}>
@@ -128,13 +154,46 @@ export default function Homepage() {
                                                     </span>
 
                                                 </td>
-                                                <td>{item.songs.titel}</td>
-                                                <td>{item.songs.artist.name}</td>
+                                                <td>
+                                                    <Link
+                                                        className="text-decoration-none overview-hover"
+                                                        to="/songpage"
+                                                        state={{ item }}
+                                                    >
+                                                        {item.songs.titel}
+                                                    </Link>
+                                                </td>
+                                                <td>
+                                                    <Link
+                                                        className="text-decoration-none overview-hover"
+                                                        to="/overview"
+                                                    >
+                                                        {item.songs.artist.name}
+                                                    </Link>
+                                                </td>
                                                 <td>{item.year}</td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
+                                <div className="d-flex justify-content-center my-3">
+                                    <button
+                                        className="btn figma-red text-white me-2"
+                                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                        disabled={currentPage === 1}
+                                    >
+                                        Vorige
+                                    </button>
+                                    <span className="align-self-center">Pagina {currentPage} van {totalPages}</span>
+                                    <button
+                                        className="btn figma-red text-white ms-2"
+                                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                        disabled={currentPage === totalPages}
+                                    >
+                                        Volgende
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
