@@ -34,10 +34,6 @@ export default function Top2000AllEntries() {
                 );
                 break;
 
-            case "jaar":
-                entries.sort((a, b) => a.releaseYear - b.releaseYear);
-                break;
-
             case "titel":
             default:
                 entries.sort((a, b) =>
@@ -82,7 +78,6 @@ export default function Top2000AllEntries() {
                                         <select className="form-select" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
                                             <option value="titel">Titel</option>
                                             <option value="artiest">Artiest</option>
-                                            <option value="Uitgebracht">Uitgebracht</option>
                                         </select>
                                     </div>
                                 </div>
