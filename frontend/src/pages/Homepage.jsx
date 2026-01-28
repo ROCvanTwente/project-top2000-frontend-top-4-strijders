@@ -11,7 +11,7 @@ export default function Homepage() {
     const [fetchErrorMessage, setFetchErrorMessage] = useState('');
 
     useEffect(() => {
-        fetch('https://top2000backend.runasp.net/api/GetTopFive?year=2024')
+        fetch('https://top2000backend.runasp.net/api/GetTopFlve?year=2024')
             .then(res => res.json())
             .then(data => {
                 const sorted = data.sort((a, b) => a.position - b.position);
