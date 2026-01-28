@@ -45,7 +45,7 @@ function App() {
       </main>
 
       <footer className="mt-auto w-100">
-          <Footer />
+          <Footer/>
       </footer>
     </div>
     </AuthProvider>

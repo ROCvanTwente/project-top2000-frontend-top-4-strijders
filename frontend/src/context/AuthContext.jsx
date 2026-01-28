@@ -111,7 +111,7 @@ export function AuthProvider({ children }) {
 
         if (response.status === 401) {
             // Access token verlopen - refresh
-            const refreshResponse = await fetch('https://localhost:7xxx/api/auth/refresh-token', {
+            const refreshResponse = await fetch('https://localhost:7003/api/auth/refresh-token', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -137,7 +137,6 @@ export function AuthProvider({ children }) {
 
     // Functie om te checken of ingelogd
     function isLoggedIn() {
-        console.log(JSON.parse(user));
         return user !== null;
     }
 
@@ -149,7 +148,7 @@ export function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, register, isLoggedIn, IsAdmin }}>
+        <AuthContext.Provider value={{ user, login, logout, register, isLoggedIn, IsAdmin, apiRequest }}>
             {children}
         </AuthContext.Provider>
     );
