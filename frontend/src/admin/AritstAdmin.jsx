@@ -19,7 +19,7 @@ export default function ArtistAdmin() {
     const { IsAdmin, apiRequest } = useAuth();
 
     useEffect(() => {
-        fetch('http://top2000backend.runasp.net/api/GetArtists')
+        fetch('https://top2000backend.runasp.net/api/GetArtists')
             .then(res => res.json())
             .then(data => setAllArtists(data))
             .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het later opnieuw'));
