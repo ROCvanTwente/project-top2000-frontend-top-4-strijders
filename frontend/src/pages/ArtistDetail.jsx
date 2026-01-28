@@ -8,14 +8,14 @@ export default function ArtistDetail() {
 
     useEffect(() => {
         async function FetchArtistAndSongs() {
-            let resArtist = await fetch(`http://top2000backend.runasp.net/api/GetArtists/${id}`)
+            let resArtist = await fetch(`https://top2000backend.runasp.net/api/GetArtists/${id}`)
             let artist;
             if (resArtist.ok) {
                 artist = await resArtist.json();
                 setArtist(artist)
             } else throw new Error("Artist not found");
 
-            let resSongs = await fetch(`http://top2000backend.runasp.net/api/GetSongs/artist/${id}/entriescount`);
+            let resSongs = await fetch(`https://top2000backend.runasp.net/api/GetSongs/artist/${id}/entriescount`);
             let songs;
             if (resSongs) {
                 songs = await resSongs.json();
