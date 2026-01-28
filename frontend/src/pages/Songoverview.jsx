@@ -12,7 +12,7 @@ export default function Songoverview() {
 
   // haal nummers op bij het laden
   useEffect(() => {
-    fetch("https://localhost:7003/api/GetSongs")
+    fetch("http://top2000backend.runasp.net/api/GetSongs")
       .then(res => {
         if (!res.ok) {
           throw new Error("fout bij ophalen nummers");

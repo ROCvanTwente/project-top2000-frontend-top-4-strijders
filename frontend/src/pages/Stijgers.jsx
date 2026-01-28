@@ -12,7 +12,7 @@ export default function Stijgers() {
   useEffect(() => {
     setLoading(true); // start loading
 
-    fetch(`https://localhost:7003/api/Statistieken/Stijgers?year=${year}`)
+    fetch(`http://top2000backend.runasp.net/api/Statistieken/Stijgers?year=${year}`)
       .then(res => {
         if (!res.ok) {
           throw new Error("fout bij ophalen van stijgers");
