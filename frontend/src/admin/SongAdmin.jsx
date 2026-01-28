@@ -99,7 +99,7 @@ export default function SongsAdmin() {
         } else {
             setErrorMessages(allErrorMessages);
             console.log("alles is goed");
-            apiRequest("http://top2000backend.runasp.net/api/Edit/EditSong", {
+            apiRequest("https://top2000backend.runasp.net/api/Edit/EditSong", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

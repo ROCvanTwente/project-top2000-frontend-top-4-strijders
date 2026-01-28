@@ -13,7 +13,7 @@ export default function OnceInTop2000() {
 
     // Fetch filtered by year
     useEffect(() => {
-        fetch(`http://top2000backend.runasp.net/api/Statistieken/GetSongsOnlyOnceOnTop2000`)
+        fetch(`https://top2000backend.runasp.net/api/Statistieken/GetSongsOnlyOnceOnTop2000`)
             .then(res => res.json())
             .then(data => setSongs(data))
             .catch(err => console.error('Data ophalen mislukt. Probeer het opnieuw'));
