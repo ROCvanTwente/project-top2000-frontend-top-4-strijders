@@ -15,7 +15,7 @@ export default function ConnectingPosition() {
 
     // Fetch filtered by year
     useEffect(() => {
-        fetch(`https://top2000backend.runasp.net/api/Statistieken/GetReturnedSongs?year=${year}`)
+        fetch(`http://top2000backend.runasp.net/api/Statistieken/GetReturnedSongs?year=${year}`)
             .then(res => res.json())
             .then(data => setSongs(data))
             .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));
