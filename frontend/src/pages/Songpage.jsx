@@ -26,7 +26,6 @@ export default function Songpage() {
         }
 
 
-
         const fetchData = async () => {
             try {
                 const promises = [
@@ -57,11 +56,16 @@ export default function Songpage() {
     }, [songData, navigate, imgUrl]);
 
 
+
+
     const confirmAddToPlaylist = async (data) => {
-        console.log(data)
-        navigate("/playlistconfirmation", {state: {item: data}});
+        navigate("/playlistconfirmation", {
+            state: {
+                item: data,
+                action: "add",
+            }
+        });
     }
-    console.log(posistions)
 
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);

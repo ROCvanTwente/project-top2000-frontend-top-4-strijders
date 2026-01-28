@@ -26,7 +26,16 @@ import ArtistDetail from "./pages/ArtistDetail.jsx"
 import SamePosition from "./statistics/SamePosition.jsx";
 import BestArtists from "./statistics/BestArtists.jsx";
 import Top2000AllEntries from "./statistics/Top2000AllEntries.jsx";
+import OnceInTop2000 from "./statistics/OnceInTop2000.jsx";
+import Songoverview from "./pages/Songoverview.jsx"
 
+import Dalers from "./pages/Dalers.jsx"
+import Stijgers from "./pages/Stijgers.jsx"
+import Verdwenen from "./pages/Verdwenen.jsx"
+
+import ConnectingPosition from "./statistics/ConnectingPosition.jsx";
+import ReEntries from "./statistics/ReEntries.jsx";
+import HighestEntry from "./statistics/HighestEntry.jsx";
 function App() {
   return (
     <AuthProvider>
@@ -55,16 +64,23 @@ function App() {
             <Route path="/adminpage" element={<ProtectedRoute role="admin"><AdminPage /></ProtectedRoute>} />
             <Route path="/adminsongs" element={<ProtectedRoute role="admin"><SongsAdmin /></ProtectedRoute>} />
             <Route path="/adminartists" element={<ProtectedRoute role="admin"><ArtistAdmin /></ProtectedRoute>} />
-
+            <Route path="/statistieken/aansluitende-posities" element={<ConnectingPosition />} />
+              <Route path="/statistieken/herintreders" element={<ReEntries />} />
+              <Route path="/statistieken/hoogste-binnenkomers" element={<HighestEntry />} />
             {/* Statistics */}
             <Route path="/statistieken/zelfde-positie" element={<SamePosition />} />
             <Route path="/statistieken/top-artiesten" element={<BestArtists />} />
             <Route path="/statistieken/alle-liedjes" element={<Top2000AllEntries />} />
+            <Route path="/statistieken/een-vermelding" element={<OnceInTop2000 />} />
+          <Route path="/songoverview" element={<Songoverview />} />
+          <Route path="/statistieken/grootste-dalers" element={<Dalers/>}/>
+          <Route path="/statistieken/grootste-stijgers" element={<Stijgers/>}/>
+          <Route path="/statistieken/verdwenen" element={<Verdwenen/>}/>
         </Routes>
       </main>
 
       <footer className="mt-auto w-100">
-          <Footer />
+          <Footer/>
       </footer>
     </div>
     </AuthProvider>
