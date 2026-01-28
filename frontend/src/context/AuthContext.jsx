@@ -141,7 +141,6 @@ export function AuthProvider({ children }) {
 
     // Functie om te checken of ingelogd
     function isLoggedIn() {
-        console.log(JSON.parse(user));
         return user !== null;
     }
 
