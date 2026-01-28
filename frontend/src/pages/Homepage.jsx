@@ -233,7 +233,7 @@ export default function Homepage() {
                     </div>
 
                     {/*Countdown*/}
-                    <div className="row g-4">
+                    <div className="row g-4 pb-4">
                         {/* X-Mas*/}
                         <div className="col-12 col-sm-6">
                             <Link to="/artiesten" className="text-decoration-none">
