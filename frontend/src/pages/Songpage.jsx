@@ -30,13 +30,13 @@ export default function Songpage() {
         const fetchData = async () => {
             try {
                 const promises = [
-                    fetch(`https://localhost:7003/api/Songs/GetYoutubeVideoId?title=${encodeURIComponent(songData.songs ? songData.songs.titel : songData.titel)}&artist=${encodeURIComponent(songData.songs ? songData.songs.artist.name : songData.artist.name)}`)
+                    fetch(`http://top2000backend.runasp.net/api/Songs/GetYoutubeVideoId?title=${encodeURIComponent(songData.songs ? songData.songs.titel : songData.titel)}&artist=${encodeURIComponent(songData.songs ? songData.songs.artist.name : songData.artist.name)}`)
                         .then(res => res.text()),
-                    fetch(`https://localhost:7003/api/Songs/GetAlbumCover?title=${encodeURIComponent(songData.songs ? songData.songs.titel : songData.titel)}&artist=${encodeURIComponent(songData.songs ? songData.songs.artist.name : songData.artist.name)}`)
+                    fetch(`http://top2000backend.runasp.net/api/Songs/GetAlbumCover?title=${encodeURIComponent(songData.songs ? songData.songs.titel : songData.titel)}&artist=${encodeURIComponent(songData.songs ? songData.songs.artist.name : songData.artist.name)}`)
                         .then(res => res.text()),
-                    fetch(`https://localhost:7003/api/Songs/GetSongEntries?id=${encodeURIComponent(songData.songs ? songData.songs.songId : songData.songId)}`)
+                    fetch(`http://top2000backend.runasp.net/api/Songs/GetSongEntries?id=${encodeURIComponent(songData.songs ? songData.songs.songId : songData.songId)}`)
                         .then(res => res.json()),
-                    fetch(`https://localhost:7003/api/Songs/GetPositionsPerYear?songId=${encodeURIComponent(songData.songs ? songData.songs.songId : songData.songId)}`)
+                    fetch(`http://top2000backend.runasp.net/api/Songs/GetPositionsPerYear?songId=${encodeURIComponent(songData.songs ? songData.songs.songId : songData.songId)}`)
                         .then(res => res.json())
                 ];
 

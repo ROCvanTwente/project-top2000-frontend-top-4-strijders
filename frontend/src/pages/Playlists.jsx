@@ -16,7 +16,7 @@ export default function Playlists() {
         const data = Object.fromEntries(formData.entries());
 
         try {
-            const res = await fetch('https://localhost:7003/api/PlayList/Create', {
+            const res = await fetch('http://top2000backend.runasp.net/api/PlayList/Create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

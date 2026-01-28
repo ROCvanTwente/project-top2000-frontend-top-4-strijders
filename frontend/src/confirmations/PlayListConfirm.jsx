@@ -12,7 +12,7 @@ const PlayListConfirm = () => {
 
     const action = async () => {
         try {
-            const res = await fetch(`https://localhost:7003/api/PlayList/AddSongToPlaylist?userId=${loggedinUserID}&songId=${songData.songs.songId}`, {
+            const res = await fetch(`http://top2000backend.runasp.net/api/PlayList/AddSongToPlaylist?userId=${loggedinUserID}&songId=${songData.songs.songId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
             }).then(res => res.json()).then(data => {
