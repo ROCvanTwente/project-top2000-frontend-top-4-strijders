@@ -42,7 +42,7 @@ function App() {
             <Route path="/playlistconfirmation" element={<ProtectedRoute role="user"><PlayListConfirm /></ProtectedRoute>} />
             <Route path="/Overview" element={<Overview />} />
             <Route path="/songpage" element={<Songpage/>} />
-            <Route path="/history" element={<History />} />
+            <Route path="/geschiedenis" element={<History />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/artiesten" element={<ArtistsOverview />} />
