@@ -87,9 +87,9 @@ function Navbar() {
                                     <Link to="/statistieken/herintreders" className="dropdown-item">Herintreders TOP2000</Link>
                                     <Link to="/statistieken/verdwenen" className="dropdown-item">Verdwenen nummers TOP2000</Link>
                                     <Link to="/statistieken/hoogste-binnenkomers" className="dropdown-item">Hoogste Binnenkomers TOP2000</Link>
-                                    <Link to="/statistieken/alle-liedjes" className="dropdown-item">Alle liedjes TOP2000</Link>
+                                   <Link to="/statistieken/alle-liedjes" className="dropdown-item">Alle liedjes TOP2000</Link>
                                     <Link to="/statistieken/grootste-stijgers" className="dropdown-item">Grootste stijgers TOP2000</Link>
-                                    <Link to="/statistieken/grootste-dalers" className="dropdown-item">Grootste dalers TOP2000</Link>
+                                   <Link to="/statistieken/grootste-dalers" className="dropdown-item">Grootste dalers TOP2000</Link>
                                 </ul>
                             </li>
                             {IsAdmin() && (
