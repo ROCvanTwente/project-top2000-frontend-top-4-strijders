@@ -16,7 +16,7 @@ export default function Homepage() {
         async function loadTopFive(retries = 1) {
             try {
                 const res = await fetch(
-                    'https://top2000backend.runasp.net/api/GetTopFive?year=2024'
+                    'http://top2000backend.runasp.net/api/GetTopFive?year=2024'
                 );
 
                 if (!res.ok) {
