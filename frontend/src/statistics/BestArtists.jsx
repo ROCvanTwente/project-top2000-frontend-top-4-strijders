@@ -18,7 +18,7 @@ export default function BestArtists() {
     useEffect(() => {
         if (!amount) return; // no fetch is amount is empty
 
-        fetch(`http://top2000backend.runasp.net/api/Statistieken/GetArtistWithMostSongsOnYear?year=${year}&amount=${amount}`)
+        fetch(`https://top2000backend.runasp.net/api/Statistieken/GetArtistWithMostSongsOnYear?year=${year}&amount=${amount}`)
             .then(res => res.json())
             .then(data => setArtist(data))
             .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));

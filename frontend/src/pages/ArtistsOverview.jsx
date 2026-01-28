@@ -12,7 +12,7 @@ export default function ArtistsOverview() {
   const [fetchErrorMessage, setFetchErrorMessage] = useState('');
 
   useEffect(() => {
-    fetch(`http://top2000backend.runasp.net/api/getartists`)
+    fetch(`https://top2000backend.runasp.net/api/getartists`)
       .then(res => res.json())
       .then(data => setArtists(data))
       .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));
@@ -50,7 +50,7 @@ export default function ArtistsOverview() {
     paginatedArtists.forEach(artist => {
       if (entriesCount[artist.artistId] !== undefined) return;
 
-      fetch(`http://top2000backend.runasp.net/api/GetSongs/artist/${artist.artistId}/entriescount`)
+      fetch(`https://top2000backend.runasp.net/api/GetSongs/artist/${artist.artistId}/entriescount`)
         .then(res => res.json())
         .then(songs => {
           const totalTimes = songs.reduce((sum, song) => sum + song.timesInTop2000, 0);
