@@ -22,7 +22,7 @@ export default function Homepage() {
 
     // Fetch top2000 filtered by year
     useEffect(() => {
-        fetch(`https://localhost:7003/api/GetTop2000Entries?year=${year}`)
+        fetch(`http://top2000backend.runasp.net/api/GetTop2000Entries?year=${year}`)
             .then(res => res.json())
             .then(data => setTop2000Entries(data))
             .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));

@@ -12,7 +12,7 @@ export default function Verdwenen() {
   useEffect(() => {
     setLoading(true); // start loading
 
-    fetch(`https://localhost:7003/api/Statistieken/GetDisappearedSongs?year=${year}`)
+    fetch(`http://top2000backend.runasp.net/api/Statistieken/GetDisappearedSongs?year=${year}`)
       .then(res => {
         if (!res.ok) {
           throw new Error("fout bij ophalen van verdwenen nummers");

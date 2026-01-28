@@ -22,7 +22,7 @@ export default function Playlists() {
         }
 
         try {
-            fetch("https://localhost:7003/api/Playlist/retrieve", {
+            fetch("http://top2000backend.runasp.net/api/Playlist/retrieve", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,13 +68,18 @@ export default function Playlists() {
         const data = Object.fromEntries(formData.entries());
 
         try {
-           navigate('/playlistconfirmation', {
-               state: {
-                   item: data,
-                   action: 'create',
-                   title: data.name
-               },
-           });
+            const res = await fetch('http://top2000backend.runasp.net/api/PlayList/Create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data.name)
+            }).then(res => res.json())
+                .then(data => {
+                    setPlaylists(prev => [...prev, data]) ;
+                }).catch((err) => {
+                    console.log(err);
+                })
 
         } catch (Error) {
             console.error('Error adding playlist:', Error);
@@ -93,7 +98,7 @@ export default function Playlists() {
     }
     const handleClick = async (playlistId) => {
         setPlaylistId(playlistId);
-        fetch(`https://localhost:7003/api/playlist/${playlistId}/songs`, {
+        fetch(`http://top2000backend.runasp.net/api/playlist/${playlistId}/songs`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

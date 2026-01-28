@@ -12,7 +12,7 @@ export default function Dalers() {
   useEffect(() => {
     setLoading(true); // start loading
 
-    fetch(`https://localhost:7003/api/Statistieken/Dalers?year=${year}`)
+    fetch(`http://top2000backend.runasp.net/api/Statistieken/Dalers?year=${year}`)
       .then(res => {
         if (!res.ok) {
           throw new Error("fout bij ophalen van dalers");

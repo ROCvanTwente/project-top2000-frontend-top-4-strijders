@@ -30,7 +30,7 @@ const PlayListConfirm = () => {
             }
 
             try {
-                const res = await fetch("https://localhost:7003/api/PlayList/retrieve", {
+                const res = await fetch("http://top2000backend.runasp.net/api/PlayList/retrieve", {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ const PlayListConfirm = () => {
                     console.error('Missing songId for add');
                     return;
                 }
-                const res = await fetch(`https://localhost:7003/api/PlayList/add`, {
+                const res = await fetch(`http://top2000backend.runasp.net/api/PlayList/add`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ const PlayListConfirm = () => {
 
             if (action === 'create') {
                 // server endpoint currently binds a raw string from body - keep sending JSON string
-                const res = await fetch('https://localhost:7003/api/PlayList/Create', {
+                const res = await fetch('http://top2000backend.runasp.net/api/PlayList/Create', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ const PlayListConfirm = () => {
             }
 
             if (action === 'delete') {
-                const res = await fetch("https://localhost:7003/api/PlayList/remove", {
+                const res = await fetch("http://top2000backend.runasp.net/api/PlayList/remove", {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",

@@ -22,7 +22,7 @@ export default function Top2000AllEntries() {
 
     // Fetch filtered by year
     useEffect(() => {
-        fetch(`https://localhost:7003/api/Statistieken/GetEntriesOfAllTheYears`)
+        fetch(`http://top2000backend.runasp.net/api/Statistieken/GetEntriesOfAllTheYears`)
             .then(res => res.json())
             .then(data => setSongs(data))
             .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));
