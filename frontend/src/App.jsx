@@ -31,7 +31,7 @@ function App() {
           <Route path="/songoverview" element={<Songoverview />} />
           <Route path="/statistieken/grootste-dalers" element={<Dalers/>}/>
           <Route path="/statistieken/grootste-stijgers" element={<Stijgers/>}/>
-          <Route path="/statistieken/verdwenen-nummers" element={<Verdwenen/>}/>
+          <Route path="/statistieken/verdwenen" element={<Verdwenen/>}/>
         </Routes>
       </main>
 

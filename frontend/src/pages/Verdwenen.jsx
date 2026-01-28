@@ -2,33 +2,34 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Verdwenen() {
-  const [year, setYear] = useState(2024);
-  const [verdwenen, setVerdwenen] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [year, setYear] = useState(2024); // geselecteerd jaar
+  const [verdwenen, setVerdwenen] = useState([]); // alle verdwenen nummers
+  const [loading, setLoading] = useState(true); // laadstatus
 
-  const ITEMS_PER_PAGE = 15;
+  const ITEMS_PER_PAGE = 15; // hoeveel items tonen
 
+  // haal verdwenen nummers op bij laden of jaar verandering
   useEffect(() => {
-    setLoading(true);
+    setLoading(true); // start loading
 
-    fetch(`/api/Statistieken/GetDisappearedSongs?year=${year}`)
+    fetch(`https://localhost:7003/api/Statistieken/GetDisappearedSongs?year=${year}`)
       .then(res => {
         if (!res.ok) {
-          throw new Error("Fout bij ophalen van verdwenen nummers");
+          throw new Error("fout bij ophalen van verdwenen nummers");
         }
         return res.json();
       })
-      .then(data => setVerdwenen(data))
+      .then(data => setVerdwenen(data)) // zet data in state
       .catch(err => console.error(err))
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(false)); // stop loading
   }, [year]);
 
-  const visibleVerdwenen = verdwenen.slice(0, ITEMS_PER_PAGE);
+  const visibleVerdwenen = verdwenen.slice(0, ITEMS_PER_PAGE); // pak alleen eerste pagina
 
   return (
     <div className="container mt-4">
 
-      {/* Header */}
+      {/* header */}
       <div className="card shadow p-3 border-0 mb-4">
         <div className="d-flex align-items-center mb-3">
           <i className="bi bi-x-circle fs-3 text-danger me-2"></i>
@@ -37,26 +38,26 @@ export default function Verdwenen() {
           </h1>
         </div>
 
-        {/* Jaar selector */}
+        {/* jaar selector */}
         <div className="mb-3">
           <label className="form-label fs-6">Selecteer jaar</label>
           <select
             className="form-select"
             value={year}
-            onChange={(e) => setYear(Number(e.target.value))}
+            onChange={(e) => setYear(Number(e.target.value))} // update jaar
           >
             {Array.from({ length: 25 }, (_, i) => 2024 - i).map(y => (
-              <option key={y} value={y}>{y}</option>
+              <option key={y} value={y}>{y}</option> // maak opties voor jaren
             ))}
           </select>
         </div>
 
         <p className="text-muted mb-0">
-          {verdwenen.length} nummers verdwenen
+          {verdwenen.length} Nummers verdwenen
         </p>
       </div>
 
-      {/* Tabel */}
+      {/* tabel */}
       <div className="card shadow border-0">
         <div className="table-responsive">
           <table className="table table-hover table-borderless mb-0">
@@ -73,7 +74,7 @@ export default function Verdwenen() {
               {loading && (
                 <tr>
                   <td colSpan="4" className="text-center py-4">
-                    Laden...
+                    Laden... {/* laat loading zien */}
                   </td>
                 </tr>
               )}
@@ -81,7 +82,7 @@ export default function Verdwenen() {
               {!loading && visibleVerdwenen.map(song => (
                 <tr key={song.songId}>
                   <td>
-                    <Link to="#" className="text-decoration-none">
+                    <Link to="#" className="text-decoration-none overview-hover overview-hover-hover">
                       {song.title}
                     </Link>
                   </td>
@@ -90,7 +91,7 @@ export default function Verdwenen() {
                   <td>
                     <span className="badge bg-light figma-red-text">
                       <i className="bi bi-dash-circle me-1"></i>
-                      #{song.position}
+                      #{song.position} {/* laatste positie */}
                     </span>
                   </td>
                 </tr>
