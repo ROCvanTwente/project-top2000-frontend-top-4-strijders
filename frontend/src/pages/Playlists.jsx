@@ -22,7 +22,7 @@ export default function Playlists() {
         }
 
         try {
-            fetch("https://top2000backend.runasp.net/api/Playlist/retrieve", {
+            fetch("http://top2000backend.runasp.net/api/Playlist/retrieve", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ export default function Playlists() {
     }
     const handleClick = async (playlistId) => {
         setPlaylistId(playlistId);
-        fetch(`https://top2000backend.runasp.net/api/playlist/${playlistId}/songs`, {
+        fetch(`http://top2000backend.runasp.net/api/playlist/${playlistId}/songs`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
