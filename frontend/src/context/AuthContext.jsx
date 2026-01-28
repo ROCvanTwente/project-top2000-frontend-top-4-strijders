@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
     }, []);
 
     async function login(email, password) {
-        const response = await fetch('http://top2000backend.runasp.net/api/auth/login', {
+        const response = await fetch('https://top2000backend.runasp.net/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ export function AuthProvider({ children }) {
     }
 
     async function register(email, password, confirmPassword) {
-        const response = await fetch('http://top2000backend.runasp.net/api/auth/register', {
+        const response = await fetch('https://top2000backend.runasp.net/api/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -115,7 +115,7 @@ export function AuthProvider({ children }) {
 
         if (response.status === 401) {
             // Access token verlopen - refresh
-            const refreshResponse = await fetch('http://top2000backend.runasp.net/api/auth/refresh-token', {
+            const refreshResponse = await fetch('https://top2000backend.runasp.net/api/auth/refresh-token', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
