@@ -1,25 +1,25 @@
-import React, {useEffect} from 'react'
-import { Link } from 'react-router-dom';
+    import React, {useEffect, useState} from 'react'
+import {Link, redirect} from 'react-router-dom';
 import Studio from '../assets/Studio.jpg';
 import Party from '../assets/Party.jpg';
 import CD from '../assets/CD.jpg';
 
+
 import DaysUntil from '../components/Daysuntil.jsx';
 export default function Homepage() {
-
     const [items, setItems] = React.useState([]);
+    const [fetchErrorMessage, setFetchErrorMessage] = useState('');
 
     useEffect(() => {
-        fetch('https://localhost:7003/api/GetTopFive')
+        fetch('https://localhost:7003/api/GetTopFive?year=2024')
             .then(res => res.json())
             .then(data => {
                 const sorted = data.sort((a, b) => a.position - b.position);
                 setItems(sorted);
             })
-            .catch(err => console.error(err));
+            .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));
     }, []);
 
-    console.log(items);
     return (
         <>
             <div className="container-lg  pt-4 ">
@@ -118,7 +118,7 @@ export default function Homepage() {
                         <div className="card shadow border-0 p-2">
                             <div className="card-header border-0 bg-white figma-red-text">
                                 <span>
-                                    <i class="bi icons-standard bi-music-note-beamed"></i>
+                                    <i className="bi icons-standard bi-music-note-beamed"></i>
                                     Welkom bij de TOP 2000
                                 </span>
                             </div>
@@ -136,17 +136,21 @@ export default function Homepage() {
 
                     {/*top 5 card*/}
                     <div className="col-12 ">
-                        <div className="card px-3 shadow border-0">
+                        <div className="card hover px-3 shadow border-0">
                             <div className="card-header border-0 bg-white figma-red-text d-inline-flex text-center ">
                                 <i className="bi p-2 icons-standard bi-graph-up-arrow"></i>
                                 <p className="m-0 align-items-center fs-4 d-flex">Top 5 van 2024</p>
                             </div>
                             <div className="card-body">
-
-                                {items.map((item, index) => {
-                                    console.log(item);
+                                {fetchErrorMessage && (
+                                    <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {fetchErrorMessage}
+                                    </div>
+                                )}
+                                {items.map((item) => {
                                     return (
-                                        <div className="card border-0 top-5-background mb-3">
+                                        <Link to="/songpage" state={{ item }} className="nav-link text-white">
+                                        <div className="card top-5-card border-0 top-5-background mb-3">
                                             <div className="row">
                                                 <div className="col-1 d-flex justify-content-center align-items-center">
                                                     <div className="col-md-4">
@@ -155,11 +159,10 @@ export default function Homepage() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col-10">
+                                                <div className="col-10 d-flex  align-items-center">
                                                     <div className="card-body">
                                                         <h5 className="card-title">{item.songs.titel}</h5>
-                                                        <p className="card-text">{item.description}</p>
-
+                                                        <p className="card-text">{item.songs.artist.name}</p>
                                                     </div>
                                                 </div>
                                                 <div className="col-1 d-flex  justify-content-center align-items-center">
@@ -169,10 +172,10 @@ export default function Homepage() {
                                                 </div>
                                             </div>
                                         </div>
+                                        </Link>
                                     )
                                 })}
-
-                                <a href="#" className="btn figma-red text-light">Bekijk de volledige TOP 2000</a>
+                                <Link to="/overview" className="btn figma-red text-light">Bekijk de volledige TOP 2000</Link>
                             </div>
                         </div>
 
@@ -230,7 +233,7 @@ export default function Homepage() {
                     </div>
 
                     {/*Countdown*/}
-                    <div className="row g-4">
+                    <div className="row g-4 pb-4">
                         {/* X-Mas*/}
                         <div className="col-12 col-sm-6">
                             <Link to="/artiesten" className="text-decoration-none">

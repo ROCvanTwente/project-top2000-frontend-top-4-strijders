@@ -1,37 +1,208 @@
+// frontend/src/pages/Playlists.jsx
+import { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
+
 export default function Playlists() {
+    const navigate = useNavigate();
 
-    let videoId;
-    let src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&modestbranding=1`;
-    // TODO database tabel genaamd ID maken met daarin spotify playlist id's
+    const [playlists, setPlaylists] = useState([]);
+    const [playlistId, setPlaylistId] = useState(null);
+    const [songs, setSongs] = useState([]);
 
-    //
-
-    //retriev functie voor de songs in playlist
-
-    // eigelijk moet de call voor de ids gebeuren op de songs pagina en hier alleen het laden van de ids die in de playlist zitten
-
-    // hierna moet er een functie komen die de ids omzet naar een
+    const token = localStorage.getItem("accessToken");
 
 
+    useEffect(() => {
 
-    // drop down with all the options when searching for songs
+        const token = localStorage.getItem("accessToken");
+        if (!token) {
+            console.error("No access token found");
+            navigate('/login'); // Redirect to login
+            return;
+        }
+
+        try {
+            fetch("https://localhost:7003/api/Playlist/retrieve", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+                .then((res) => {
+                    if (!res.ok) {
+                        if (res.status === 401) {
+                            console.error("Unauthorized - token may be invalid or expired");
+                            localStorage.removeItem("accessToken");
+                            navigate('/login');
+                        }
+                    }
+                    return res.json();
+                })
+                .then((res) => {
+                    const normalized = Array.isArray(res)
+                        ? res.map((p) => (p?.data ? p.data : p))
+                        : [];
+                    setPlaylists(normalized);
+                })
+                .catch((err) => {
+                    console.error("Error fetching playlists:", err);
+                }).finally(() => {});
+        } catch (error) {
+            console.error("Error fetching playlists:", error);
+        }
+
+        try {
+
+        } catch (error) {
+            console.error("Error fetching cover:", error);
+        }
+
+
+
+
+    }, [navigate]);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+           navigate('/playlistconfirmation', {
+               state: {
+                   item: data,
+                   action: 'create',
+                   title: data.name
+               },
+           });
+
+        } catch (Error) {
+            console.error('Error adding playlist:', Error);
+        }
+    }
+
+    const handleDelete = async (type,data,playlistId) => {
+        navigate("/playlistconfirmation", {
+            state: {
+                item: data,
+                action: "delete",
+                type: type,
+                playlistId: playlistId
+            }
+        })
+    }
+    const handleClick = async (playlistId) => {
+        setPlaylistId(playlistId);
+        fetch(`https://localhost:7003/api/playlist/${playlistId}/songs`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setSongs(data);
+            })
+            .catch((err) => {
+                console.error("Error fetching songs from playlist:", err);
+            });
+    }
     return (
-    <div className="container">
-        <div className="col-12">
-            <h1>Playlists Page</h1>
-        </div>
-        <div className="col-4">
-            <iframe
-                width="100%"
-                height="315"
-                src={src}
-                allow="autoplay"
-                title="YouTube player"
-            />
-        </div>
-        <div className="col-8">
+        <div className="container">
+            <div className="col-12 pt-5">
+                <div className="card shadow">
+                    <div className="card-header">
+                        <p className="fs-4 figma-red-text">Mijn afspeellijsten</p>
+                    </div>
+                    <div className="card-body d-flex align-items-center">
+                        <div className="row w-100">
+                            <div className="col-12">
+                                <div className="input-group">
+                                    <form method="post" className="w-100" onSubmit={handleSubmit}>
+                                     <div className="input-group">
+                                       <input
+                                         type="text"
+                                         name="name"
+                                         className="form-control inpu"
+                                         placeholder="Naam nieuwe playlist..."
+                                       />
+                                       <button
+                                         type="submit"
+                                         className="btn btn-danger figma-red-bg text-white fw-semibold"
+                                       >
+                                         <span className="d-inline d-sm-none">+</span>
+                                         <span className="d-none d-sm-inline">
+                                           <span className="me-2">+</span>Aanmaken
+                                         </span>
+                                       </button>
+                                     </div>
+                                   </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="row pt-4 ">
+                <div className="col-4">
+                    <p>Mijn lijsten</p>
+                    <div className="card">
+                        {playlists.length === 0 ? (
+                            <div className="card-body">
+                                <p>Nog geen afspeellijsten</p>
+                            </div>
+                        ) : (
+                            playlists.map((playlist) => (
+                                <div key={playlist.id} onClick={() => handleClick(playlist.id)} lick className="card-body d-flex align-items-center">
+                                    <p className="mb-0">{playlist.name}</p>
+                                    <img
+                                        src="https://img.icons8.com/ios-glyphs/30/000000/trash--v1.png"
+                                        alt="Verwijder playlist"
+                                        className="ms-auto"
+                                        onClick={() => handleDelete('playlist', playlist, playlist.id)}
+                                    />
+                                </div>
+                            ))
+                        )}
+
+                    </div>
+                </div>
+                <div className="col-8">
+                    <div className="card">
+                        <div className="card-body">
+                            {
+                                songs.length === 0 ? (
+                                    <p>Geen nummers in deze afspeellijst</p>
+                                ) : (
+                                    songs.map((song) => (
+                                        <div key={song.id} className="d-flex align-items-center mb-3">
+                                            <img
+                                                src={song.coverUrl}
+                                                alt={song.title}
+                                                className="me-3"
+                                                style={{ width: '50px', height: '50px' }}
+                                            />
+                                            <div>
+                                                <p className="mb-0">{song.titel}</p>
+                                                <small className="text-muted">{song.artistName}</small>
+                                            </div>
+                                            <img
+                                                src="https://img.icons8.com/ios-glyphs/30/000000/trash--v1.png"
+                                                alt="Verwijder nummer"
+                                                className="ms-auto"
+                                                onClick={() => handleDelete('song', song, playlistId)}
+                                            />
+                                        </div>
+                                    ))
+                                )
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
-    </div>
-  )
+    )
 }

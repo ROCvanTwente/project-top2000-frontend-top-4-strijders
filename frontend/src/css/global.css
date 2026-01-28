@@ -1,3 +1,26 @@
+.background-icon {
+    position: relative;
+    overflow: hidden;
+}
+
+.background-icon .icon-background {
+    position: absolute;
+    top: 90%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    font-size: 1500px;
+    color: #1E2939;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.background-icon>*:not(.icon-background) {
+    position: relative;
+    z-index: 1;
+}
+
+
+
 .red-gradient {
     background: linear-gradient(to right, #dc2626, #b91c1c);
 }
@@ -72,9 +95,15 @@
     color: #DC000A !important;
 }
 
+/* Hover voor de top 5 */
+.top-5-card:hover {
+    transform: scale(1.01);
+    transition: 0.4s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 
 /* Carousel */
-
 .carousel,
 .carousel-inner {
     /* height: 350px; */
@@ -114,6 +143,21 @@
     cursor: pointer;
 }
 
+/* TOP2000 Overview  */
+.table-top2000 tbody tr td {
+    padding-top: 1.0rem !important;
+    padding-bottom: 1.0rem !important;
+}
+
+.overview-hover {
+    color: black;
+}
+
+.overview-hover:hover {
+    color: #DC000A;
+    transition: color 0.3s ease-in-out;
+    cursor: pointer;
+}
 
 /* openigsact image responsive styles */
 
@@ -130,4 +174,80 @@
         flex: 1 1 auto;
         width: 100%;
     }
+}
+
+
+/* Login / Register pages */
+
+.login-input:focus {
+    border-color: #DC000A;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.register-link,
+.login-link {
+    color: #DC000A;
+    text-decoration: underline;
+    text-decoration-color: #DC000A;
+    cursor: pointer;
+}
+
+
+
+/* Admin pages */
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(220, 0, 10, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-circle i {
+    color: #DC000A;
+    font-size: 20px;
+}
+
+.admin-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-shadow-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.admin-shadow-hover:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transform: translateY(-3px);
+}
+
+
+.redfocus-input:focus {
+    border-color: #DC000A;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+/* --------------------- */
+.autocomplete {
+  border: 1px solid #ccc;
+  width: 100%;
+  position: relative;
+  z-index: 99;
+}
+
+.item {
+  background: #eee;
+  padding: 6px;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.item:hover {
+  background: #eee;
+  z-index: 99;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import "../css/global.css";
 
-function Footer() {
+function Footer(state) {
     return (
         <footer
             className="bg-footer d-flex justify-content-center align-items-center mt-auto"

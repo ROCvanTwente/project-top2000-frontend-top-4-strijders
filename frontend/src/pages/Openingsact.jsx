@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-import OpeningsactImage from '../assets/openingsact.jpg';
+import OpeningsactImage from '../assets/Openingsact.jpg';
 
 export default function Openingsact() {
 
@@ -22,7 +22,7 @@ export default function Openingsact() {
 
                             <div className="col-12 col-md-8">
                                 <h5 className="fw-semibold mb-1 figma-red-text"><span>
-                                    <i class="bi icons-standard bi-music-note"></i>
+                                    <i className="bi icons-standard bi-music-note"></i>
                                     Openingsshow Top 2000
                                 </span></h5>
                                 <p className="text-muted mb-2 ms-2 figma-red-text">Editie 2025</p>
