@@ -11,13 +11,40 @@ export default function Homepage() {
     const [fetchErrorMessage, setFetchErrorMessage] = useState('');
 
     useEffect(() => {
-        fetch('https://top2000backend.runasp.net/api/GetTopFlve?year=2024')
-            .then(res => res.json())
-            .then(data => {
-                const sorted = data.sort((a, b) => a.position - b.position);
-                setItems(sorted);
-            })
-            .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));
+        let cancelled = false;
+
+        async function loadTopFive(retries = 1) {
+            try {
+                const res = await fetch(
+                    'https://top2000backend.runasp.net/api/GetTopFive?year=2024'
+                );
+
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status}`);
+                }
+
+                const data = await res.json();
+
+                if (!cancelled) {
+                    const sorted = data.sort((a, b) => a.position - b.position);
+                    setItems(sorted);
+                    setFetchErrorMessage('');
+                }
+            } catch (err) {
+                if (retries > 0) {
+                    // small delay → let IIS wake up
+                    setTimeout(() => loadTopFive(retries - 1), 800);
+                } else if (!cancelled) {
+                    setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw.');
+                }
+            }
+        }
+
+        loadTopFive();
+
+        return () => {
+            cancelled = true;
+        };
     }, []);
 
     return (
