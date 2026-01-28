@@ -10,6 +10,10 @@ import Contact from "./pages/Contact.jsx";
 import FAQ from "./pages/faq.jsx";
 import Songoverview from "./pages/Songoverview.jsx"
 
+import Dalers from "./pages/Dalers.jsx"
+import Stijgers from "./pages/Stijgers.jsx"
+import Verdwenen from "./pages/Verdwenen.jsx"
+
 function App() {
   return (
     <div className={" d-flex flex-column min-vh-100"}>
@@ -25,6 +29,9 @@ function App() {
           {/* <Route path="/" element={<Artists />} /> */}
           <Route path="/contact" element={<Contact />} />
           <Route path="/songoverview" element={<Songoverview />} />
+          <Route path="/statistieken/grootste-dalers" element={<Dalers/>}/>
+          <Route path="/statistieken/grootste-stijgers" element={<Stijgers/>}/>
+          <Route path="/statistieken/verdwenen-nummers" element={<Verdwenen/>}/>
         </Routes>
       </main>
 

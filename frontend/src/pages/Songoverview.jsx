@@ -1,28 +1,42 @@
-import React, { useState, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Songoverview() {
   const currentUser = null;
 
-  // Dummy songs-array
-  const songs = Array.from({ length: 120 }, (_, i) => ({
-    id: i + 1,
-    title: `Song Titel ${i + 1}`,
-    artist: `Artiest ${i + 1}`,
-    year: 2000 + (i % 20),
-    yearsInRanking: (i % 5) + 1
-  }));
-
-  // Pagination
+  const [songs, setSongs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15;
+
+  useEffect(() => {
+    fetch("https://localhost:5001/api/GetSongs") // poort aanpassen?
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("Fout bij ophalen nummers");
+        }
+        return res.json();
+      })
+      .then(data => {
+        setSongs(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
+
   const totalPages = Math.ceil(songs.length / itemsPerPage);
 
   const paginatedSongs = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    return songs.slice(start, end);
+    return songs.slice(start, start + itemsPerPage);
   }, [currentPage, songs]);
+
+  if (loading) {
+    return <div className="text-center mt-5">Nummers laden...</div>;
+  }
 
   return (
     <div className="container mt-4">
@@ -33,19 +47,7 @@ export default function Songoverview() {
           <i className="bi bi-vinyl fs-3 text-danger me-2"></i>
           <h1 className="text-danger fs-5 mb-0">Alle Nummers</h1>
         </div>
-        <div className="mb-3">
-          <label className="form-label fs-6">Zoek nummer</label>
-          <div className="input-group">
-            <span className="input-group-text bg-white border-0">
-              <i className="bi bi-search text-danger"></i>
-            </span>
-            <input
-              type="text"
-              className="form-control border-0"
-              placeholder="Zoek op titel of artiest..."
-            />
-          </div>
-        </div>
+
         <p className="text-muted mb-0">{songs.length} nummers gevonden</p>
       </div>
 
@@ -63,19 +65,19 @@ export default function Songoverview() {
             </thead>
             <tbody>
               {paginatedSongs.map(song => (
-                <tr key={song.id} className="shadow-sm rounded mb-2">
+                <tr key={song.songId}>
                   <td>
-                    <Link to="#" className="text-decoration-none d-flex align-items-center">
-                      {song.title}
+                    <Link to="#" className="text-decoration-none">
+                      {song.titel}
                     </Link>
                   </td>
-                  <td>{song.artist}</td>
-                  <td>{song.year}</td>
+                  <td>{song.artist?.name}</td>
+                  <td>{song.releaseYear}</td>
                   <td>
-                    <span className="badge bg-light me-2 text-danger">{song.yearsInRanking} jaar</span>
+                    <span className="badge bg-light text-danger">–</span>
                     <i
                       className="bi bi-plus-lg text-danger ms-2 fs-5"
-                      style={{ cursor: 'pointer' }}
+                      style={{ cursor: "pointer" }}
                       data-bs-toggle="modal"
                       data-bs-target="#playlistModal"
                     ></i>
@@ -91,22 +93,26 @@ export default function Songoverview() {
       <div className="d-flex justify-content-center my-3">
         <button
           className="btn btn-danger text-white me-2"
-          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+          onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
           disabled={currentPage === 1}
         >
           Vorige
         </button>
-        <span className="align-self-center">Pagina {currentPage} van {totalPages}</span>
+
+        <span className="align-self-center">
+          Pagina {currentPage} van {totalPages}
+        </span>
+
         <button
           className="btn btn-danger text-white ms-2"
-          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+          onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
           disabled={currentPage === totalPages}
         >
           Volgende
         </button>
       </div>
 
-      {/* popup */}
+      {/* Modal */}
       <div className="modal fade" tabIndex={-1} id="playlistModal">
         <div className="modal-dialog">
           <div className="modal-content shadow border-0">
@@ -114,33 +120,24 @@ export default function Songoverview() {
               <h5 className="modal-title text-danger">
                 {currentUser ? "Toevoegen aan afspeellijst" : "Inloggen vereist"}
               </h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
             </div>
+
             <div className="modal-body">
               {!currentUser ? (
-                <p>Je moet eerst ingelogd zijn voor je een nummer toe kan voegen aan een afspeellijst.</p>
+                <p>
+                  Je moet eerst ingelogd zijn voor je een nummer toe kan voegen aan
+                  een afspeellijst.
+                </p>
               ) : (
                 <>
                   <label className="form-label">Selecteer afspeellijst</label>
-                  <select className="form-select mb-3" defaultValue="0">
-                    <option value="0">-- Kies een afspeellijst --</option>
-                    <option value="1">Favorieten</option>
-                    <option value="-1">+ Nieuwe afspeellijst maken</option>
+                  <select className="form-select mb-3">
+                    <option>-- Kies een afspeellijst --</option>
                   </select>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Naam nieuwe afspeellijst"
-                  />
                 </>
               )}
             </div>
-            {currentUser && (
-              <div className="modal-footer border-0">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Annuleren</button>
-                <button type="button" className="btn btn-danger">Toevoegen</button>
-              </div>
-            )}
           </div>
         </div>
       </div>
