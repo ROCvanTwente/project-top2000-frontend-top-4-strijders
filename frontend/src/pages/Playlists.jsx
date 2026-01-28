@@ -67,20 +67,15 @@ export default function Playlists() {
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
 
-        try {
-            const res = await fetch('http://top2000backend.runasp.net/api/PlayList/Create', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data.name)
-            }).then(res => res.json())
-                .then(data => {
-                    setPlaylists(prev => [...prev, data]) ;
-                }).catch((err) => {
-                    console.log(err);
-                })
 
+        try {
+            navigate('/playlistconfirmation', {
+                state: {
+                    item: data,
+                    action: 'create',
+                    title: data.name
+                },
+            });
         } catch (Error) {
             console.error('Error adding playlist:', Error);
         }

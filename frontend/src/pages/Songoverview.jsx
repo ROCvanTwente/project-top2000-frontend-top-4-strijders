@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 
 export default function Songoverview() {
   const currentUser = null; // ingelogde gebruiker
@@ -9,6 +9,15 @@ export default function Songoverview() {
   const [currentPage, setCurrentPage] = useState(1); // huidige pagina
   const [searchTerm, setSearchTerm] = useState(""); // zoekterm
   const itemsPerPage = 15; // hoeveel nummers per pagina
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/songpage", {
+            state: { from: location }
+        });
+    }
 
   // haal nummers op bij het laden
   useEffect(() => {
@@ -87,9 +96,9 @@ export default function Songoverview() {
             </thead>
             <tbody>
               {paginatedSongs.map(song => (
-                <tr key={song.songId}>
+                <tr onClick={handleClick} key={song.songId}>
                   <td>
-                    <Link to="#" className="text-decoration-none overview-hover">
+                      <Link to="/songpage" state={{ song }} className="nav-link text-white">
                       {song.titel}
                     </Link>
                   </td>

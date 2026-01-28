@@ -9,16 +9,16 @@ import '../css/global.css';
 export default function Songpage() {
     const location = useLocation();
     const navigate = useNavigate();
-    const songData = location.state?.item;
-
+    const songData = location.state?.item ?? null;
     const [amountEntries, setAmountOfEntries] = useState(0);
     const [videoId, setVideoId] = useState('');
     const [imgUrl, setImgUrl] = useState(songData?.songs?.imgUrl || '');
     const [loading, setLoading] = useState(true);
     const [posistions, setPosistions] = useState([]);
     const [isExpanded, setIsExpanded] = useState(false);
-    const loggedinUserID = "097E07E0-44B8-43FC-B049-7B92AF5FA34F";
 
+
+    console.log("data" , songData)
     useEffect(() => {
         if (!songData) {
             navigate('/');
