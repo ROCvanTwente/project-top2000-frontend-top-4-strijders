@@ -19,7 +19,7 @@ export default function SongsAdmin() {
     const { IsAdmin, apiRequest } = useAuth();
 
     useEffect(() => {
-        fetch('http://top2000backend.runasp.net/api/GetSongs')
+        fetch('https://top2000backend.runasp.net/api/GetSongs')
             .then(res => res.json())
             .then(data => setAllSongs(data))
             .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het later opnieuw'));
@@ -99,7 +99,7 @@ export default function SongsAdmin() {
         } else {
             setErrorMessages(allErrorMessages);
             console.log("alles is goed");
-            apiRequest("http://top2000backend.runasp.net/api/Edit/EditSong", {
+            apiRequest("https://top2000backend.runasp.net/api/Edit/EditSong", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
