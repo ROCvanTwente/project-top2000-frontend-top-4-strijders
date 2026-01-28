@@ -29,13 +29,13 @@ export default function Songpage() {
         const fetchData = async () => {
             try {
                 const promises = [
-                    fetch(`https://localhost:7003/api/Songs/GetYoutubeVideoId?title=${encodeURIComponent(songData.songs.titel)}&artist=${encodeURIComponent(songData.songs.artist.name)}`)
+                    fetch(`https://localhost:7003/api/Songs/GetYoutubeVideoId?title=${encodeURIComponent(songData.songs ? songData.songs.titel : songData.titel)}&artist=${encodeURIComponent(songData.songs ? songData.songs.artist.name : songData.artist.name)}`)
                         .then(res => res.text()),
-                    fetch(`https://localhost:7003/api/Songs/GetAlbumCover?title=${encodeURIComponent(songData.songs.titel)}&artist=${encodeURIComponent(songData.songs.artist.name)}`)
+                    fetch(`https://localhost:7003/api/Songs/GetAlbumCover?title=${encodeURIComponent(songData.songs ? songData.songs.titel : songData.titel)}&artist=${encodeURIComponent(songData.songs ? songData.songs.artist.name : songData.artist.name)}`)
                         .then(res => res.text()),
-                    fetch(`https://localhost:7003/api/Songs/GetSongEntries?id=${encodeURIComponent(songData.songs.songId)}`)
+                    fetch(`https://localhost:7003/api/Songs/GetSongEntries?id=${encodeURIComponent(songData.songs ? songData.songs.songId : songData.songId)}`)
                         .then(res => res.json()),
-                    fetch(`https://localhost:7003/api/Songs/GetPositionsPerYear?songId=${encodeURIComponent(songData.songs.songId)}`)
+                    fetch(`https://localhost:7003/api/Songs/GetPositionsPerYear?songId=${encodeURIComponent(songData.songs ? songData.songs.songId : songData.songId)}`)
                         .then(res => res.json())
                 ];
 
@@ -87,16 +87,16 @@ export default function Songpage() {
                         {/* Info sectie - rechts */}
                         <div style={{flex: 1}}>
                             <div className="card-body p-4">
-                                <p className="mb-2 fs-5" style={{color: '#dc3545'}}>{songData.songs.titel}</p>
+                                <p className="mb-2 fs-5" style={{color: '#dc3545'}}>{songData.songs ? songData.songs.titel : songData.titel}</p>
 
                                 <div className="mb-3">
                                     <span style={{color: '#dc3545'}}>👤</span>
-                                    <span className="ms-2">Artiest: <a href="#" className="text-decoration-none" style={{color: '#dc3545'}}>{songData.songs.artist.name}</a></span>
+                                    <span className="ms-2">Artiest: <a href="#" className="text-decoration-none" style={{color: '#dc3545'}}>{songData.songs ? songData.songs.artist.name : songData.artist.name}</a></span>
                                 </div>
 
                                 <div className="mb-3">
                                     <span style={{color: '#dc3545'}}>📅</span>
-                                    <span className="ms-2">Jaar van uitgave: {songData.songs.releaseYear}</span>
+                                    <span className="ms-2">Jaar van uitgave: {songData.songs ? songData.songs.releaseYear : songData.releaseYear}</span>
                                 </div>
 
                                 <div className="mb-3">

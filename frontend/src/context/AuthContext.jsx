@@ -34,8 +34,10 @@ export function AuthProvider({ children }) {
                 email: email,
                 password: password
             })
-        });
-
+        }).catch(err => {return 'Inloggen mislukt'});
+        if (typeof response == 'string') {
+            return response;
+        }
         const data = await response.json();
         if (response.status == 200) {
             localStorage.setItem('accessToken', data.token);
@@ -78,8 +80,10 @@ export function AuthProvider({ children }) {
                 ConfirmPassword: confirmPassword
 
             })
-        });
-
+        }).catch(err => {return 'Registreren mislukt'});
+        if (typeof response == 'string') {
+            return response;
+        }
         const data = await response.json();
         if (response.status == 200) {
             localStorage.setItem('accessToken', data.token);

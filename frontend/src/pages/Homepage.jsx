@@ -1,4 +1,4 @@
-    import React, {useEffect} from 'react'
+    import React, {useEffect, useState} from 'react'
 import {Link, redirect} from 'react-router-dom';
 import Studio from '../assets/Studio.jpg';
 import Party from '../assets/Party.jpg';
@@ -7,20 +7,17 @@ import CD from '../assets/CD.jpg';
 
 import DaysUntil from '../components/Daysuntil.jsx';
 export default function Homepage() {
-
     const [items, setItems] = React.useState([]);
-
-
-
+    const [fetchErrorMessage, setFetchErrorMessage] = useState('');
 
     useEffect(() => {
-        fetch('https://localhost:7003/api/GetTopFive')
+        fetch('https://localhost:7003/api/GetTopFive?year=2024')
             .then(res => res.json())
             .then(data => {
                 const sorted = data.sort((a, b) => a.position - b.position);
                 setItems(sorted);
             })
-            .catch(err => console.error(err));
+            .catch(err => setFetchErrorMessage('Data ophalen mislukt. Probeer het opnieuw'));
     }, []);
 
     return (
@@ -145,7 +142,11 @@ export default function Homepage() {
                                 <p className="m-0 align-items-center fs-4 d-flex">Top 5 van 2024</p>
                             </div>
                             <div className="card-body">
-
+                                {fetchErrorMessage && (
+                                    <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {fetchErrorMessage}
+                                    </div>
+                                )}
                                 {items.map((item) => {
                                     return (
                                         <Link to="/songpage" state={{ item }} className="nav-link text-white">
@@ -174,8 +175,7 @@ export default function Homepage() {
                                         </Link>
                                     )
                                 })}
-
-                                <a href="#" className="btn figma-red text-light">Bekijk de volledige TOP 2000</a>
+                                <Link to="/overview" className="btn figma-red text-light">Bekijk de volledige TOP 2000</Link>
                             </div>
                         </div>
 
@@ -233,7 +233,7 @@ export default function Homepage() {
                     </div>
 
                     {/*Countdown*/}
-                    <div className="row g-4">
+                    <div className="row g-4 pb-4">
                         {/* X-Mas*/}
                         <div className="col-12 col-sm-6">
                             <Link to="/artiesten" className="text-decoration-none">

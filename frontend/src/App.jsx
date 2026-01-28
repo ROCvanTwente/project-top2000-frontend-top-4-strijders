@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom"
 
-import background from "./assets/background.svg"
 import Homepage from "./pages/Homepage"
 import Overview from "./pages/Top2000Overview"
 import History from "./pages/History"
@@ -12,10 +11,21 @@ import Login from "./pages/Login.jsx"
 import Register from "./pages/Register.jsx";
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from "./routes/ProtectedRoute.jsx"
+//
+import AdminPage from "./admin/AdminPage.jsx";
+import ArtistAdmin from "./admin/AritstAdmin.jsx";
+import SongsAdmin from "./admin/SongAdmin.jsx";
 import Contact from "./pages/Contact.jsx";
 import FAQ from "./pages/faq.jsx";
 import Songpage from "./pages/Songpage.jsx";
 import PlayListConfirm from "./confirmations/PlayListConfirm.jsx";
+import ArtistsOverview from "./pages/ArtistsOverview.jsx"
+import ArtistDetail from "./pages/ArtistDetail.jsx"
+
+// Statistics
+import SamePosition from "./statistics/SamePosition.jsx";
+import BestArtists from "./statistics/BestArtists.jsx";
+import Top2000AllEntries from "./statistics/Top2000AllEntries.jsx";
 
 function App() {
   return (
@@ -31,16 +41,25 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/openingsact" element={< Openingsact />} />
-            <Route path="/playlists" element={<Playlists />} />
-            <Route path="/login" element={<ProtectedRoute><Login /></ProtectedRoute>} />
-            <Route path="/register" element={<ProtectedRoute><Register /></ProtectedRoute>} />
-            <Route path="/playlistconfirmation" element={<PlayListConfirm />} />
-          <Route path="/Overview" element={<Overview />} />
-          <Route path="/songpage" element={<Songpage/>} />
-          <Route path="/history" element={<History />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/playlists" element={<Playlists />} />
+            <Route path="/playlists" element={<ProtectedRoute role="user"><Playlists /></ProtectedRoute>} />
+            <Route path="/login" element={<ProtectedRoute role="notuser"><Login /></ProtectedRoute>} />
+            <Route path="/register" element={<ProtectedRoute role="notuser"><Register /></ProtectedRoute>} />
+            <Route path="/playlistconfirmation" element={<ProtectedRoute role="user"><PlayListConfirm /></ProtectedRoute>} />
+            <Route path="/Overview" element={<Overview />} />
+            <Route path="/songpage" element={<Songpage/>} />
+            <Route path="/geschiedenis" element={<History />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/artiesten" element={<ArtistsOverview />} />
+            <Route path="/artiest/:id" element={<ArtistDetail />} />
+            <Route path="/adminpage" element={<ProtectedRoute role="admin"><AdminPage /></ProtectedRoute>} />
+            <Route path="/adminsongs" element={<ProtectedRoute role="admin"><SongsAdmin /></ProtectedRoute>} />
+            <Route path="/adminartists" element={<ProtectedRoute role="admin"><ArtistAdmin /></ProtectedRoute>} />
+
+            {/* Statistics */}
+            <Route path="/statistieken/zelfde-positie" element={<SamePosition />} />
+            <Route path="/statistieken/top-artiesten" element={<BestArtists />} />
+            <Route path="/statistieken/alle-liedjes" element={<Top2000AllEntries />} />
         </Routes>
       </main>
 
