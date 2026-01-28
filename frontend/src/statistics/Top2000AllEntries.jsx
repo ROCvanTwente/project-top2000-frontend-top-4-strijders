@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 export default function Top2000AllEntries() {
     const [songs, setSongs] = useState([]);
@@ -9,8 +9,16 @@ export default function Top2000AllEntries() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 20;
 
+    const navigate = useNavigate();
+
     const [fetchErrorMessage, setFetchErrorMessage] = useState('');
 
+    const normalizeForSongpage = (entry) => ({
+            titel: entry.title,
+            releaseYear: entry.releaseYear,
+            songId: entry.songID ?? entry.id,
+            artist: { name: entry.artistName }
+    });
 
     // Fetch filtered by year
     useEffect(() => {
@@ -54,6 +62,8 @@ export default function Top2000AllEntries() {
         const startIndex = (currentPage - 1) * itemsPerPage;
         return sortedSongs.slice(startIndex, startIndex + itemsPerPage);
     }, [sortedSongs, currentPage]);
+
+    console.log(paginatedSongs)
 
     const totalPages = Math.ceil(sortedSongs.length / itemsPerPage);
 
@@ -108,9 +118,11 @@ export default function Top2000AllEntries() {
                                 </thead>
                                 <tbody>
                                     {paginatedSongs.map((item, index) => (
-
-                                        <tr key={index}>
-                                            <td className='ps-3'>
+                                        <tr
+                                            key={index}
+                                            onClick={() => navigate('/songpage', { state: { item: normalizeForSongpage(item) } })}
+                                        >
+                                            <td>
                                                 {item.artistName}
                                             </td>
                                             <td>
@@ -146,4 +158,3 @@ export default function Top2000AllEntries() {
         </>
     )
 }
-
