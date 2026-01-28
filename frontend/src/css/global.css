@@ -1,0 +1,253 @@
+.background-icon {
+    position: relative;
+    overflow: hidden;
+}
+
+.background-icon .icon-background {
+    position: absolute;
+    top: 90%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    font-size: 1500px;
+    color: #1E2939;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.background-icon>*:not(.icon-background) {
+    position: relative;
+    z-index: 1;
+}
+
+
+
+.red-gradient {
+    background: linear-gradient(to right, #dc2626, #b91c1c);
+}
+
+.icon-navbar {
+    font-size: 24px;
+}
+
+.navbar-collapse.show .nav-item:hover,
+.navbar-collapse.show .dropdown-item:hover {
+    background-color: #991b1b;
+    color: white !important;
+    border-radius: 4px;
+    transition: 0.4s ease-in-out;
+}
+
+/* MOBILE */
+@media (max-width: 991px) {
+    .navbar {
+        padding: 0;
+    }
+
+    .navbar-collapse.show {
+        background-color: #b91c1c !important;
+        padding: 1rem;
+    }
+
+    .navbar-collapse.show .dropdown-menu {
+        background-color: #b91c1c !important;
+        border: none;
+    }
+
+    .navbar-collapse.show .nav-link,
+    .navbar-collapse.show .dropdown-item {
+        color: white !important;
+    }
+
+}
+
+/* DESKTOP */
+@media (min-width: 992px) {
+    .navbar {
+        padding: 0 100px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .navbar {
+        padding: 0 50px;
+    }
+}
+
+.bg-footer {
+    background-color: #1E2939;
+    height: 120px;
+}
+
+.icons-standard {
+    color: #DC000A;
+    margin: 10px;
+    display: inline-block;
+    /* REQUIRED for SVG scaling */
+    transform: scale(150%);
+    /* 150% bigger */
+}
+
+.figma-red {
+    background-color: #DC000A !important;
+}
+
+.figma-red-text {
+    color: #DC000A !important;
+}
+
+/* Hover voor de top 5 */
+.top-5-card:hover {
+    transform: scale(1.01);
+    transition: 0.4s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Carousel */
+.carousel,
+.carousel-inner {
+    /* height: 350px; */
+    border-radius: 25px;
+}
+
+.carousel-item img {
+    height: 350px;
+    border-radius: 25px;
+}
+
+
+
+
+.red-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #DC000A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-5-background {
+    background-color: #f7f9fa !important;
+    border-radius: 25px !important;
+}
+
+.overview-hover {
+    color: black;
+}
+ 
+.overview-hover:hover {
+    color: #DC000A;
+    transition: color 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+/* TOP2000 Overview  */
+.table-top2000 tbody tr td {
+    padding-top: 1.0rem !important;
+    padding-bottom: 1.0rem !important;
+}
+
+.overview-hover {
+    color: black;
+}
+
+.overview-hover:hover {
+    color: #DC000A;
+    transition: color 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+/* openigsact image responsive styles */
+
+@media (max-width: 767.98px) {
+    .act-img {
+        max-height: 300px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .act-img {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+}
+
+
+/* Login / Register pages */
+
+.login-input:focus {
+    border-color: #DC000A;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.register-link,
+.login-link {
+    color: #DC000A;
+    text-decoration: underline;
+    text-decoration-color: #DC000A;
+    cursor: pointer;
+}
+
+
+
+/* Admin pages */
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(220, 0, 10, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-circle i {
+    color: #DC000A;
+    font-size: 20px;
+}
+
+.admin-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-shadow-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.admin-shadow-hover:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transform: translateY(-3px);
+}
+
+
+.redfocus-input:focus {
+    border-color: #DC000A;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+/* --------------------- */
+.autocomplete {
+  border: 1px solid #ccc;
+  width: 100%;
+  position: relative;
+  z-index: 99;
+}
+
+.item {
+  background: #eee;
+  padding: 6px;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.item:hover {
+  background: #eee;
+  z-index: 99;
+}
