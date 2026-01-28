@@ -43,7 +43,7 @@ function Navbar() {
                                 <Link className="nav-link text-white" to="/artiesten" onClick={closeMenu}>Artiesten</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/" onClick={closeMenu}>Nummers</Link>
+                                <Link className="nav-link text-white" to="/songoverview" onClick={closeMenu}>Nummers</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link text-white" to="/openingsact" onClick={closeMenu}>Openingsact</Link>

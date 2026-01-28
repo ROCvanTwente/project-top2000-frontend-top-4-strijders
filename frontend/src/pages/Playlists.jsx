@@ -10,7 +10,7 @@ export default function Playlists() {
     const [songs, setSongs] = useState([]);
 
     const token = localStorage.getItem("accessToken");
-
+    console.log(token)
 
     useEffect(() => {
 

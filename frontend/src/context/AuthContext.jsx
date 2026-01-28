@@ -147,7 +147,7 @@ export function AuthProvider({ children }) {
     function IsAdmin() {
         if (!user) return false
         const JsonUser = JSON.parse(user);
-        const role = JsonUser["https://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+        const role = JsonUser["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
         return role.includes("Admin");
     }
 
