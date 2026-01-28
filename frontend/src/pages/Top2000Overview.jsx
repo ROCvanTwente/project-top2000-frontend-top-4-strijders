@@ -170,7 +170,7 @@ export default function Homepage() {
                                                 <td>
                                                     <Link
                                                         className="text-decoration-none overview-hover"
-                                                        to="/overview"
+                                                        to={`/artiest/${item.songs.artist.artistId}`}
                                                     >
                                                         {item.songs.artist.name}
                                                     </Link>
