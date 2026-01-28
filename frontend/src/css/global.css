@@ -133,6 +133,15 @@
     border-radius: 25px !important;
 }
 
+.overview-hover {
+    color: black;
+}
+ 
+.overview-hover:hover {
+    color: #DC000A;
+    transition: color 0.3s ease-in-out;
+    cursor: pointer;
+}
 
 /* TOP2000 Overview  */
 .table-top2000 tbody tr td {
