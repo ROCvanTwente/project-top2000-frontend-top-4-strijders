@@ -79,9 +79,9 @@ export default function Songpage() {
             {/* Main card met horizontale layout */}
             <div className="row mb-4">
                 <div className="col-12">
-                    <div className="card rounded-4 border-0 shadow overflow-hidden" style={{display: 'flex', flexDirection: 'row'}}>
-                        <div style={{backgroundColor: '#d4d4d4', width: '450px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem'}}>
-                            <img src={imgUrl} alt="cover" style={{width: '100%', height: '100%', objectFit: 'contain'}} />
+                    <div className="card rounded-4 border-0 shadow overflow-hidden d-flex flex-column flex-md-row">
+                        <div className="cover-container d-flex align-items-center justify-content-center" style={{ backgroundColor: '#d4d4d4' }}>
+                            <img src={imgUrl} alt="cover" className="cover-img" />
                         </div>
 
                         {/* Info sectie - rechts */}

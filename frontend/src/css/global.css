@@ -1,14 +1,14 @@
 .background-icon {
-    position: relative;
-    overflow: hidden;
+position: relative;
+min-height: 100vh;
+overflow: hidden;
 }
 
-.background-icon .icon-background {
+.icon-background {
     position: absolute;
-    top: 90%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-    font-size: 1500px;
+font-size: 600px;
+    bottom: -350px;
+    left: -300px;
     color: #1E2939;
     z-index: 0;
     pointer-events: none;
@@ -19,6 +19,21 @@
     z-index: 1;
 }
 
+@media (min-width: 768px) {
+    .icon-background {
+        font-size: 1000px;
+        bottom: -600px;
+        left: -500px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .icon-background {
+        font-size: 1500px;
+        bottom: -900px;
+        left: -800px;
+    }
+}
 
 
 .red-gradient {
@@ -38,29 +53,25 @@
 }
 
 /* MOBILE */
-@media (max-width: 991px) {
-    .navbar {
-        padding: 0;
-    }
-
-    .navbar-collapse.show {
-        background-color: #b91c1c !important;
-        padding: 1rem;
-    }
-
-    .navbar-collapse.show .dropdown-menu {
-        background-color: #b91c1c !important;
-        border: none;
-    }
-
-    .navbar-collapse.show .nav-link,
-    .navbar-collapse.show .dropdown-item {
-        color: white !important;
-    }
-
+/* Mobile-first base styles (base = mobile) */
+.navbar {
+    padding: 0;
 }
 
-/* DESKTOP */
+.navbar-collapse.show {
+    background-color: #b91c1c !important;
+    padding: 1rem;
+}
+
+.navbar-collapse.show .dropdown-menu {
+    background-color: #b91c1c !important;
+    border: none;
+}
+
+.navbar-collapse.show .nav-link,
+.navbar-collapse.show .dropdown-item {
+    color: white !important;
+}
 @media (min-width: 992px) {
     .navbar {
         padding: 0 100px;
@@ -75,16 +86,21 @@
 
 .bg-footer {
     background-color: #1E2939;
-    height: 120px;
+    min-height: 120px;
+        padding: 1rem 0;
 }
 
 .icons-standard {
     color: #DC000A;
     margin: 10px;
     display: inline-block;
-    /* REQUIRED for SVG scaling */
-    transform: scale(150%);
-    /* 150% bigger */
+    transform: scale(1);
+    }
+    
+    @media (min-width: 992px) {
+        .icons-standard {
+            transform: scale(1.5);
+        }
 }
 
 .figma-red {
@@ -106,16 +122,16 @@
 /* Carousel */
 .carousel,
 .carousel-inner {
-    /* height: 350px; */
     border-radius: 25px;
 }
 
 .carousel-item img {
-    height: 350px;
+    width: 100%;
+        height: auto;
+        max-height: 350px;
+        object-fit: cover;
     border-radius: 25px;
 }
-
-
 
 
 .red-circle {
@@ -250,4 +266,23 @@
 .item:hover {
   background: #eee;
   z-index: 99;
+}
+/* Songpage cover container - mobile-first */
+.cover-container {
+    width: 100%;
+    padding: 1rem;
+    flex-shrink: 0;
+}
+
+.cover-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+@media (min-width: 768px) {
+    .cover-container {
+        width: 450px;
+        padding: 2rem;
+    }
 }
