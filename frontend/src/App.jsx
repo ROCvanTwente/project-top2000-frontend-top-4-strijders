@@ -39,10 +39,8 @@ import HighestEntry from "./statistics/HighestEntry.jsx";
 function App() {
   return (
     <AuthProvider>
-      <div className=" d-flex flex-column min-vh-100">
-      <div className="background-icon">
+      <div className="background-icon d-flex flex-column min-vh-100">
         <i className="bi icon-background bi-record-circle"></i>
-      </div>
 
       <Navbar />
 

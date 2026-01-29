@@ -1,14 +1,14 @@
 .background-icon {
-    position: relative;
-    overflow: hidden;
+position: relative;
+min-height: 100vh;
+overflow: hidden;
 }
 
-.background-icon .icon-background {
+.icon-background {
     position: absolute;
-    top: 90%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-    font-size: 1500px;
+font-size: 600px;
+    bottom: -350px;
+    left: -300px;
     color: #1E2939;
     z-index: 0;
     pointer-events: none;
@@ -19,6 +19,21 @@
     z-index: 1;
 }
 
+@media (min-width: 768px) {
+    .icon-background {
+        font-size: 1000px;
+        bottom: -600px;
+        left: -500px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .icon-background {
+        font-size: 1500px;
+        bottom: -900px;
+        left: -800px;
+    }
+}
 
 
 .red-gradient {
